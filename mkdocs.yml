@@ -1,0 +1,129 @@
+site_name: Docker Ansible
+site_url: https://docker-ansible.github.io/
+site_description: >-
+  Documentation for the willhallonline Docker Ansible ecosystem — Ansible
+  inside Docker containers for local development and CI/CD pipelines.
+site_author: Will Hall
+
+repo_url: https://github.com/willhallonline/docker-ansible
+repo_name: willhallonline/docker-ansible
+edit_uri: ""
+
+copyright: >-
+  Maintained by <a href="https://www.willhallonline.co.uk">Will Hall</a>.
+  Docker Ansible is MIT licensed.
+
+theme:
+  name: material
+  language: en
+  icon:
+    logo: material/ferry
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: red
+      accent: red
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/willhallonline/docker-ansible
+      name: docker-ansible on GitHub
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/r/willhallonline/ansible
+      name: willhallonline/ansible on Docker Hub
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - getting-started/index.md
+      - Quick Start: getting-started/quick-start.md
+      - Choosing an Image: getting-started/choosing-an-image.md
+      - Shell Aliases: getting-started/shell-aliases.md
+  - Images:
+      - images/index.md
+      - Tags: images/tags.md
+      - Alpine: images/alpine.md
+      - Debian: images/debian.md
+      - Ubuntu: images/ubuntu.md
+      - Rocky Linux: images/rockylinux.md
+      - Architectures: images/architectures.md
+      - What's Inside: images/whats-inside.md
+      - Older Releases: images/older-releases.md
+  - Usage:
+      - usage/index.md
+      - Running Playbooks: usage/running-playbooks.md
+      - SSH Keys & Authentication: usage/ssh-keys-and-auth.md
+      - Ansible Vault: usage/ansible-vault.md
+      - Ansible Lint: usage/ansible-lint.md
+      - Galaxy Roles & Collections: usage/galaxy-roles-collections.md
+      - Docker Compose: usage/docker-compose.md
+      - Extending the Images: usage/extending-images.md
+      - Mitogen: usage/mitogen.md
+  - CI/CD:
+      - ci/index.md
+      - GitHub Actions: ci/github-actions.md
+      - GitLab CI: ci/gitlab-ci.md
+      - Bitbucket Pipelines: ci/bitbucket-pipelines.md
+      - Azure Pipelines: ci/azure-pipelines.md
+      - Jenkins: ci/jenkins.md
+      - CircleCI: ci/circleci.md
+      - Drone CI: ci/drone.md
+      - Woodpecker CI: ci/woodpecker.md
+  - Projects:
+      - projects/index.md
+      - docker-ansible: projects/docker-ansible.md
+      - GitHub Action: projects/github-action.md
+      - Testing: projects/testing.md
+  - Reference:
+      - FAQ: reference/faq.md
+      - Troubleshooting: reference/troubleshooting.md
+      - Security: reference/security.md
+      - Changelog: reference/changelog.md
+  - About:
+      - Contributing: about/contributing.md
+      - License: about/license.md
