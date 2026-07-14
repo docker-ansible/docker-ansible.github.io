@@ -3,7 +3,10 @@
 Azure Pipelines supports `willhallonline/ansible` through container jobs and through explicit `docker run` commands. Container jobs are usually simpler because every script step runs inside the Ansible image.
 
 !!! tip "Use container jobs first"
-    Prefer `container: willhallonline/ansible:2.21-alpine-3.22` unless you need to mix several containers inside one job.
+    Prefer `container: willhallonline/ansible:2.21-ubuntu-24.04` unless you need to mix several containers inside one job.
+
+!!! warning "Use glibc images for container jobs"
+    Azure Pipelines injects its Node.js task runner into Linux container jobs, so the container image must be glibc-based. Alpine images use musl and are unsupported for `container:` jobs, but they are fine when you call `docker run` from a normal script step.
 
 ## Prerequisites
 
@@ -31,7 +34,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-container: willhallonline/ansible:2.21-alpine-3.22
+container: willhallonline/ansible:2.21-ubuntu-24.04
 
 steps:
   - checkout: self
@@ -70,7 +73,7 @@ stages:
         displayName: Run ansible-lint
         pool:
           vmImage: ubuntu-latest
-        container: willhallonline/ansible:2.21-alpine-3.22
+        container: willhallonline/ansible:2.21-ubuntu-24.04
         steps:
           - checkout: self
 
@@ -91,7 +94,7 @@ stages:
         displayName: Check playbook syntax
         pool:
           vmImage: ubuntu-latest
-        container: willhallonline/ansible:2.21-alpine-3.22
+        container: willhallonline/ansible:2.21-ubuntu-24.04
         steps:
           - checkout: self
 
@@ -113,7 +116,7 @@ stages:
         environment: production
         pool:
           vmImage: ubuntu-latest
-        container: willhallonline/ansible:2.21-alpine-3.22
+        container: willhallonline/ansible:2.21-ubuntu-24.04
         strategy:
           runOnce:
             deploy:
@@ -214,7 +217,7 @@ Add the cache step before `ansible-galaxy collection install`.
 - Use deployment jobs and environments for approval gates.
 - Keep secure files scoped to the pipeline that needs them.
 - Prefer variable groups for shared non-file secrets.
-- Pin exact image tags in every container job.
+- Pin exact glibc-based image tags in every container job.
 - Use `docker run` only when container jobs do not fit your agent setup.
 - Keep branch conditions on deployment stages, not only on individual steps.
 
@@ -222,7 +225,7 @@ Add the cache step before `ansible-galaxy collection install`.
 
 | Symptom | Check |
 | --- | --- |
-| Container job cannot start | Confirm the selected agent supports Docker and Linux containers. |
+| Container job cannot start | Confirm the selected agent supports Docker and Linux containers, and use a glibc-based image such as the Ubuntu tag. |
 | Secure file path is empty | Ensure the `DownloadSecureFile@1` task name matches the variable reference. |
 | Secret appears as `***` in command | That is expected masking; write it to a file without printing it. |
 | Deployment skipped | Check the `Build.SourceBranch` condition. |

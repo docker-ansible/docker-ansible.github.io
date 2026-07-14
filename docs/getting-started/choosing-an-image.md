@@ -178,15 +178,16 @@ For the complete tag list, see [image tags](../images/tags.md).
 
 ## Multi-architecture considerations
 
-All images are multi-architecture:
+Current images are multi-architecture:
 
 - AMD64
 - ARM64
-- ARMv7
 
 In most cases Docker chooses the correct architecture automatically for the host. This
-makes it practical to use the same tag on x86 CI runners, ARM developer machines, and
-other supported platforms.
+makes it practical to use the same tag on x86 CI runners, Apple Silicon, AWS
+Graviton, 64-bit Raspberry Pi OS, and other supported 64-bit platforms. 32-bit ARM
+images are not published for current tags; use a 64-bit OS for current images, or
+check Docker Hub tags if you rely on older archived images.
 
 For details, see [architectures](../images/architectures.md).
 

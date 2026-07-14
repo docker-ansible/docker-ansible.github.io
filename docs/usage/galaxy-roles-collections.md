@@ -176,19 +176,18 @@ server_list = private, galaxy
 
 [galaxy_server.private]
 url = https://automation-hub.example.com/api/galaxy/
-token = ${GALAXY_TOKEN}
 
 [galaxy_server.galaxy]
 url = https://galaxy.ansible.com/
 ```
 
-Pass tokens at runtime:
+Pass tokens at runtime with the per-server environment variable. Ansible does not expand environment variables in the `token` setting in `ansible.cfg`; because the section above is `[galaxy_server.private]`, use `ANSIBLE_GALAXY_SERVER_PRIVATE_TOKEN`:
 
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
   --workdir=/ansible \
-  -e GALAXY_TOKEN \
+  -e ANSIBLE_GALAXY_SERVER_PRIVATE_TOKEN="$GALAXY_TOKEN" \
   willhallonline/ansible:latest \
   ansible-galaxy collection install -r requirements.yml -p collections
 ```

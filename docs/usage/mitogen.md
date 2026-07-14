@@ -49,11 +49,11 @@ docker run --rm -it registry.example.com/platform/ansible-mitogen:2.21 \
 
 ## Find the strategy plugin path
 
-Use Python inside the same image:
+Use Python inside the same image. The strategy plugin is under the top-level `ansible_mitogen` package:
 
 ```bash
 docker run --rm -it registry.example.com/platform/ansible-mitogen:2.21 \
-  python -c "import os, mitogen; print(os.path.join(os.path.dirname(mitogen.__file__), 'ansible_mitogen', 'plugins', 'strategy'))"
+  python -c "import ansible_mitogen, os; print(os.path.join(os.path.dirname(ansible_mitogen.__file__), 'plugins', 'strategy'))"
 ```
 
 Or inspect package metadata:

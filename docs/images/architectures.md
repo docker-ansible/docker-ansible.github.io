@@ -1,20 +1,22 @@
 # Architectures
 
-Current `willhallonline/ansible` images are published for multiple CPU
-architectures. This lets the same image tags work across laptops, CI runners,
-edge devices, and cloud ARM instances.
+Current `willhallonline/ansible` images are published as multi-architecture
+images for AMD64 and ARM64. This lets the same image tags work across laptops,
+CI runners, Apple Silicon Macs, AWS Graviton instances, 64-bit Raspberry Pi OS,
+and other 64-bit ARM hosts.
 
 ## Supported architectures
 
 | Architecture | Docker platform | Common environments |
 | --- | --- | --- |
 | AMD64 | `linux/amd64` | Intel and AMD servers, most x86_64 CI runners |
-| ARM64 | `linux/arm64` | Apple Silicon, AWS Graviton, ARM servers |
-| ARMv7 | `linux/arm/v7` | Raspberry Pi and other 32-bit ARM systems |
+| ARM64 | `linux/arm64` | Apple Silicon, AWS Graviton, ARM servers, 64-bit Raspberry Pi OS |
 
-!!! note "Applies to current images"
-    AMD64, ARM64, and ARMv7 are available for all current supported images in
-    the matrix.
+!!! note "Current image manifests"
+    Current tags publish AMD64 and ARM64 variants. 32-bit ARM images are not
+    published for current tags. If you use a Raspberry Pi, run a 64-bit OS so
+    Docker can pull the ARM64 image. Some older archived tags may have included
+    32-bit ARM variants; check Docker Hub tags before relying on archived images.
 
 ## Pulling images
 
@@ -39,18 +41,15 @@ You can request a specific platform when needed:
     docker pull --platform linux/arm64 willhallonline/ansible:2.21-alpine-3.22
     ```
 
-=== "ARMv7"
-
-    ```bash
-    docker pull --platform linux/arm/v7 willhallonline/ansible:2.21-alpine-3.22
-    ```
-
 ## Running on Apple Silicon
 
 Apple Silicon Macs use ARM64. Docker Desktop can run the ARM64 image natively:
 
 ```bash
-docker run --rm   --platform linux/arm64   willhallonline/ansible:2.21-alpine-3.22   ansible --version
+docker run --rm \
+  --platform linux/arm64 \
+  willhallonline/ansible:2.21-alpine-3.22 \
+  ansible --version
 ```
 
 You usually do not need `--platform` on Apple Silicon unless you are testing a
@@ -59,19 +58,18 @@ multi-architecture image manifest.
 
 ## Running on Raspberry Pi
 
-Use ARM64 on 64-bit Raspberry Pi operating systems and ARMv7 on 32-bit systems:
+Use a 64-bit Raspberry Pi operating system so Docker can pull the ARM64 variant:
 
-=== "64-bit Raspberry Pi OS"
+```bash
+docker run --rm \
+  --platform linux/arm64 \
+  willhallonline/ansible:2.21-alpine-3.22 \
+  ansible --version
+```
 
-    ```bash
-    docker run --rm       --platform linux/arm64       willhallonline/ansible:2.21-alpine-3.22       ansible --version
-    ```
-
-=== "32-bit Raspberry Pi OS"
-
-    ```bash
-    docker run --rm       --platform linux/arm/v7       willhallonline/ansible:2.21-alpine-3.22       ansible --version
-    ```
+Current image tags do not publish 32-bit ARM variants. On 32-bit Raspberry Pi OS,
+switch to a 64-bit OS for current images. If you must use an older archived tag,
+check the Docker Hub tag details first to confirm which platforms it published.
 
 ## Running on AWS Graviton
 
@@ -85,12 +83,15 @@ docker run --rm willhallonline/ansible:2.21-ubuntu-24.04 ansible --version
 For explicit platform selection:
 
 ```bash
-docker run --rm   --platform linux/arm64   willhallonline/ansible:2.21-ubuntu-24.04   ansible --version
+docker run --rm \
+  --platform linux/arm64 \
+  willhallonline/ansible:2.21-ubuntu-24.04 \
+  ansible --version
 ```
 
 ## Choosing a platform in CI
 
-Most CI systems run on AMD64 by default. If you schedule jobs on ARM runners,
+Most CI systems run on AMD64 by default. If you schedule jobs on ARM64 runners,
 keep the same image tag and let Docker select the platform:
 
 ```yaml
@@ -112,7 +113,7 @@ system. The image manifest then maps that tag to the available platforms.
 | Do tags include the CPU architecture? | No. Docker selects the matching image from the manifest. |
 | Can the same tag run on AMD64 and ARM64? | Yes, for current supported images. |
 | Does Apple Silicon need a special tag? | No. Use the normal tag. |
-| Does ARMv7 need a special tag? | No. Use the normal tag with an ARMv7-capable Docker host. |
+| Can I use current tags on 32-bit Raspberry Pi OS? | No. Use a 64-bit OS, or check Docker Hub for older archived tags that match your platform. |
 
 !!! tip "Keep tags architecture-neutral"
     In most Dockerfiles and CI definitions, use the same `willhallonline/ansible`
@@ -133,7 +134,6 @@ Common outputs include:
 | --- | --- |
 | `x86_64` | AMD64 |
 | `aarch64` | ARM64 |
-| `armv7l` | ARMv7 |
 
 ## Related pages
 

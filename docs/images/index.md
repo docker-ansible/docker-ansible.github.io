@@ -135,8 +135,9 @@ are available for each stream.
 
 ## Architectures
 
-Current images are published for AMD64, ARM64, and ARMv7. See
-[architectures](architectures.md) for platform-specific pull and run examples.
+Current images are published for AMD64 and ARM64. See
+[architectures](architectures.md) for platform-specific pull and run examples,
+including Apple Silicon, AWS Graviton, and 64-bit Raspberry Pi OS.
 
 ## Regular rebuilds
 

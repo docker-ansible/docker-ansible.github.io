@@ -5,6 +5,9 @@ Jenkins can run `willhallonline/ansible` with Declarative Pipeline Docker agents
 !!! tip "Declarative first"
     Use `agent { docker { image 'willhallonline/ansible:2.21-alpine-3.22' } }` for straightforward pipelines.
 
+!!! note "Use workspace paths for generated files"
+    The Docker Pipeline plugin may run containers as the Jenkins host UID and GID. That UID may not have a passwd entry or home directory inside the image, so avoid `~/.ssh`; write keys, Vault files, and Ansible temporary files under `$WORKSPACE` instead.
+
 ## Prerequisites
 
 - Jenkins with Pipeline support.
@@ -112,15 +115,19 @@ pipeline {
           string(credentialsId: 'ansible-vault-password', variable: 'ANSIBLE_VAULT_PASSWORD')
         ]) {
           sh '''
-            mkdir -p ~/.ssh
-            chmod 700 ~/.ssh
-            cp "$SSH_KEY_FILE" ~/.ssh/id_ed25519
-            chmod 600 ~/.ssh/id_ed25519
-            ssh-keyscan -H example.com >> ~/.ssh/known_hosts
-            chmod 644 ~/.ssh/known_hosts
+            export HOME="$WORKSPACE"
+            export ANSIBLE_LOCAL_TEMP="$WORKSPACE/.ansible/tmp"
+            export ANSIBLE_REMOTE_TEMP="$WORKSPACE/.ansible/remote-tmp"
 
-            printf '%s' "$ANSIBLE_VAULT_PASSWORD" > .vault-password
-            chmod 600 .vault-password
+            mkdir -p "$WORKSPACE/.ssh" "$ANSIBLE_LOCAL_TEMP" "$ANSIBLE_REMOTE_TEMP"
+            chmod 700 "$WORKSPACE/.ssh"
+            cp "$SSH_KEY_FILE" "$WORKSPACE/.ssh/id_ed25519"
+            chmod 600 "$WORKSPACE/.ssh/id_ed25519"
+            ssh-keyscan -H example.com >> "$WORKSPACE/.ssh/known_hosts"
+            chmod 644 "$WORKSPACE/.ssh/known_hosts"
+
+            printf '%s' "$ANSIBLE_VAULT_PASSWORD" > "$WORKSPACE/.vault-password"
+            chmod 600 "$WORKSPACE/.vault-password"
 
             if [ -f requirements.yml ]; then
               ansible-galaxy collection install -r requirements.yml
@@ -131,7 +138,8 @@ pipeline {
               -i inventories/production/hosts.yml \
               site.yml \
               --user "$SSH_USER" \
-              --vault-password-file .vault-password
+              --private-key "$WORKSPACE/.ssh/id_ed25519" \
+              --vault-password-file "$WORKSPACE/.vault-password"
           '''
         }
       }
@@ -177,13 +185,21 @@ node('docker') {
       string(credentialsId: 'ansible-vault-password', variable: 'ANSIBLE_VAULT_PASSWORD')
     ]) {
       sh '''
-        mkdir -p ~/.ssh
-        chmod 700 ~/.ssh
-        cp "$SSH_KEY_FILE" ~/.ssh/id_ed25519
-        chmod 600 ~/.ssh/id_ed25519
-        printf '%s' "$ANSIBLE_VAULT_PASSWORD" > .vault-password
-        chmod 600 .vault-password
-        ansible-playbook -i inventories/production/hosts.yml site.yml --vault-password-file .vault-password
+        export HOME="$WORKSPACE"
+        export ANSIBLE_LOCAL_TEMP="$WORKSPACE/.ansible/tmp"
+        export ANSIBLE_REMOTE_TEMP="$WORKSPACE/.ansible/remote-tmp"
+
+        mkdir -p "$WORKSPACE/.ssh" "$ANSIBLE_LOCAL_TEMP" "$ANSIBLE_REMOTE_TEMP"
+        chmod 700 "$WORKSPACE/.ssh"
+        cp "$SSH_KEY_FILE" "$WORKSPACE/.ssh/id_ed25519"
+        chmod 600 "$WORKSPACE/.ssh/id_ed25519"
+        printf '%s' "$ANSIBLE_VAULT_PASSWORD" > "$WORKSPACE/.vault-password"
+        chmod 600 "$WORKSPACE/.vault-password"
+        ansible-playbook \
+          -i inventories/production/hosts.yml \
+          site.yml \
+          --private-key "$WORKSPACE/.ssh/id_ed25519" \
+          --vault-password-file "$WORKSPACE/.vault-password"
       '''
     }
   }

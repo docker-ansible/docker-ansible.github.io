@@ -163,10 +163,11 @@ For a guided decision, read [choosing an image](choosing-an-image.md).
 
 ## Multi-architecture support
 
-All images are published for **AMD64** and **ARM** variants, including **ARM64** and
-**ARMv7**. That means the same tag can be used on common x86 CI runners, Apple
-Silicon Docker environments, ARM developer boards, and other ARM hosts where Docker
-selects the appropriate image automatically.
+Current images are published for **AMD64** and **ARM64**. That means the same tag
+can be used on common x86 CI runners, Apple Silicon Docker environments, AWS
+Graviton, 64-bit Raspberry Pi OS, and other 64-bit ARM hosts where Docker selects
+the appropriate image automatically. 32-bit ARM images are not published for
+current tags.
 
 See [architectures](../images/architectures.md) for more detail.
 

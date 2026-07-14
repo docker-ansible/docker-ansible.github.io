@@ -178,8 +178,8 @@ Images are available across several base OS families:
 - Rocky Linux 10
 - Ubuntu 22.04, 24.04, and 26.04
 
-All images are multi-architecture and support **AMD64** and **ARM** variants,
-including **ARM64** and **ARMv7**.
+Current images are multi-architecture and support **AMD64** and **ARM64**
+platforms, including Apple Silicon, AWS Graviton, and 64-bit Raspberry Pi OS.
 
 Explore the image families:
 

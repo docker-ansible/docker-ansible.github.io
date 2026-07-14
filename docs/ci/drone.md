@@ -113,8 +113,8 @@ steps:
 Create Drone secrets named for their purpose:
 
 ```sh
-drone secret add owner/repo ansible_ssh_private_key @id_ed25519
-drone secret add owner/repo ansible_vault_password "replace-with-password"
+drone secret add --repository owner/repo --name ansible_ssh_private_key --data @id_ed25519
+drone secret add --repository owner/repo --name ansible_vault_password --data "replace-with-password"
 ```
 
 Then inject them into only the deploy step:

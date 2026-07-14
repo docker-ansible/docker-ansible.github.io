@@ -185,7 +185,8 @@ script:
   - mkdir -p .secrets
   - printf '%s' "$ANSIBLE_VAULT_PASSWORD" > .secrets/vault-pass.txt
   - chmod 600 .secrets/vault-pass.txt
-  - docker run --rm \
+  - |
+    docker run --rm \
       -v "$PWD:/ansible" \
       -v "$PWD/.secrets/vault-pass.txt:/run/secrets/vault-pass.txt:ro" \
       --workdir=/ansible \
