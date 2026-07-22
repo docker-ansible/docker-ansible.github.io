@@ -1,13 +1,58 @@
 # Changelog
 
-The canonical changelog for the Docker Ansible image project is maintained in
-the upstream repository:
+This page tracks changes **across the Docker Ansible ecosystem** — the core
+container images, the GitHub Action, and the testing projects — and points you
+at the latest release of each.
 
-<https://github.com/willhallonline/docker-ansible/blob/main/CHANGELOG.md>
+## Latest releases at a glance
 
-!!! tip "Use the upstream changelog for release decisions"
-    This page summarises how to read the ecosystem changes. The upstream
-    `CHANGELOG.md` is the source of truth for project-specific release notes.
+| Project | Latest release | What it is | Release notes |
+| --- | --- | --- | --- |
+| [docker-ansible](https://github.com/willhallonline/docker-ansible) | **v6.4.2** | The core container images (`willhallonline/ansible`) | [Releases](https://github.com/willhallonline/docker-ansible/releases) |
+| [docker-ansible-github-action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.0.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
+| [docker-ansible-test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.1** | Test playbooks exercising the images | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
+| [docker-ansible-github-action-test](https://github.com/willhallonline/docker-ansible-github-action-test) | — (no tagged releases) | Workflows exercising the GitHub Action | [Commits](https://github.com/willhallonline/docker-ansible-github-action-test/commits) |
+
+!!! tip "Checking for newer releases"
+    This table is a snapshot. Each project's **Releases** page on GitHub is the
+    source of truth — the badges and links above always point at the live data.
+
+## Per-project changelogs
+
+### docker-ansible (core images)
+
+![GitHub release](https://img.shields.io/github/v/release/willhallonline/docker-ansible)
+
+The canonical changelog is maintained in the upstream repository:
+[CHANGELOG.md](https://github.com/willhallonline/docker-ansible/blob/main/CHANGELOG.md)
+
+Recent highlights (v6.4.x):
+
+- fixed scheduled matrix build failures on `debian-trixie` ARM64 by updating
+  QEMU binfmt (Python 3.13 segfaulted under the older QEMU);
+- routine CI dependency bumps (checkout, metadata, build-push actions).
+
+The current Ansible core lines shipped in the images are 2.16 through 2.21 —
+see [supported tags](../images/tags.md) for the full matrix.
+
+### docker-ansible-github-action
+
+![GitHub release](https://img.shields.io/github/v/release/willhallonline/docker-ansible-github-action)
+
+**v1.0.0** is the initial marketplace-ready release: a composite GitHub Action
+that runs Ansible commands using the `willhallonline/ansible` images. See the
+[GitHub Action](../projects/github-action.md) page and the
+[action repository](https://github.com/willhallonline/docker-ansible-github-action/releases)
+for current inputs and examples.
+
+### Testing projects
+
+- **docker-ansible-test** (latest tag **v2.7.1**) — playbooks and scenarios
+  used to exercise the images themselves.
+- **docker-ansible-github-action-test** — workflow runs validating the GitHub
+  Action end to end; it tracks the action rather than cutting its own releases.
+
+See [Testing](../projects/testing.md) for how these fit together.
 
 ## What changes over time
 

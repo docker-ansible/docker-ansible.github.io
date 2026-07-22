@@ -132,6 +132,15 @@ Pin exact tags in automation when reproducibility matters.
 
     [View images](images/index.md)
 
+-   :material-history: **Changelog**
+
+    ---
+
+    See what changed across the ecosystem projects and find the latest release
+    of each.
+
+    [View changelog](reference/changelog.md)
+
 </div>
 
 ## Supported Ansible core versions
@@ -224,4 +233,6 @@ Use this site as a practical handbook:
 5. Bring the same commands to CI with [CI/CD examples](ci/index.md).
 6. Check [troubleshooting](reference/troubleshooting.md) and [FAQ](reference/faq.md)
    when something behaves differently from your host environment.
+7. Follow the [changelog](reference/changelog.md) to track releases across the
+   ecosystem projects.
 
