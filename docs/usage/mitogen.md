@@ -27,7 +27,7 @@ It may help less when you have:
 ## Install Mitogen in a derived image
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.22
+FROM willhallonline/ansible:2.21-alpine-3.24
 
 RUN pip install --no-cache-dir mitogen
 
@@ -86,7 +86,7 @@ Run with the Mitogen image:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa:ro \
   --workdir=/ansible \
   registry.example.com/platform/ansible-mitogen:2.21 \
   ansible-playbook -i inventory.ini site.yml

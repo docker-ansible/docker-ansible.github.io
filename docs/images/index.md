@@ -19,7 +19,10 @@ with tags that make the Ansible minor version and operating system explicit.
 
 Dockerfiles are grouped by base operating system and version. Examples include:
 
+- `ansible-core/alpine-3.21/Dockerfile`
 - `ansible-core/alpine-3.22/Dockerfile`
+- `ansible-core/alpine-3.23/Dockerfile`
+- `ansible-core/alpine-3.24/Dockerfile`
 - `ansible-core/debian-bookworm/Dockerfile`
 - `ansible-core/debian-bookworm-slim/Dockerfile`
 - `ansible-core/debian-trixie/Dockerfile`
@@ -40,7 +43,7 @@ Supported moving tags use this pattern:
 For example:
 
 ```text
-2.21-alpine-3.22
+2.21-alpine-3.24
 2.20-debian-trixie
 2.19-rockylinux-10
 2.18-ubuntu-24.04
@@ -49,18 +52,18 @@ For example:
 The tag tells you two things:
 
 1. the Ansible minor stream, such as `2.21`; and
-2. the base operating system, such as `alpine-3.22` or `ubuntu-24.04`.
+2. the base operating system, such as `alpine-3.24` or `ubuntu-24.04`.
 
 !!! tip "Prefer explicit tags"
-    Use explicit tags such as `2.21-alpine-3.22` in automation. Convenience
+    Use explicit tags such as `2.21-alpine-3.24` in automation. Convenience
     tags are useful for quick tests, but explicit tags make upgrades deliberate.
 
 ## Convenience tags
 
 | Tag | Points to |
 | --- | --- |
-| `latest` | Ansible 2.21 on Alpine 3.22 |
-| `alpine` | Ansible 2.21 on Alpine 3.22 |
+| `latest` | Ansible 2.21 on Alpine 3.24 |
+| `alpine` | Ansible 2.21 on Alpine 3.24 |
 | `ubuntu` | Ansible 2.21 on Ubuntu 24.04 |
 
 Pulling a convenience tag is simple:
@@ -72,7 +75,7 @@ docker pull willhallonline/ansible:latest
 For repeatable builds, pin the operating system and Ansible stream instead:
 
 ```bash
-docker pull willhallonline/ansible:2.21-alpine-3.22
+docker pull willhallonline/ansible:2.21-alpine-3.24
 ```
 
 ## Immutable and pinned tags
@@ -90,7 +93,7 @@ Browse the full list on
 need a specific patch release.
 
 !!! note "Moving versus pinned tags"
-    Tags such as `2.21-alpine-3.22` track the current image for that Ansible
+    Tags such as `2.21-alpine-3.24` track the current image for that Ansible
     minor stream and base. Fully pinned tags are better when exact image
     reproduction matters.
 
@@ -114,12 +117,12 @@ The supported image matrix currently covers these Ansible core versions:
 
 | Minor | Current core version |
 | --- | --- |
-| 2.16 | 2.16.14 |
+| 2.16 | 2.16.19 |
 | 2.17 | 2.17.14 |
-| 2.18 | 2.18.9 |
-| 2.19 | 2.19.2 |
-| 2.20 | 2.20.0 |
-| 2.21 | 2.21.0 |
+| 2.18 | 2.18.19 |
+| 2.19 | 2.19.13 |
+| 2.20 | 2.20.9 |
+| 2.21 | 2.21.4 |
 
 See the complete [supported tag matrix](tags.md) for the operating systems that
 are available for each stream.

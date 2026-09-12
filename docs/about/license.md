@@ -45,7 +45,7 @@ from any added dependencies.
 Example:
 
 ```Dockerfile
-FROM willhallonline/ansible:2.21.0-debian-trixie
+FROM willhallonline/ansible:2.21.4-debian-trixie
 COPY requirements.txt /requirements.txt
 RUN pip install --no-cache-dir -r /requirements.txt
 ```

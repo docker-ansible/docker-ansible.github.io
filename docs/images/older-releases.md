@@ -58,7 +58,7 @@ Prefer migrating to one of the supported streams:
 | --- | --- |
 | 2.15 or older on Ubuntu 20.04 | `2.21-ubuntu-24.04` or another supported Ubuntu tag |
 | 2.15 or older on Debian Bullseye | `2.21-debian-trixie` or `2.19-debian-bookworm` |
-| 2.15 or older on Alpine | `2.21-alpine-3.22` |
+| 2.15 or older on Alpine | `2.21-alpine-3.24` |
 | 2.15 or older on Rocky Linux 9 | `2.21-rockylinux-10` |
 
 Migration is usually easiest when done in stages:
@@ -109,7 +109,7 @@ starting points include:
 
 | Need | Supported tag to evaluate |
 | --- | --- |
-| Small default image | `2.21-alpine-3.22` |
+| Small default image | `2.21-alpine-3.24` |
 | Ubuntu compatibility | `2.21-ubuntu-24.04` |
 | Debian compatibility | `2.21-debian-trixie` |
 | Enterprise Linux compatibility | `2.21-rockylinux-10` |

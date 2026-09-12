@@ -15,7 +15,7 @@ For development, a floating tag can be convenient. For production and CI, pin th
 image version explicitly:
 
 ```text
-willhallonline/ansible:2.21.0-alpine-3.22
+willhallonline/ansible:2.21.4-alpine-3.24
 ```
 
 For the strongest repeatability, pin the digest:
@@ -37,13 +37,13 @@ Use your preferred image scanner before adopting a tag.
 With Trivy:
 
 ```bash
-trivy image willhallonline/ansible:2.21.0-alpine-3.22
+trivy image willhallonline/ansible:2.21.4-alpine-3.24
 ```
 
 With Grype:
 
 ```bash
-grype willhallonline/ansible:2.21.0-alpine-3.22
+grype willhallonline/ansible:2.21.4-alpine-3.24
 ```
 
 !!! note "Scanner output needs triage"
@@ -82,7 +82,7 @@ them.
 Example pattern:
 
 ```bash
-docker run --rm   -v "$PWD:/ansible"   -v "$PWD/.vault-pass:/run/secrets/ansible-vault:ro"   -w /ansible   willhallonline/ansible:2.21.0-debian-trixie   ansible-playbook site.yml --vault-password-file /run/secrets/ansible-vault
+docker run --rm   -v "$PWD:/ansible"   -v "$PWD/.vault-pass:/run/secrets/ansible-vault:ro"   -w /ansible   willhallonline/ansible:2.21.4-debian-trixie   ansible-playbook site.yml --vault-password-file /run/secrets/ansible-vault
 ```
 
 Make sure the vault password file is not committed and is readable only by the
@@ -102,7 +102,7 @@ Mount only what the playbook needs.
 Use read-only mounts where possible:
 
 ```bash
-docker run --rm   -v "$PWD:/ansible:ro"   -w /ansible   willhallonline/ansible:2.21.0-alpine-3.22   ansible --version
+docker run --rm   -v "$PWD:/ansible:ro"   -w /ansible   willhallonline/ansible:2.21.4-alpine-3.24   ansible --version
 ```
 
 If the playbook needs to write generated files, mount a specific output directory
@@ -135,7 +135,7 @@ If generated files should be owned by your host user, run Docker with your UID
 and GID on Linux:
 
 ```bash
-docker run --rm   --user "$(id -u):$(id -g)"   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.0-debian-trixie   ansible-playbook site.yml
+docker run --rm   --user "$(id -u):$(id -g)"   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.4-debian-trixie   ansible-playbook site.yml
 ```
 
 ## Report vulnerabilities

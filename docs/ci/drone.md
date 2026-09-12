@@ -10,7 +10,7 @@ Drone CI runs each pipeline step in a container, so `willhallonline/ansible` fit
 - A Drone server connected to your Git repository.
 - A `.drone.yml` file.
 - Docker runner or another runner that supports container images.
-- A pinned image tag such as `willhallonline/ansible:2.21-alpine-3.22`.
+- A pinned image tag such as `willhallonline/ansible:2.21-alpine-3.24`.
 - Drone secrets for deployment credentials.
 
 Related pages:
@@ -30,7 +30,7 @@ type: docker
 
 steps:
   - name: lint
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     commands:
       - ansible --version
       - ansible-lint
@@ -48,7 +48,7 @@ type: docker
 
 steps:
   - name: lint
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     environment:
       ANSIBLE_FORCE_COLOR: "true"
     commands:
@@ -61,7 +61,7 @@ steps:
       - ansible-lint
 
   - name: syntax
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     environment:
       ANSIBLE_FORCE_COLOR: "true"
       ANSIBLE_HOST_KEY_CHECKING: "False"
@@ -76,7 +76,7 @@ steps:
       - lint
 
   - name: deploy-production
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     environment:
       ANSIBLE_FORCE_COLOR: "true"
       ANSIBLE_HOST_KEY_CHECKING: "False"
@@ -155,8 +155,8 @@ Known hosts are recommended for production.
 Drone cache configuration depends on installed plugins and runner type. If your installation provides a cache plugin, cache Ansible paths keyed by `requirements.yml`:
 
 ```text
-/root/.ansible/collections
-/root/.ansible/roles
+/home/ansible/.ansible/collections
+/home/ansible/.ansible/roles
 ```
 
 If no cache plugin is available, keep the install step explicit and repeatable.

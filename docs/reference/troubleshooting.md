@@ -73,10 +73,11 @@ docker run --rm willhallonline/ansible:latest ansible --version
 
 Use `-it` only for interactive local debugging sessions.
 
-## Files are created as root on the host
+## Files are created with an unexpected owner on the host
 
-The container may run as `root`, so generated files in a mounted directory can be
-owned by root on the host.
+Current images run as the `ansible` user (UID/GID 1000), so generated files in a
+mounted directory may be owned by UID 1000 on the host. Older tags or explicit
+`--user root` runs can instead create root-owned files.
 
 Options:
 
@@ -154,7 +155,7 @@ Options:
 Example derived image pattern:
 
 ```Dockerfile
-FROM willhallonline/ansible:2.21.0-alpine-3.22
+FROM willhallonline/ansible:2.21.4-alpine-3.24
 RUN apk add --no-cache build-base python3-dev
 RUN pip install --no-cache-dir example-package
 ```

@@ -3,7 +3,7 @@
 Bitbucket Pipelines can run Ansible steps directly in `willhallonline/ansible`. You can set the image globally for the whole pipeline or per step when only some jobs need Ansible.
 
 !!! tip "Pin the image"
-    Use an exact tag such as `willhallonline/ansible:2.21-alpine-3.22`. Avoid `latest` in deployment pipelines.
+    Use an exact tag such as `willhallonline/ansible:2.21-alpine-3.24`. Avoid `latest` in deployment pipelines.
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ Related pages:
 Set the image at the top level when all steps are Ansible steps.
 
 ```yaml
-image: willhallonline/ansible:2.21-alpine-3.22
+image: willhallonline/ansible:2.21-alpine-3.24
 
 pipelines:
   default:
@@ -43,7 +43,7 @@ pipelines:
   default:
     - step:
         name: Lint
-        image: willhallonline/ansible:2.21-alpine-3.22
+        image: willhallonline/ansible:2.21-alpine-3.24
         script:
           - ansible-lint
 ```
@@ -53,7 +53,7 @@ pipelines:
 This pipeline runs lint and syntax checks for all branches and deploys production only from `main`.
 
 ```yaml
-image: willhallonline/ansible:2.21-alpine-3.22
+image: willhallonline/ansible:2.21-alpine-3.24
 
 options:
   max-time: 30

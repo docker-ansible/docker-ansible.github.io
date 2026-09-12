@@ -6,6 +6,9 @@ utilities to exercise images and the GitHub Action.
 This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
+The current image-test tag is `v2.7.3`, and the action integration tests follow
+the `v1.1.0` action release across the active image matrix.
+
 ## Test-related repositories
 
 | Project | Repository | Purpose |
@@ -115,7 +118,7 @@ docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:late
 For CI and production, smoke-test the same tag you plan to use:
 
 ```bash
-docker run --rm willhallonline/ansible:2.21.0-alpine-3.22 ansible --version
+docker run --rm willhallonline/ansible:2.21.4-alpine-3.24 ansible --version
 ```
 
 Replace the tag with the Ansible-version and base-OS combination you selected.
@@ -127,7 +130,7 @@ small derived image or a controlled CI step rather than mutating a long-lived
 container manually.
 
 ```Dockerfile
-FROM willhallonline/ansible:2.21.0-debian-trixie
+FROM willhallonline/ansible:2.21.4-debian-trixie
 RUN pip install --no-cache-dir example-package
 ```
 

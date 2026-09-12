@@ -12,7 +12,7 @@ Add them to `~/.bashrc` or `~/.zshrc`, then reload your shell.
 
 !!! note "What the aliases do"
     Both aliases mount the current directory at `/ansible`, mount an SSH private key
-    at `/root/.ssh/id_rsa`, set `/ansible` as the working directory, and use the
+    at `/home/ansible/.ssh/id_rsa`, set `/ansible` as the working directory, and use the
     `willhallonline/ansible:latest` image.
 
 ## Aliases to copy
@@ -22,8 +22,8 @@ Add them to `~/.bashrc` or `~/.zshrc`, then reload your shell.
     Add this to `~/.bashrc`:
 
     ```bash
-    alias docker-ansible-cli='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/root/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest /bin/sh'
-    alias docker-ansible-cmd='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/root/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest '
+    alias docker-ansible-cli='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest /bin/sh'
+    alias docker-ansible-cmd='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest '
     ```
 
     Reload your shell configuration:
@@ -37,8 +37,8 @@ Add them to `~/.bashrc` or `~/.zshrc`, then reload your shell.
     Add this to `~/.zshrc`:
 
     ```zsh
-    alias docker-ansible-cli='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/root/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest /bin/sh'
-    alias docker-ansible-cmd='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/root/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest '
+    alias docker-ansible-cli='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest /bin/sh'
+    alias docker-ansible-cmd='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest '
     ```
 
     Reload your shell configuration:
@@ -105,7 +105,7 @@ after it becomes the command executed in the container.
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
   --workdir=/ansible \
   willhallonline/ansible:latest
 ```
@@ -116,18 +116,18 @@ docker run --rm -it \
 | `--rm` | Remove the container when it exits |
 | `-it` | Allocate an interactive terminal |
 | `-v $(pwd):/ansible` | Mount the current directory into the container |
-| `-v ~/.ssh/id_rsa:/root/.ssh/id_rsa` | Mount the host SSH key for use by Ansible |
+| `-v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa` | Mount the host SSH key for use by Ansible |
 | `--workdir=/ansible` | Start in the mounted project directory |
 | `willhallonline/ansible:latest` | Use the Docker Ansible image |
 
 ## Pinning an image in aliases
 
 The canonical aliases use `latest`, which currently points to Ansible 2.21 on Alpine
-3.22. For long-lived team workflows, consider pinning an exact tag:
+3.24. For long-lived team workflows, consider pinning an exact tag:
 
 ```bash
-alias docker-ansible-cli='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/root/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:2.21-alpine-3.22 /bin/sh'
-alias docker-ansible-cmd='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/root/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:2.21-alpine-3.22 '
+alias docker-ansible-cli='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:2.21-alpine-3.24 /bin/sh'
+alias docker-ansible-cmd='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:2.21-alpine-3.24 '
 ```
 
 Choose a tag with [choosing an image](choosing-an-image.md) or review the full
@@ -140,8 +140,8 @@ If your key is not `~/.ssh/id_rsa`, change the host side of the mount.
 For example, if your key is `~/.ssh/id_ed25519`:
 
 ```bash
-alias docker-ansible-cli='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_ed25519:/root/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest /bin/sh'
-alias docker-ansible-cmd='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_ed25519:/root/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest '
+alias docker-ansible-cli='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_ed25519:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest /bin/sh'
+alias docker-ansible-cmd='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_ed25519:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:latest '
 ```
 
 This keeps the path inside the container stable while using a different host key.
@@ -259,4 +259,3 @@ See [choosing an image](choosing-an-image.md) for guidance.
 - Learn more about [running playbooks](../usage/running-playbooks.md)
 - Review [SSH keys and authentication](../usage/ssh-keys-and-auth.md)
 - Bring the same workflow to [CI/CD](../ci/index.md)
-

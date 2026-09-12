@@ -24,7 +24,7 @@ A typical run looks like this:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/id_rsa \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
   willhallonline/ansible:latest \
   ansible-playbook playbook.yml
 ```
@@ -79,7 +79,7 @@ Use the command that matches what you want to do.
     ```bash
     docker run --rm -it \
       -v $(pwd):/ansible \
-      -v ~/.ssh/id_rsa:/root/id_rsa \
+      -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
       willhallonline/ansible:latest \
       /bin/sh
     ```
@@ -92,7 +92,7 @@ Use the command that matches what you want to do.
     ```bash
     docker run --rm -it \
       -v $(pwd):/ansible \
-      -v ~/.ssh/id_rsa:/root/id_rsa \
+      -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
       willhallonline/ansible:latest \
       ansible-playbook playbook.yml
     ```
@@ -110,7 +110,7 @@ Tags follow this pattern:
 Examples:
 
 ```text
-2.21-alpine-3.22
+2.21-alpine-3.24
 2.19-debian-bookworm
 2.20-ubuntu-24.04
 2.18-rockylinux-10
@@ -123,8 +123,8 @@ Convenience tags are also available:
 
 | Tag | Meaning |
 | --- | --- |
-| `latest` | Ansible 2.21 on Alpine 3.22 |
-| `alpine` | Ansible 2.21 on Alpine 3.22 |
+| `latest` | Ansible 2.21 on Alpine 3.24 |
+| `alpine` | Ansible 2.21 on Alpine 3.24 |
 | `ubuntu` | Ansible 2.21 on Ubuntu 24.04 |
 
 !!! warning "Pin tags for automation"
@@ -135,12 +135,12 @@ Convenience tags are also available:
 
 The current Ansible core versions available in containers are:
 
-- 2.21.0
-- 2.20.0
-- 2.19.2
-- 2.18.9
+- 2.21.4
+- 2.20.9
+- 2.19.13
+- 2.18.19
 - 2.17.14
-- 2.16.14
+- 2.16.19
 
 Older versions from 2.9 through 2.15 exist but are unmaintained. If you rely on an
 older version, review [older releases](../images/older-releases.md) and plan an
@@ -198,7 +198,7 @@ with `-v $(pwd):/ansible`.
 ### Should I use `latest`?
 
 `latest` is fine for quick experiments. For CI/CD or team documentation, pin a tag
-such as `2.21-alpine-3.22`, `2.21-debian-trixie-slim`, or another exact version that
+such as `2.21-alpine-3.24`, `2.21-debian-trixie-slim`, or another exact version that
 matches your project needs.
 
 ### Where do I go for CI/CD examples?
@@ -206,4 +206,3 @@ matches your project needs.
 Start with the [CI overview](../ci/index.md), then choose your platform:
 [GitHub Actions](../ci/github-actions.md), [GitLab CI](../ci/gitlab-ci.md),
 [Azure Pipelines](../ci/azure-pipelines.md), or another supported CI provider.
-

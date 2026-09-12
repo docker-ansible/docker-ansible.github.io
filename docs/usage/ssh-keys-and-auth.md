@@ -7,11 +7,11 @@ Ansible usually connects to managed hosts over SSH. In a container workflow, SSH
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa:ro \
   --workdir=/ansible \
   willhallonline/ansible:latest \
   ansible-playbook -i inventory.ini site.yml \
-  --private-key /root/.ssh/id_rsa
+  --private-key /home/ansible/.ssh/id_rsa
 ```
 
 The documented canonical pattern also works:
@@ -19,7 +19,7 @@ The documented canonical pattern also works:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/id_rsa \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
   willhallonline/ansible:latest \
   ansible-playbook playbook.yml
 ```
@@ -41,7 +41,7 @@ web-01 ansible_host=192.0.2.10
 
 [web:vars]
 ansible_user=deploy
-ansible_ssh_private_key_file=/root/.ssh/id_rsa
+ansible_ssh_private_key_file=/home/ansible/.ssh/id_rsa
 ```
 
 Run:
@@ -49,7 +49,7 @@ Run:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa:ro \
   --workdir=/ansible \
   willhallonline/ansible:latest \
   ansible-playbook -i inventory.ini site.yml
@@ -60,7 +60,7 @@ docker run --rm -it \
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh:/root/.ssh:ro \
+  -v ~/.ssh:/home/ansible/.ssh:ro \
   --workdir=/ansible \
   willhallonline/ansible:latest \
   ansible-playbook -i inventory.ini site.yml
@@ -121,8 +121,8 @@ Mount them:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
-  -v ~/.ssh/known_hosts:/root/.ssh/known_hosts:ro \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa:ro \
+  -v ~/.ssh/known_hosts:/home/ansible/.ssh/known_hosts:ro \
   --workdir=/ansible \
   willhallonline/ansible:latest \
   ansible-playbook -i inventory.ini site.yml
@@ -179,7 +179,7 @@ Prompt for privilege escalation:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa:ro \
   --workdir=/ansible \
   willhallonline/ansible:latest \
   ansible-playbook -i inventory.ini site.yml --ask-become-pass
@@ -208,7 +208,7 @@ Run with SSH verbosity:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh:/root/.ssh:ro \
+  -v ~/.ssh:/home/ansible/.ssh:ro \
   --workdir=/ansible \
   willhallonline/ansible:latest \
   ansible-playbook -i inventory.ini site.yml -vvv
@@ -217,7 +217,7 @@ docker run --rm -it \
 Test SSH from the same container context:
 
 ```bash
-docker run --rm -it -v ~/.ssh:/root/.ssh:ro \
+docker run --rm -it -v ~/.ssh:/home/ansible/.ssh:ro \
   willhallonline/ansible:latest ssh -v deploy@web-01.example.com
 ```
 

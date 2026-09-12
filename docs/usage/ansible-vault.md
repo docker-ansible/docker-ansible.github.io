@@ -85,7 +85,7 @@ docker run --rm -it \
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa:ro \
   --workdir=/ansible \
   willhallonline/ansible:latest \
   ansible-playbook -i inventory.ini site.yml --ask-vault-pass

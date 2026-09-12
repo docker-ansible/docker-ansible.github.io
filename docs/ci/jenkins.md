@@ -3,7 +3,7 @@
 Jenkins can run `willhallonline/ansible` with Declarative Pipeline Docker agents or with scripted `docker.image().inside` blocks. Both approaches keep Ansible off the Jenkins node and inside a pinned container image.
 
 !!! tip "Declarative first"
-    Use `agent { docker { image 'willhallonline/ansible:2.21-alpine-3.22' } }` for straightforward pipelines.
+    Use `agent { docker { image 'willhallonline/ansible:2.21-alpine-3.24' } }` for straightforward pipelines.
 
 !!! note "Use workspace paths for generated files"
     The Docker Pipeline plugin may run containers as the Jenkins host UID and GID. That UID may not have a passwd entry or home directory inside the image, so avoid `~/.ssh`; write keys, Vault files, and Ansible temporary files under `$WORKSPACE` instead.
@@ -29,7 +29,7 @@ Related pages:
 pipeline {
   agent {
     docker {
-      image 'willhallonline/ansible:2.21-alpine-3.22'
+      image 'willhallonline/ansible:2.21-alpine-3.24'
       reuseNode true
     }
   }
@@ -62,7 +62,7 @@ pipeline {
     stage('Lint') {
       agent {
         docker {
-          image 'willhallonline/ansible:2.21-alpine-3.22'
+          image 'willhallonline/ansible:2.21-alpine-3.24'
           reuseNode true
         }
       }
@@ -82,7 +82,7 @@ pipeline {
     stage('Syntax check') {
       agent {
         docker {
-          image 'willhallonline/ansible:2.21-alpine-3.22'
+          image 'willhallonline/ansible:2.21-alpine-3.24'
           reuseNode true
         }
       }
@@ -104,7 +104,7 @@ pipeline {
       }
       agent {
         docker {
-          image 'willhallonline/ansible:2.21-alpine-3.22'
+          image 'willhallonline/ansible:2.21-alpine-3.24'
           reuseNode true
         }
       }
@@ -160,7 +160,7 @@ pipeline {
 node('docker') {
   checkout scm
 
-  docker.image('willhallonline/ansible:2.21-alpine-3.22').inside {
+  docker.image('willhallonline/ansible:2.21-alpine-3.24').inside {
     stage('Lint') {
       sh 'ansible --version'
       sh 'ansible-lint'
@@ -179,7 +179,7 @@ node('docker') {
 node('docker') {
   checkout scm
 
-  docker.image('willhallonline/ansible:2.21-alpine-3.22').inside {
+  docker.image('willhallonline/ansible:2.21-alpine-3.24').inside {
     withCredentials([
       sshUserPrivateKey(credentialsId: 'ansible-ssh-key', keyFileVariable: 'SSH_KEY_FILE'),
       string(credentialsId: 'ansible-vault-password', variable: 'ANSIBLE_VAULT_PASSWORD')
@@ -233,7 +233,7 @@ node('docker') {
 Jenkins caching depends on your node strategy. For reproducibility, install Galaxy dependencies during each run. If you cache, mount a controlled workspace directory into the container and key it by `requirements.yml`.
 
 ```groovy
-docker.image('willhallonline/ansible:2.21-alpine-3.22').inside('-v $WORKSPACE/.ansible-cache:/root/.ansible') {
+docker.image('willhallonline/ansible:2.21-alpine-3.24').inside('-v $WORKSPACE/.ansible-cache:/home/ansible/.ansible') {
   sh 'ansible-galaxy collection install -r requirements.yml'
 }
 ```
