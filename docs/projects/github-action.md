@@ -8,7 +8,8 @@ commands without installing Ansible directly on the GitHub-hosted or self-hosted
 runner.
 
 !!! note "Short description"
-    A GitHub Action using Ansible in Docker.
+    `v1.1.0` is the current release. It supports the non-root `ansible` user
+    used by current images and mounts SSH material under `/home/ansible/.ssh`.
 
 ## Links
 
@@ -68,14 +69,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # See the action README for current input names and examples.
-      - uses: willhallonline/docker-ansible-github-action@main
+      - uses: willhallonline/docker-ansible-github-action@v1.1.0
         with:
-          args: ansible --version
+          playbook: playbooks/site.yml
+          inventory: inventory/localhost.ini
+          image-tag: 2.21-alpine-3.24
 ```
 
-The exact `with:` values above are illustrative. Always check the upstream
-README before copying workflow syntax into production.
+The action also supports Galaxy requirements, Vault passwords, SSH keys,
+`known_hosts`, extra variables, and additional `ansible-playbook` options. See
+the upstream [README](https://github.com/willhallonline/docker-ansible-github-action#readme)
+for the complete input contract.
 
 ## Why a Docker-based action?
 

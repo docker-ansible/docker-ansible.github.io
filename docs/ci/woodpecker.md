@@ -10,7 +10,7 @@ Woodpecker CI is similar to Drone: each step runs in a container image. Use `wil
 - A Woodpecker CI instance connected to your repository.
 - A `.woodpecker.yml` file.
 - A runner that supports container steps.
-- A pinned image tag such as `willhallonline/ansible:2.21-alpine-3.22`.
+- A pinned image tag such as `willhallonline/ansible:2.21-alpine-3.24`.
 - Woodpecker secrets for SSH and Vault data.
 
 Related pages:
@@ -25,7 +25,7 @@ Related pages:
 ```yaml
 steps:
   lint:
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     commands:
       - ansible --version
       - ansible-lint
@@ -38,7 +38,7 @@ This pipeline separates lint, syntax check, and production deployment.
 ```yaml
 steps:
   lint:
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     environment:
       ANSIBLE_FORCE_COLOR: "true"
     commands:
@@ -55,7 +55,7 @@ steps:
         - pull_request
 
   syntax:
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     environment:
       ANSIBLE_FORCE_COLOR: "true"
       ANSIBLE_HOST_KEY_CHECKING: "False"
@@ -74,7 +74,7 @@ steps:
         - pull_request
 
   deploy-production:
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     environment:
       ANSIBLE_FORCE_COLOR: "true"
       ANSIBLE_HOST_KEY_CHECKING: "False"
@@ -174,8 +174,8 @@ This prevents deployment from pull requests or feature branches.
 Woodpecker cache support depends on your runner and plugins. If available, cache:
 
 ```text
-/root/.ansible/collections
-/root/.ansible/roles
+/home/ansible/.ansible/collections
+/home/ansible/.ansible/roles
 ```
 
 Without caching, install Galaxy dependencies in each step because steps are isolated containers.

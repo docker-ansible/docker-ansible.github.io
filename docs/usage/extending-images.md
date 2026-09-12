@@ -5,7 +5,7 @@ Create a derived image when automation needs extra operating-system packages, Py
 This guide uses:
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.22
+FROM willhallonline/ansible:2.21-alpine-3.24
 ```
 
 See [image tags](../images/tags.md) for available variants.
@@ -18,7 +18,7 @@ See [image tags](../images/tags.md) for available variants.
 === "Alpine"
 
     ```dockerfile
-    FROM willhallonline/ansible:2.21-alpine-3.22
+    FROM willhallonline/ansible:2.21-alpine-3.24
 
     USER root
     RUN apk add --no-cache \
@@ -75,7 +75,7 @@ docker build -t registry.example.com/platform/ansible:2.21-alpine .
 ## Add Python libraries
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.22
+FROM willhallonline/ansible:2.21-alpine-3.24
 
 RUN pip install --no-cache-dir \
       boto3 \
@@ -98,7 +98,7 @@ Common control-node libraries:
 ## Install Galaxy collections
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.22
+FROM willhallonline/ansible:2.21-alpine-3.24
 
 WORKDIR /build
 COPY requirements.yml requirements.yml
@@ -125,7 +125,7 @@ collections:
 ## Install roles
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.22
+FROM willhallonline/ansible:2.21-alpine-3.24
 
 WORKDIR /build
 COPY requirements.yml requirements.yml
@@ -140,7 +140,7 @@ WORKDIR /ansible
 ## Combine OS, Python, and Galaxy content
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.22
+FROM willhallonline/ansible:2.21-alpine-3.24
 
 USER root
 RUN apk add --no-cache git openssh-client rsync jq
@@ -168,7 +168,7 @@ docker run --rm -it \
 ## Custom entrypoint
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.22
+FROM willhallonline/ansible:2.21-alpine-3.24
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
@@ -197,13 +197,13 @@ exec "$@"
 ## Multi-stage builds
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.22 AS builder
+FROM willhallonline/ansible:2.21-alpine-3.24 AS builder
 
 USER root
 RUN apk add --no-cache build-base python3-dev
 RUN pip wheel --wheel-dir /wheels cryptography
 
-FROM willhallonline/ansible:2.21-alpine-3.22
+FROM willhallonline/ansible:2.21-alpine-3.24
 
 COPY --from=builder /wheels /wheels
 RUN pip install --no-cache-dir /wheels/* \
@@ -217,8 +217,8 @@ Use this pattern when build tools are needed only temporarily.
 ## Pin and push
 
 ```bash
-docker build -t registry.example.com/platform/ansible:2.21.0-20260714 .
-docker push registry.example.com/platform/ansible:2.21.0-20260714
+docker build -t registry.example.com/platform/ansible:2.21.4-20260714 .
+docker push registry.example.com/platform/ansible:2.21.4-20260714
 ```
 
 Use the pushed image in Compose or CI:
@@ -226,7 +226,7 @@ Use the pushed image in Compose or CI:
 ```yaml
 services:
   ansible:
-    image: registry.example.com/platform/ansible:2.21.0-20260714
+    image: registry.example.com/platform/ansible:2.21.4-20260714
     working_dir: /ansible
     volumes:
       - .:/ansible

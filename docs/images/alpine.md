@@ -7,16 +7,16 @@ Ansible control-node container.
 
 !!! note "Default image"
     The `latest` and `alpine` convenience tags currently point to Ansible 2.21
-    on Alpine 3.22.
+    on Alpine 3.24.
 
 ## Available Alpine tags
 
 | Base image | Supported tags |
 | --- | --- |
-| Alpine 3.22 | `2.21-alpine-3.22`, `2.20-alpine-3.22`, `2.19-alpine-3.22`, `2.18-alpine-3.22`, `2.17-alpine-3.22`, `2.16-alpine-3.22` |
 | Alpine 3.21 | `2.21-alpine-3.21`, `2.20-alpine-3.21`, `2.19-alpine-3.21`, `2.18-alpine-3.21`, `2.17-alpine-3.21`, `2.16-alpine-3.21` |
-| Alpine 3.20 | `2.21-alpine-3.20`, `2.20-alpine-3.20`, `2.19-alpine-3.20`, `2.18-alpine-3.20`, `2.17-alpine-3.20`, `2.16-alpine-3.20` |
-| Alpine 3.19 | `2.19-alpine-3.19`, `2.18-alpine-3.19`, `2.17-alpine-3.19`, `2.16-alpine-3.19` |
+| Alpine 3.22 | `2.21-alpine-3.22`, `2.20-alpine-3.22`, `2.19-alpine-3.22`, `2.18-alpine-3.22`, `2.17-alpine-3.22`, `2.16-alpine-3.22` |
+| Alpine 3.23 | `2.21-alpine-3.23`, `2.20-alpine-3.23`, `2.19-alpine-3.23`, `2.18-alpine-3.23`, `2.17-alpine-3.23`, `2.16-alpine-3.23` |
+| Alpine 3.24 | `2.21-alpine-3.24`, `2.20-alpine-3.24`, `2.19-alpine-3.24`, `2.18-alpine-3.24`, `2.17-alpine-3.24`, `2.16-alpine-3.24` |
 
 See the complete [supported tag matrix](tags.md) for cross-family comparisons.
 
@@ -31,13 +31,13 @@ See the complete [supported tag matrix](tags.md) for cross-family comparisons.
 === "Latest Alpine stream"
 
     ```bash
-    docker pull willhallonline/ansible:2.21-alpine-3.22
+    docker pull willhallonline/ansible:2.21-alpine-3.24
     ```
 
 === "Older supported stream"
 
     ```bash
-    docker pull willhallonline/ansible:2.16-alpine-3.22
+    docker pull willhallonline/ansible:2.16-alpine-3.24
     ```
 
 ## Run Ansible from an Alpine image
@@ -46,14 +46,14 @@ Mount your playbook project into the container and run from that working
 directory:
 
 ```bash
-docker run --rm -it   -v "$PWD:/work"   -w /work   willhallonline/ansible:2.21-alpine-3.22   ansible-playbook -i inventory site.yml
+docker run --rm -it   -v "$PWD:/work"   -w /work   willhallonline/ansible:2.21-alpine-3.24   ansible-playbook -i inventory site.yml
 ```
 
 Check the installed tools:
 
 ```bash
-docker run --rm willhallonline/ansible:2.21-alpine-3.22 ansible --version
-docker run --rm willhallonline/ansible:2.21-alpine-3.22 ansible-lint --version
+docker run --rm willhallonline/ansible:2.21-alpine-3.24 ansible --version
+docker run --rm willhallonline/ansible:2.21-alpine-3.24 ansible-lint --version
 ```
 
 ## Characteristics
@@ -119,7 +119,7 @@ Consider Debian, Ubuntu, or Rocky Linux instead when:
 Use `apk add` for operating system packages:
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.22
+FROM willhallonline/ansible:2.21-alpine-3.24
 
 RUN apk add --no-cache jq yq
 ```
@@ -128,7 +128,7 @@ For Python tools, prefer repeatable installs and consider pinning package
 versions:
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.22
+FROM willhallonline/ansible:2.21-alpine-3.24
 
 RUN pip install --no-cache-dir molecule
 ```
@@ -140,10 +140,10 @@ patterns.
 
 The Alpine Dockerfiles are in the upstream repository under `ansible-core/`:
 
-- [`ansible-core/alpine-3.19/Dockerfile`](https://github.com/willhallonline/docker-ansible/blob/main/ansible-core/alpine-3.19/Dockerfile)
-- [`ansible-core/alpine-3.20/Dockerfile`](https://github.com/willhallonline/docker-ansible/blob/main/ansible-core/alpine-3.20/Dockerfile)
 - [`ansible-core/alpine-3.21/Dockerfile`](https://github.com/willhallonline/docker-ansible/blob/main/ansible-core/alpine-3.21/Dockerfile)
 - [`ansible-core/alpine-3.22/Dockerfile`](https://github.com/willhallonline/docker-ansible/blob/main/ansible-core/alpine-3.22/Dockerfile)
+- [`ansible-core/alpine-3.23/Dockerfile`](https://github.com/willhallonline/docker-ansible/blob/main/ansible-core/alpine-3.23/Dockerfile)
+- [`ansible-core/alpine-3.24/Dockerfile`](https://github.com/willhallonline/docker-ansible/blob/main/ansible-core/alpine-3.24/Dockerfile)
 
 ## Related pages
 

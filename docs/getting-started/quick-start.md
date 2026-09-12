@@ -5,11 +5,11 @@ run the `willhallonline/ansible` image, mount your working directory, and execut
 playbook without installing Ansible on the host.
 
 The examples use the `latest` tag for readability. At the time documented here,
-`latest` points to **Ansible 2.21 on Alpine 3.22**.
+`latest` points to **Ansible 2.21 on Alpine 3.24**.
 
 !!! tip "Use exact tags once the command works"
     `latest` is convenient while learning. For CI/CD and shared project docs, pin an
-    exact tag such as `2.21-alpine-3.22` or `2.21-debian-trixie-slim`.
+    exact tag such as `2.21-alpine-3.24` or `2.21-debian-trixie-slim`.
 
 ## Prerequisites
 
@@ -53,7 +53,7 @@ From your Ansible project directory, mount the current directory into the contai
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/id_rsa \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
   willhallonline/ansible:latest \
   /bin/sh
 ```
@@ -65,7 +65,7 @@ This command does three important things:
 | `--rm` | Remove the container after it exits |
 | `-it` | Run interactively with a terminal |
 | `-v $(pwd):/ansible` | Mount the current project at `/ansible` |
-| `-v ~/.ssh/id_rsa:/root/id_rsa` | Mount an SSH private key inside the container |
+| `-v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa` | Mount an SSH private key inside the container |
 
 !!! warning "Protect private keys"
     Mount only the key you need. Avoid copying private keys into images or committing
@@ -85,7 +85,7 @@ You can run `ansible-playbook` directly without opening an interactive shell:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/id_rsa \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
   willhallonline/ansible:latest \
   ansible-playbook playbook.yml
 ```
@@ -101,13 +101,13 @@ the mounted project.
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
   --workdir=/ansible \
   willhallonline/ansible:latest \
   ansible-playbook playbook.yml
 ```
 
-Notice that this example mounts the key at `/root/.ssh/id_rsa`, which matches the
+Notice that this example mounts the key at `/home/ansible/.ssh/id_rsa`, which matches the
 alias examples in [shell aliases](shell-aliases.md).
 
 ## Common first commands
@@ -123,7 +123,7 @@ alias examples in [shell aliases](shell-aliases.md).
     ```bash
     docker run --rm -it \
       -v $(pwd):/ansible \
-      -v ~/.ssh/id_rsa:/root/id_rsa \
+      -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
       willhallonline/ansible:latest \
       ansible-playbook playbook.yml
     ```
@@ -143,7 +143,7 @@ alias examples in [shell aliases](shell-aliases.md).
     ```bash
     docker run --rm -it \
       -v $(pwd):/ansible \
-      -v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
+      -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
       --workdir=/ansible \
       willhallonline/ansible:latest \
       /bin/sh
@@ -178,7 +178,7 @@ The full tag format is:
 Examples:
 
 ```text
-2.21-alpine-3.22
+2.21-alpine-3.24
 2.19-debian-bookworm
 2.20-ubuntu-24.04
 2.18-rockylinux-10
@@ -194,12 +194,12 @@ directly to the [tag reference](../images/tags.md).
 
 Current Ansible core versions in the containers are:
 
-- 2.16.14
+- 2.16.19
 - 2.17.14
-- 2.18.9
-- 2.19.2
-- 2.20.0
-- 2.21.0
+- 2.18.19
+- 2.19.13
+- 2.20.9
+- 2.21.4
 
 Older versions 2.9 through 2.15 exist but are unmaintained. Prefer a current version
 for new automation.
@@ -251,4 +251,3 @@ environment. Compare the base image family and installed tooling in
 - Read the guide to [running playbooks](../usage/running-playbooks.md)
 - Review [ansible-lint usage](../usage/ansible-lint.md)
 - Bring the workflow to [CI/CD](../ci/index.md)
-

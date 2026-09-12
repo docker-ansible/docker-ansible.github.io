@@ -22,12 +22,12 @@ The current supported Ansible core streams are:
 
 | Minor | Current core version |
 | --- | --- |
-| 2.21 | 2.21.0 |
-| 2.20 | 2.20.0 |
-| 2.19 | 2.19.2 |
-| 2.18 | 2.18.9 |
+| 2.21 | 2.21.4 |
+| 2.20 | 2.20.9 |
+| 2.19 | 2.19.13 |
+| 2.18 | 2.18.19 |
 | 2.17 | 2.17.14 |
-| 2.16 | 2.16.14 |
+| 2.16 | 2.16.19 |
 
 See [supported tags](tags.md) for which operating systems are available for each
 stream.
@@ -67,8 +67,8 @@ python --version
 Run them through Docker to inspect a tag:
 
 ```bash
-docker run --rm willhallonline/ansible:2.21-alpine-3.22 ansible --version
-docker run --rm willhallonline/ansible:2.21-alpine-3.22 ansible-lint --version
+docker run --rm willhallonline/ansible:2.21-alpine-3.24 ansible --version
+docker run --rm willhallonline/ansible:2.21-alpine-3.24 ansible-lint --version
 ```
 
 ## Base operating system differences
@@ -107,7 +107,7 @@ A derived image keeps project dependencies repeatable:
 === "Alpine"
 
     ```dockerfile
-    FROM willhallonline/ansible:2.21-alpine-3.22
+    FROM willhallonline/ansible:2.21-alpine-3.24
 
     RUN apk add --no-cache jq
     ```

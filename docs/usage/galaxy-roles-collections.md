@@ -145,7 +145,7 @@ docker run --rm \
 ## Bake dependencies into an image
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.22
+FROM willhallonline/ansible:2.21-alpine-3.24
 
 WORKDIR /ansible
 COPY requirements.yml /ansible/requirements.yml

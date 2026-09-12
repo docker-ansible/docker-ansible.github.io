@@ -72,7 +72,7 @@ These questions cover common decisions and surprises when using the
     For repeatable usage, build a derived image:
 
     ```Dockerfile
-    FROM willhallonline/ansible:2.21.0-debian-trixie
+    FROM willhallonline/ansible:2.21.4-debian-trixie
     RUN pip install --no-cache-dir netaddr jmespath
     ```
 
@@ -107,7 +107,7 @@ These questions cover common decisions and surprises when using the
     AnsibleVersion-BaseOS style tag such as:
 
     ```text
-    willhallonline/ansible:2.21.0-alpine-3.22
+    willhallonline/ansible:2.21.4-alpine-3.24
     ```
 
     For maximum immutability, pin the image digest:

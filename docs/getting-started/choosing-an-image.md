@@ -15,7 +15,7 @@ explicit.
 For example:
 
 ```text
-2.21-alpine-3.22
+2.21-alpine-3.24
 2.19-debian-bookworm
 2.20-ubuntu-24.04
 2.18-rockylinux-10
@@ -35,12 +35,12 @@ Current Ansible core versions available in containers are:
 
 | Ansible core | Use when |
 | --- | --- |
-| 2.21.0 | You want the newest current container version documented here |
-| 2.20.0 | You need the 2.20 feature line |
-| 2.19.2 | You need the 2.19 feature line |
-| 2.18.9 | You need the 2.18 feature line |
+| 2.21.4 | You want the newest current container version documented here |
+| 2.20.9 | You need the 2.20 feature line |
+| 2.19.13 | You need the 2.19 feature line |
+| 2.18.19 | You need the 2.18 feature line |
 | 2.17.14 | You need the 2.17 feature line |
-| 2.16.14 | You need the 2.16 feature line |
+| 2.16.19 | You need the 2.16 feature line |
 
 Older versions **2.9 through 2.15** exist, but are unmaintained. Use them only for
 legacy automation that cannot yet move forward.
@@ -62,7 +62,7 @@ version and pin the exact image tag.
 !!! warning "Do not rely on moving tags for repeatable runs"
     Tags such as `latest`, `alpine`, and `ubuntu` are convenient defaults. They are
     not the best choice for reproducible CI. Use a full tag like
-    `2.21-alpine-3.22` instead.
+    `2.21-alpine-3.24` instead.
 
 ## Then choose the base OS
 
@@ -92,11 +92,11 @@ Use Alpine when:
 Example:
 
 ```bash
-docker run --rm -it willhallonline/ansible:2.21-alpine-3.22 ansible --version
+docker run --rm -it willhallonline/ansible:2.21-alpine-3.24 ansible --version
 ```
 
 The convenience tags `latest` and `alpine` currently point to Ansible 2.21 on Alpine
-3.22.
+3.24.
 
 See [Alpine images](../images/alpine.md).
 
@@ -168,7 +168,7 @@ See [Rocky Linux images](../images/rockylinux.md).
 
 The image set includes these base OS versions:
 
-- Alpine 3.19, 3.20, 3.21, and 3.22
+- Alpine 3.21, 3.22, 3.23, and 3.24
 - Debian Bookworm and Bookworm-slim
 - Debian Trixie and Trixie-slim
 - Rocky Linux 10
@@ -198,7 +198,7 @@ For details, see [architectures](../images/architectures.md).
     Use Alpine.
 
     ```text
-    2.21-alpine-3.22
+    2.21-alpine-3.24
     ```
 
     This is a good fit for fast local tests and quick CI pulls.
@@ -239,7 +239,7 @@ For details, see [architectures](../images/architectures.md).
 For CI, prefer exact tags:
 
 ```yaml
-image: willhallonline/ansible:2.21-alpine-3.22
+image: willhallonline/ansible:2.21-alpine-3.24
 ```
 
 Avoid:
@@ -289,7 +289,7 @@ For example, test a newer version locally:
 docker run --rm -it \
   -v $(pwd):/ansible \
   --workdir=/ansible \
-  willhallonline/ansible:2.21-alpine-3.22 \
+  willhallonline/ansible:2.21-alpine-3.24 \
   ansible-lint
 ```
 
@@ -303,4 +303,3 @@ Then run one or more playbooks with the same tag.
 - Choose Ubuntu or Rocky Linux when you want to match production or CI expectations.
 - Use convenience tags for exploration.
 - Pin exact tags in CI/CD.
-

@@ -49,7 +49,7 @@ With inventory and an SSH key:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa:ro \
   --workdir=/ansible \
   willhallonline/ansible:latest \
   ansible-playbook -i inventory.ini site.yml
@@ -60,7 +60,7 @@ Canonical compact example:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/id_rsa \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
   willhallonline/ansible:latest \
   ansible-playbook playbook.yml
 ```

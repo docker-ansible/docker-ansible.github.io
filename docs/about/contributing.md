@@ -32,7 +32,7 @@ A good issue usually includes:
 
 | Field | Example |
 | --- | --- |
-| Image | `willhallonline/ansible:2.21.0-alpine-3.22` |
+| Image | `willhallonline/ansible:2.21.4-alpine-3.24` |
 | Host OS | Ubuntu, macOS, Windows, or CI runner image. |
 | Docker version | Output from `docker version`. |
 | Command | The exact `docker run` or workflow step. |

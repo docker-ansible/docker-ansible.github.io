@@ -1,6 +1,6 @@
 # Usage guides
 
-The `willhallonline/ansible` images provide a containerised Ansible toolchain for local development, automation, and CI. The image name is `willhallonline/ansible` and tags include `latest`, `alpine`, `ubuntu`, `2.21-alpine-3.22`, `2.19-debian-bookworm`, `2.20-ubuntu-24.04`, and `2.18-rockylinux-10`.
+The `willhallonline/ansible` images provide a containerised Ansible toolchain for local development, automation, and CI. The image name is `willhallonline/ansible` and tags include `latest`, `alpine`, `ubuntu`, `2.21-alpine-3.24`, `2.19-debian-bookworm`, `2.20-ubuntu-24.04`, and `2.18-rockylinux-10`.
 
 Each image includes Ansible components and supporting runtime tools:
 
@@ -42,7 +42,7 @@ docker run --rm -it \
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/id_rsa \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
   willhallonline/ansible:latest \
   ansible-playbook playbook.yml
 ```
@@ -52,7 +52,7 @@ Recommended day-to-day form:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa:ro \
   --workdir=/ansible \
   willhallonline/ansible:latest \
   ansible-playbook -i inventory.ini site.yml
@@ -68,7 +68,7 @@ Use mutable tags for exploration:
 
 Use pinned tags for repeatable team and CI workflows:
 
-- `2.21-alpine-3.22`
+- `2.21-alpine-3.24`
 - `2.19-debian-bookworm`
 - `2.20-ubuntu-24.04`
 - `2.18-rockylinux-10`

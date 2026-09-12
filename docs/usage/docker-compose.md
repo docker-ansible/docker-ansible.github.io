@@ -11,7 +11,7 @@ services:
     working_dir: /ansible
     volumes:
       - .:/ansible
-      - ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro
+      - ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa:ro
     environment:
       ANSIBLE_CONFIG: /ansible/ansible.cfg
 ```
@@ -35,7 +35,7 @@ The service above replaces this boilerplate:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa:ro \
   --workdir=/ansible \
   -e ANSIBLE_CONFIG=/ansible/ansible.cfg \
   willhallonline/ansible:latest \
@@ -49,12 +49,12 @@ For teams and CI, prefer a pinned tag:
 ```yaml
 services:
   ansible:
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     working_dir: /ansible
     volumes:
       - .:/ansible
-      - ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro
-      - ~/.ssh/known_hosts:/root/.ssh/known_hosts:ro
+      - ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa:ro
+      - ~/.ssh/known_hosts:/home/ansible/.ssh/known_hosts:ro
     environment:
       ANSIBLE_CONFIG: /ansible/ansible.cfg
       ANSIBLE_FORCE_COLOR: "true"
@@ -115,7 +115,7 @@ Use profiles for optional services:
 ```yaml
 services:
   ansible:
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     working_dir: /ansible
     volumes:
       - .:/ansible
@@ -123,7 +123,7 @@ services:
       ANSIBLE_CONFIG: /ansible/ansible.cfg
 
   ansible-lint:
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     working_dir: /ansible
     profiles: ["lint"]
     volumes:
@@ -148,7 +148,7 @@ docker compose run --rm ansible ansible-lint
 ```yaml
 services:
   ansible:
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     working_dir: /ansible
     volumes:
       - .:/ansible
@@ -156,7 +156,7 @@ services:
       ANSIBLE_CONFIG: /ansible/ansible.cfg
 
   galaxy:
-    image: willhallonline/ansible:2.21-alpine-3.22
+    image: willhallonline/ansible:2.21-alpine-3.24
     working_dir: /ansible
     profiles: ["deps"]
     volumes:
@@ -212,11 +212,11 @@ Document those commands in your project README so contributors do not need local
 ```yaml
 services:
   ansible:
-    image: registry.example.com/platform/ansible:2.21.0-20260714
+    image: registry.example.com/platform/ansible:2.21.4-20260714
     working_dir: /ansible
     volumes:
       - .:/ansible
-      - ~/.ssh:/root/.ssh:ro
+      - ~/.ssh:/home/ansible/.ssh:ro
     environment:
       ANSIBLE_CONFIG: /ansible/ansible.cfg
 ```

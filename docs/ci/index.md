@@ -5,7 +5,7 @@ The `willhallonline/ansible` images package Ansible for repeatable automation in
 Use this section to pick a CI system and copy a working pipeline shape. Each page shows a minimal example and a fuller lint → syntax check → deploy workflow.
 
 !!! tip "Start with a pinned tag"
-    Prefer an exact image tag such as `willhallonline/ansible:2.21-alpine-3.22` in CI. Avoid `latest` for pipelines because an automatic image update can change Ansible, Python, or operating-system packages without a pull request.
+    Prefer an exact image tag such as `willhallonline/ansible:2.21-alpine-3.24` in CI. Avoid `latest` for pipelines because an automatic image update can change Ansible, Python, or operating-system packages without a pull request.
 
 ## Why run Ansible in a container in CI?
 
@@ -27,7 +27,7 @@ willhallonline/ansible
 Common tags include exact version/platform tags such as:
 
 ```text
-willhallonline/ansible:2.21-alpine-3.22
+willhallonline/ansible:2.21-alpine-3.24
 ```
 
 Convenience tags such as `latest`, `alpine`, and `ubuntu` are available, but they are best kept for local experiments or non-production jobs.
@@ -71,7 +71,7 @@ See also:
 Use exact tags in CI configuration:
 
 ```yaml
-image: willhallonline/ansible:2.21-alpine-3.22
+image: willhallonline/ansible:2.21-alpine-3.24
 ```
 
 Do not use this for production deployments:
@@ -175,7 +175,7 @@ These commands appear throughout the examples. Keep them in scripts if you want 
 
 Treat image upgrades as normal dependency updates:
 
-1. Change `willhallonline/ansible:2.21-alpine-3.22` to the target tag.
+1. Change `willhallonline/ansible:2.21-alpine-3.24` to the target tag.
 2. Run lint and syntax-check jobs on a pull request.
 3. Run a staging deployment.
 4. Promote the same commit to production.

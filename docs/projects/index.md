@@ -11,6 +11,15 @@ provide a GitHub Action wrapper, test repositories, and reusable test utilities.
     [`willhallonline/docker-ansible`](https://github.com/willhallonline/docker-ansible)
     repository.
 
+## Current project tags
+
+| Project | Current tag |
+| --- | --- |
+| Core images | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) |
+| GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) |
+| Image testing | [`v2.7.3`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.3) |
+| Action testing | Follows the action; no release tag |
+
 ## Ecosystem map
 
 | Project | Repository | Purpose |
@@ -37,6 +46,7 @@ graph TD
 
 The core repository builds the images. The GitHub Action consumes those images.
 The test repositories verify that common image and action workflows keep working.
+Current images run as the non-root `ansible` user by default.
 
 ## Core image family
 
@@ -49,12 +59,12 @@ willhallonline/ansible
 Images are built across several base operating systems and Ansible versions.
 Current Ansible versions include:
 
-- `2.16.14`
+- `2.16.19`
 - `2.17.14`
-- `2.18.9`
-- `2.19.2`
-- `2.20.0`
-- `2.21.0`
+- `2.18.19`
+- `2.19.13`
+- `2.20.9`
+- `2.21.4`
 
 !!! tip "Pin your runtime"
     Use an explicit Ansible-version and base-OS tag for repeatable automation.

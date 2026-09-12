@@ -163,7 +163,7 @@ steps:
       docker run --rm \
         -v "$(System.DefaultWorkingDirectory):/work" \
         -w /work \
-        willhallonline/ansible:2.21-alpine-3.22 \
+        willhallonline/ansible:2.21-alpine-3.24 \
         ansible-playbook -i inventories/staging/hosts.yml site.yml --syntax-check
     displayName: Syntax check in docker-ansible
 ```

@@ -14,6 +14,19 @@ Docker is available.
     - GitHub: [willhallonline/docker-ansible](https://github.com/willhallonline/docker-ansible)
     - Maintainer: [Will Hall](https://www.willhallonline.co.uk)
 
+!!! important "Current release tags"
+    Keep these release tags in mind when choosing a runtime or CI integration:
+
+    | Project | Tag | Current image/default |
+    | --- | --- | --- |
+    | Core images | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) | `2.21-alpine-3.24` (`latest`/`alpine`) |
+    | GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) | Uses the non-root `ansible` image user |
+    | Image tests | [`v2.7.3`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.3) | Tracks the current image matrix |
+    | Action tests | No release tag | Follows GitHub Action `v1.1.0` |
+
+    See the [ecosystem changelog](reference/changelog.md) for release notes and
+    links.
+
 ## Quick example
 
 Start an interactive shell in the latest image:
@@ -27,7 +40,7 @@ Run a playbook from the current directory:
 ```bash
 docker run --rm -it \
   -v $(pwd):/ansible \
-  -v ~/.ssh/id_rsa:/root/id_rsa \
+  -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa \
   willhallonline/ansible:latest \
   ansible-playbook playbook.yml
 ```
@@ -83,7 +96,7 @@ Tags follow a predictable pattern:
 Examples include:
 
 ```text
-2.21-alpine-3.22
+2.21-alpine-3.24
 2.19-debian-bookworm
 2.20-ubuntu-24.04
 2.18-rockylinux-10
@@ -149,12 +162,12 @@ Current Ansible core versions available in containers are:
 
 | Ansible core | Status |
 | --- | --- |
-| 2.21.0 | Current container version |
-| 2.20.0 | Current container version |
-| 2.19.2 | Current container version |
-| 2.18.9 | Current container version |
+| 2.21.4 | Current container version |
+| 2.20.9 | Current container version |
+| 2.19.13 | Current container version |
+| 2.18.19 | Current container version |
 | 2.17.14 | Current container version |
-| 2.16.14 | Current container version |
+| 2.16.19 | Current container version |
 
 Older Ansible versions from **2.9 through 2.15** exist, but are unmaintained.
 Use them only when you must support older automation and understand the trade-offs.
@@ -162,7 +175,7 @@ See [older releases](images/older-releases.md).
 
 !!! warning "Avoid floating tags in CI"
     Convenience tags are useful for exploration, but CI should usually pin an exact
-    tag such as `2.21-alpine-3.22` or `2.21-debian-trixie-slim`.
+    tag such as `2.21-alpine-3.24` or `2.21-debian-trixie-slim`.
 
 ## Convenience tags
 
@@ -170,8 +183,8 @@ The repository also publishes convenience tags for common defaults:
 
 | Tag | Points to |
 | --- | --- |
-| `latest` | Ansible 2.21 on Alpine 3.22 |
-| `alpine` | Ansible 2.21 on Alpine 3.22 |
+| `latest` | Ansible 2.21 on Alpine 3.24 |
+| `alpine` | Ansible 2.21 on Alpine 3.24 |
 | `ubuntu` | Ansible 2.21 on Ubuntu 24.04 |
 
 These are handy for local testing and examples. For long-lived automation, prefer a
@@ -181,7 +194,7 @@ fully pinned tag.
 
 Images are available across several base OS families:
 
-- Alpine 3.19, 3.20, 3.21, and 3.22
+- Alpine 3.21, 3.22, 3.23, and 3.24
 - Debian Bookworm and Bookworm-slim
 - Debian Trixie and Trixie-slim
 - Rocky Linux 10
@@ -235,4 +248,3 @@ Use this site as a practical handbook:
    when something behaves differently from your host environment.
 7. Follow the [changelog](reference/changelog.md) to track releases across the
    ecosystem projects.
-

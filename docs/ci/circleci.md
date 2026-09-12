@@ -10,7 +10,7 @@ CircleCI jobs can use `willhallonline/ansible` as their Docker executor image. C
 - A `.circleci/config.yml` file.
 - CircleCI project enabled.
 - Playbook and inventory files in the repository.
-- A pinned image tag such as `willhallonline/ansible:2.21-alpine-3.22`.
+- A pinned image tag such as `willhallonline/ansible:2.21-alpine-3.24`.
 - Contexts or project environment variables for secrets.
 - Optional CircleCI SSH key configured for `add_ssh_keys`.
 
@@ -29,7 +29,7 @@ version: 2.1
 jobs:
   lint:
     docker:
-      - image: willhallonline/ansible:2.21-alpine-3.22
+      - image: willhallonline/ansible:2.21-alpine-3.24
     steps:
       - checkout
       - run:
@@ -76,7 +76,7 @@ commands:
 jobs:
   lint:
     docker:
-      - image: willhallonline/ansible:2.21-alpine-3.22
+      - image: willhallonline/ansible:2.21-alpine-3.24
     environment:
       ANSIBLE_FORCE_COLOR: "true"
     steps:
@@ -90,7 +90,7 @@ jobs:
 
   syntax:
     docker:
-      - image: willhallonline/ansible:2.21-alpine-3.22
+      - image: willhallonline/ansible:2.21-alpine-3.24
     environment:
       ANSIBLE_FORCE_COLOR: "true"
       ANSIBLE_HOST_KEY_CHECKING: "False"
@@ -107,7 +107,7 @@ jobs:
 
   deploy:
     docker:
-      - image: willhallonline/ansible:2.21-alpine-3.22
+      - image: willhallonline/ansible:2.21-alpine-3.24
     environment:
       ANSIBLE_FORCE_COLOR: "true"
       ANSIBLE_HOST_KEY_CHECKING: "False"

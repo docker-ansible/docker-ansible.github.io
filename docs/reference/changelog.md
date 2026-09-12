@@ -4,18 +4,18 @@ This page tracks changes **across the Docker Ansible ecosystem** — the core
 container images, the GitHub Action, and the testing projects — and points you
 at the latest release of each.
 
-## Latest releases at a glance
+## Latest tags and releases at a glance
 
-| Project | Latest release | What it is | Release notes |
+| Project | Latest tag/release | What it is | Release notes |
 | --- | --- | --- | --- |
-| [docker-ansible](https://github.com/willhallonline/docker-ansible) | **v6.4.2** | The core container images (`willhallonline/ansible`) | [Releases](https://github.com/willhallonline/docker-ansible/releases) |
-| [docker-ansible-github-action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.0.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
-| [docker-ansible-test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.1** | Test playbooks exercising the images | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
+| [docker-ansible](https://github.com/willhallonline/docker-ansible) | **v6.4.8** | The core container images (`willhallonline/ansible`) | [Tags](https://github.com/willhallonline/docker-ansible/tags) |
+| [docker-ansible-github-action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
+| [docker-ansible-test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.3** | Test playbooks exercising the images | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
 | [docker-ansible-github-action-test](https://github.com/willhallonline/docker-ansible-github-action-test) | — (no tagged releases) | Workflows exercising the GitHub Action | [Commits](https://github.com/willhallonline/docker-ansible-github-action-test/commits) |
 
 !!! tip "Checking for newer releases"
-    This table is a snapshot. Each project's **Releases** page on GitHub is the
-    source of truth — the badges and links above always point at the live data.
+    This table is a snapshot. Each project's **Releases** or **Tags** page on
+    GitHub is the source of truth — the links above point at the live data.
 
 ## Per-project changelogs
 
@@ -26,11 +26,16 @@ at the latest release of each.
 The canonical changelog is maintained in the upstream repository:
 [CHANGELOG.md](https://github.com/willhallonline/docker-ansible/blob/main/CHANGELOG.md)
 
-Recent highlights (v6.4.x):
+Recent highlights (v6.4.3–v6.4.8):
 
-- fixed scheduled matrix build failures on `debian-trixie` ARM64 by updating
-  QEMU binfmt (Python 3.13 segfaulted under the older QEMU);
-- routine CI dependency bumps (checkout, metadata, build-push actions).
+- added Alpine 3.23 and 3.24 support and moved Alpine 3.19 to the archive;
+- deprecated Alpine 3.20;
+- added `HEALTHCHECK` instructions to active images;
+- switched dependency installation from `pip`/`pipx` to `uv`;
+- added the non-root `ansible` user and updated the SSH home to
+  `/home/ansible/.ssh`;
+- updated Ansible core to 2.16.19, 2.18.19, 2.19.13, 2.20.9, and 2.21.4;
+- fixed scheduled ARM64 builds by updating QEMU binfmt.
 
 The current Ansible core lines shipped in the images are 2.16 through 2.21 —
 see [supported tags](../images/tags.md) for the full matrix.
@@ -39,15 +44,16 @@ see [supported tags](../images/tags.md) for the full matrix.
 
 ![GitHub release](https://img.shields.io/github/v/release/willhallonline/docker-ansible-github-action)
 
-**v1.0.0** is the initial marketplace-ready release: a composite GitHub Action
-that runs Ansible commands using the `willhallonline/ansible` images. See the
+**v1.1.0** adds support for the non-root `ansible` user used by current images,
+mounts SSH material under `/home/ansible/.ssh`, and updates the smoke-test
+example to Alpine 3.24. See the
 [GitHub Action](../projects/github-action.md) page and the
 [action repository](https://github.com/willhallonline/docker-ansible-github-action/releases)
 for current inputs and examples.
 
 ### Testing projects
 
-- **docker-ansible-test** (latest tag **v2.7.1**) — playbooks and scenarios
+- **docker-ansible-test** (latest tag **v2.7.3**) — playbooks and scenarios
   used to exercise the images themselves.
 - **docker-ansible-github-action-test** — workflow runs validating the GitHub
   Action end to end; it tracks the action rather than cutting its own releases.
@@ -75,9 +81,10 @@ Recent project direction includes these broad changes:
 
 | Area | Summary |
 | --- | --- |
-| Ansible versions | Newer Ansible release lines such as 2.20 and 2.21 are available. |
-| Ubuntu bases | Ubuntu 26.04 has been added alongside existing Ubuntu variants. |
-| Debian bases | Debian Trixie variants have been added alongside Bookworm variants. |
+| Ansible versions | Current images ship ansible-core 2.16.19 through 2.21.4. |
+| Alpine bases | Alpine 3.21 through 3.24 are supported; 3.19 is archived and 3.20 is deprecated. |
+| Ubuntu bases | Ubuntu 26.04 is available alongside Ubuntu 22.04 and 24.04. |
+| Debian bases | Debian Trixie variants are available alongside Bookworm variants. |
 | Rocky Linux | Rocky Linux 10 is available as a RHEL-family base. |
 | Older bases | Older bases and Ansible lines are retired into archive areas over time. |
 
@@ -91,8 +98,8 @@ operating-system variant. For example, production users should prefer an explici
 Ansible-version and base-OS tag over a floating tag.
 
 ```text
-willhallonline/ansible:2.21.0-alpine-3.22
-willhallonline/ansible:2.21.0-debian-trixie
+willhallonline/ansible:2.21.4-alpine-3.24
+willhallonline/ansible:2.21.4-debian-trixie
 ```
 
 !!! note "Digest pinning"
@@ -139,15 +146,15 @@ When moving to a newer image tag:
 ## Example validation commands
 
 ```bash
-docker run --rm willhallonline/ansible:2.21.0-debian-trixie ansible --version
+docker run --rm willhallonline/ansible:2.21.4-debian-trixie ansible --version
 ```
 
 ```bash
-docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.0-debian-trixie   ansible-lint
+docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.4-debian-trixie   ansible-lint
 ```
 
 ```bash
-docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.0-debian-trixie   ansible-playbook --syntax-check -i inventory site.yml
+docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.4-debian-trixie   ansible-playbook --syntax-check -i inventory site.yml
 ```
 
 ## Related documentation

@@ -24,7 +24,7 @@ Docker normally selects the right platform automatically for the host running
 the command:
 
 ```bash
-docker pull willhallonline/ansible:2.21-alpine-3.22
+docker pull willhallonline/ansible:2.21-alpine-3.24
 ```
 
 You can request a specific platform when needed:
@@ -32,13 +32,13 @@ You can request a specific platform when needed:
 === "AMD64"
 
     ```bash
-    docker pull --platform linux/amd64 willhallonline/ansible:2.21-alpine-3.22
+    docker pull --platform linux/amd64 willhallonline/ansible:2.21-alpine-3.24
     ```
 
 === "ARM64"
 
     ```bash
-    docker pull --platform linux/arm64 willhallonline/ansible:2.21-alpine-3.22
+    docker pull --platform linux/arm64 willhallonline/ansible:2.21-alpine-3.24
     ```
 
 ## Running on Apple Silicon
@@ -48,7 +48,7 @@ Apple Silicon Macs use ARM64. Docker Desktop can run the ARM64 image natively:
 ```bash
 docker run --rm \
   --platform linux/arm64 \
-  willhallonline/ansible:2.21-alpine-3.22 \
+  willhallonline/ansible:2.21-alpine-3.24 \
   ansible --version
 ```
 
@@ -63,7 +63,7 @@ Use a 64-bit Raspberry Pi operating system so Docker can pull the ARM64 variant:
 ```bash
 docker run --rm \
   --platform linux/arm64 \
-  willhallonline/ansible:2.21-alpine-3.22 \
+  willhallonline/ansible:2.21-alpine-3.24 \
   ansible --version
 ```
 
@@ -105,7 +105,7 @@ runner architecture differs from the deployment architecture.
 ## Platform and tag compatibility
 
 Architecture support is independent of the tag naming scheme. A supported tag
-such as `2.21-alpine-3.22` identifies the Ansible stream and base operating
+such as `2.21-alpine-3.24` identifies the Ansible stream and base operating
 system. The image manifest then maps that tag to the available platforms.
 
 | Question | Answer |
@@ -125,7 +125,7 @@ system. The image manifest then maps that tag to the available platforms.
 You can inspect the container architecture with `uname`:
 
 ```bash
-docker run --rm willhallonline/ansible:2.21-alpine-3.22 uname -m
+docker run --rm willhallonline/ansible:2.21-alpine-3.24 uname -m
 ```
 
 Common outputs include:

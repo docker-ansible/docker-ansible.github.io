@@ -3,7 +3,7 @@
 GitHub Actions can run `willhallonline/ansible` either as a job container or through the official Docker-based action. Use a job container when you want normal shell steps. Use the action when you prefer a reusable action wrapper.
 
 !!! tip "Recommended image"
-    Pin a specific tag, for example `willhallonline/ansible:2.21-alpine-3.22`. Do not use `latest` for deployment workflows.
+    Pin a specific tag, for example `willhallonline/ansible:2.21-alpine-3.24`. Do not use `latest` for deployment workflows.
 
 ## Prerequisites
 
@@ -38,7 +38,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     container:
-      image: willhallonline/ansible:2.21-alpine-3.22
+      image: willhallonline/ansible:2.21-alpine-3.24
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -73,12 +73,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run docker-ansible action
-        uses: willhallonline/docker-ansible-github-action@main
+        uses: willhallonline/docker-ansible-github-action@v1.1.0
         with:
-          args: ansible --version
+          playbook: playbooks/site.yml
+          inventory: inventory/localhost.ini
+          image-tag: 2.21-alpine-3.24
 ```
 
-If the action changes its input names, update this example from the repository documentation.
+The action also accepts Galaxy requirements, Vault passwords, SSH keys,
+`known_hosts`, extra variables, and additional `ansible-playbook` options. Check
+the upstream action README when using an input not shown here.
 
 ## Full worked workflow
 
@@ -103,7 +107,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     container:
-      image: willhallonline/ansible:2.21-alpine-3.22
+      image: willhallonline/ansible:2.21-alpine-3.24
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -123,7 +127,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint
     container:
-      image: willhallonline/ansible:2.21-alpine-3.22
+      image: willhallonline/ansible:2.21-alpine-3.24
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -149,7 +153,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     environment: production
     container:
-      image: willhallonline/ansible:2.21-alpine-3.22
+      image: willhallonline/ansible:2.21-alpine-3.24
     steps:
       - name: Checkout
         uses: actions/checkout@v4

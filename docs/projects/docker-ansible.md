@@ -34,6 +34,10 @@ Each current image is intended to provide a ready-to-run Ansible environment:
 - Python and operating-system packages required by the chosen image variant
 - A predictable Docker entry point for running Ansible commands
 
+Current images run as the non-root `ansible` user (UID/GID 1000) by default.
+Mount SSH keys and `known_hosts` under `/home/ansible/.ssh/`. Use
+`--user root` only when a build or diagnostic step specifically needs root.
+
 ```bash
 docker run --rm willhallonline/ansible:latest ansible --version
 docker run --rm willhallonline/ansible:latest ansible-lint --version
@@ -45,12 +49,12 @@ Current versions published by the project include:
 
 | Ansible version | Notes |
 | --- | --- |
-| `2.21.0` | Current newer Ansible release line. |
-| `2.20.0` | Current stable Ansible release line. |
-| `2.19.2` | Supported recent release line. |
-| `2.18.9` | Supported release line. |
+| `2.21.4` | Current newer Ansible release line. |
+| `2.20.9` | Current stable Ansible release line. |
+| `2.19.13` | Supported recent release line. |
+| `2.18.19` | Supported release line. |
 | `2.17.14` | Supported older release line. |
-| `2.16.14` | Supported older release line. |
+| `2.16.19` | Supported older release line. |
 
 !!! warning "Older does not mean maintained"
     Older Ansible versions, including the 2.9-2.15 range, may be available in
@@ -64,7 +68,7 @@ The repository is organised around image definitions and support files.
 | Path | Purpose |
 | --- | --- |
 | `ansible-core/<os>/Dockerfile` | Dockerfiles for current image variants. |
-| `ansible-core/alpine-3.19` - `ansible-core/alpine-3.22` | Alpine-based image variants. |
+| `ansible-core/alpine-3.21` - `ansible-core/alpine-3.24` | Alpine-based image variants. |
 | `ansible-core/debian-bookworm` | Debian Bookworm image variant. |
 | `ansible-core/debian-bookworm-slim` | Slim Debian Bookworm variant. |
 | `ansible-core/debian-trixie` | Debian Trixie image variant. |
@@ -92,7 +96,7 @@ choose the runtime that best matches your playbooks and dependencies.
 
 | Family | Example variants | When to consider it |
 | --- | --- | --- |
-| Alpine | `alpine-3.19` through `alpine-3.22` | Small images and fast pulls. |
+| Alpine | `alpine-3.21` through `alpine-3.24` | Small images and fast pulls. |
 | Debian | `debian-bookworm`, `debian-trixie` | Broad Python package compatibility. |
 | Debian slim | `debian-bookworm-slim`, `debian-trixie-slim` | Debian compatibility with a smaller footprint. |
 | Ubuntu | `ubuntu-22.04`, `ubuntu-24.04`, `ubuntu-26.04` | Familiar apt-based CI and enterprise workflows. |
