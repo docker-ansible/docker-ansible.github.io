@@ -15,10 +15,10 @@ provide a GitHub Action wrapper, test repositories, and reusable test utilities.
 
 | Project | Current tag |
 | --- | --- |
-| Core images | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) |
-| GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) |
-| Image testing | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) |
-| Action testing | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
+| Docker Ansible | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) |
+| Docker Ansible GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) |
+| Docker Ansible Test | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) |
+| Docker Ansible GitHub Action Test | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
 
 ## Ecosystem map
 
@@ -26,9 +26,9 @@ provide a GitHub Action wrapper, test repositories, and reusable test utilities.
 | --- | --- | --- |
 | Docker Ansible | [`willhallonline/docker-ansible`](https://github.com/willhallonline/docker-ansible) | Builds Ansible Docker images for Alpine, Ubuntu, Rocky Linux, and Debian with multiple supported Ansible versions. |
 | Docker Hub image | [`willhallonline/ansible`](https://hub.docker.com/r/willhallonline/ansible) | Published container images containing `ansible-core`, `ansible`, and `ansible-lint`. |
-| GitHub Action | [`willhallonline/docker-ansible-github-action`](https://github.com/willhallonline/docker-ansible-github-action) | Docker-based GitHub Action for running Ansible from the image family. |
-| Image testing | [`willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test) | Test repository used to exercise the Docker Ansible images. |
-| Action testing | [`willhallonline/docker-ansible-github-action-test`](https://github.com/willhallonline/docker-ansible-github-action-test) | Test repository used to exercise the Docker Ansible GitHub Action. |
+| Docker Ansible GitHub Action | [`willhallonline/docker-ansible-github-action`](https://github.com/willhallonline/docker-ansible-github-action) | Docker-based GitHub Action for running Ansible from the image family. |
+| Docker Ansible Test | [`willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test) | Test repository used to exercise the Docker Ansible images. |
+| Docker Ansible GitHub Action Test | [`willhallonline/docker-ansible-github-action-test`](https://github.com/willhallonline/docker-ansible-github-action-test) | Test repository used to exercise the Docker Ansible GitHub Action. |
 | Test utilities | [`testing-utils/`](https://github.com/willhallonline/docker-ansible/tree/main/testing-utils) | Helper files and scripts used by the core image test workflows. |
 | Project website | [`docker-ansible/docker-ansible.github.io`](https://github.com/docker-ansible/docker-ansible.github.io) | MkDocs Material documentation site for the ecosystem. |
 
@@ -90,4 +90,4 @@ The ecosystem is maintained by
 
 - [Docker Ansible](docker-ansible.md)
 - [Docker Ansible GitHub Action](github-action.md)
-- [Testing](testing.md)
+- [Docker Ansible Test](testing.md)

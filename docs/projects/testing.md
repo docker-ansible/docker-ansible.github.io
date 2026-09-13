@@ -1,4 +1,4 @@
-# Testing
+# Docker Ansible Test
 
 The Docker Ansible ecosystem uses dedicated repositories and in-repository
 utilities to exercise images and the GitHub Action.
@@ -13,8 +13,8 @@ is `v1.1.0` (2026-09-12); its current main commit is `8ac13fd`.
 
 | Project | Repository | Purpose |
 | --- | --- | --- |
-| Image testing | [`willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test) | Exercises the published Docker Ansible images. |
-| Action testing | [`willhallonline/docker-ansible-github-action-test`](https://github.com/willhallonline/docker-ansible-github-action-test) | Exercises the Docker Ansible GitHub Action. |
+| Docker Ansible Test | [`willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test) | Exercises the published Docker Ansible images. |
+| Docker Ansible GitHub Action Test | [`willhallonline/docker-ansible-github-action-test`](https://github.com/willhallonline/docker-ansible-github-action-test) | Exercises the Docker Ansible GitHub Action. |
 | Test utilities | [`testing-utils/`](https://github.com/willhallonline/docker-ansible/tree/main/testing-utils) | Helpers kept in the core repository for image testing. |
 
 !!! note "What these tests prove"
@@ -162,6 +162,6 @@ RUN pip install --no-cache-dir example-package
 ## Related documentation
 
 - [Docker Ansible](docker-ansible.md)
-- [GitHub Action](github-action.md)
+- [Docker Ansible GitHub Action](github-action.md)
 - [Quick start](../getting-started/quick-start.md)
 - [Troubleshooting](../reference/troubleshooting.md)

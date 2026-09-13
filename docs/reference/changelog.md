@@ -8,10 +8,10 @@ at the latest release of each.
 
 | Project | Latest tag/release | What it is | Release notes |
 | --- | --- | --- | --- |
-| [docker-ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) |
-| [docker-ansible-github-action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
-| [docker-ansible-test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Test playbooks exercising the images | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
-| [docker-ansible-github-action-test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.0** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
+| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) |
+| [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
+| [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Test playbooks exercising the images | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
+| [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.0** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
 
 !!! tip "Checking for newer releases"
     This table is a snapshot. Each project's **Releases** or **Tags** page on
@@ -19,7 +19,7 @@ at the latest release of each.
 
 ## Per-project changelogs
 
-### docker-ansible (core images)
+### Docker Ansible
 
 The canonical changelog is maintained in the upstream repository:
 [CHANGELOG.md](https://github.com/willhallonline/docker-ansible/blob/main/CHANGELOG.md)
@@ -38,25 +38,25 @@ Recent highlights (v6.4.3–v6.4.8):
 The current Ansible core lines shipped in the images are 2.16 through 2.21 —
 see [supported tags](../images/tags.md) for the full matrix.
 
-### docker-ansible-github-action
+### Docker Ansible GitHub Action
 
 ![GitHub release](https://img.shields.io/github/v/release/willhallonline/docker-ansible-github-action)
 
 **v1.1.0** adds support for the non-root `ansible` user used by current images,
 mounts SSH material under `/home/ansible/.ssh`, and updates the smoke-test
 example to Alpine 3.24. See the
-[GitHub Action](../projects/github-action.md) page and the
+[Docker Ansible GitHub Action](../projects/github-action.md) page and the
 [action repository](https://github.com/willhallonline/docker-ansible-github-action/releases)
 for current inputs and examples.
 
-### Testing projects
+### Docker Ansible Test and Docker Ansible GitHub Action Test
 
-- **docker-ansible-test** (latest tag **v2.7.4**) — playbooks and scenarios
+- **Docker Ansible Test** (latest tag **v2.7.4**) — playbooks and scenarios
   used to exercise the images themselves.
-- **docker-ansible-github-action-test** (integration-test **v1.1.0**) —
+- **Docker Ansible GitHub Action Test** (integration-test **v1.1.0**) —
   localhost/non-root/exit-code smoke coverage for the GitHub Action.
 
-See [Testing](../projects/testing.md) for how these fit together.
+See [Docker Ansible Test](../projects/testing.md) for how these fit together.
 
 ## What changes over time
 
@@ -153,6 +153,6 @@ docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21
 ## Related documentation
 
 - [Docker Ansible](../projects/docker-ansible.md)
-- [Testing](../projects/testing.md)
+- [Docker Ansible Test](../projects/testing.md)
 - [Security](security.md)
 - [FAQ](faq.md)
