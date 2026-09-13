@@ -13,8 +13,7 @@ runners, cloud images, or internal documentation based on Ubuntu packages.
 | Base image | Supported tags |
 | --- | --- |
 | Ubuntu 26.04 | `2.21-ubuntu-26.04`, `2.20-ubuntu-26.04` |
-| Ubuntu 24.04 | `2.21-ubuntu-24.04`, `2.20-ubuntu-24.04`, `2.19-ubuntu-24.04`, `2.18-ubuntu-24.04`, `2.17-ubuntu-24.04`, `2.16-ubuntu-24.04` |
-| Ubuntu 22.04 | `2.17-ubuntu-22.04`, `2.16-ubuntu-22.04` |
+| Ubuntu 24.04 | `2.21-ubuntu-24.04`, `2.20-ubuntu-24.04`, `2.19-ubuntu-24.04`, `2.18-ubuntu-24.04` |
 
 See the complete [supported tag matrix](tags.md) for all base images.
 
@@ -38,11 +37,9 @@ See the complete [supported tag matrix](tags.md) for all base images.
     docker pull willhallonline/ansible:2.21-ubuntu-26.04
     ```
 
-=== "Ubuntu 22.04"
-
-    ```bash
-    docker pull willhallonline/ansible:2.17-ubuntu-22.04
-    ```
+!!! note "Ubuntu 22.04"
+    No active image builds are published for Ubuntu 22.04. Use Ubuntu 24.04 or
+    Ubuntu 26.04 for current images.
 
 ## Run Ansible from an Ubuntu image
 
@@ -75,8 +72,8 @@ familiar shell environment for local troubleshooting.
 | Ubuntu release | Guidance |
 | --- | --- |
 | 26.04 | Use for the newest supported Ubuntu base with Ansible 2.20 or 2.21 |
-| 24.04 | Broadest Ubuntu coverage across Ansible 2.16 through 2.21 |
-| 22.04 | Use only when you specifically need this older supported base |
+| 24.04 | Broadest Ubuntu coverage across Ansible 2.18 through 2.21 |
+| 22.04 | No active image builds; use Ubuntu 24.04 or 26.04 |
 
 !!! tip "Use Ubuntu 24.04 for broad compatibility"
     Ubuntu 24.04 has the widest supported Ubuntu tag coverage and is the target

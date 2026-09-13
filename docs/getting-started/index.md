@@ -139,10 +139,8 @@ The current Ansible core versions available in containers are:
 - 2.20.9
 - 2.19.13
 - 2.18.19
-- 2.17.14
-- 2.16.19
 
-Ansible core streams 2.9 through 2.15 are outside the active matrix and
+Ansible core streams 2.9 through 2.17 are outside the active matrix and
 unmaintained. If you have a legacy dependency, verify its image availability and
 review [older releases](../images/older-releases.md) before planning an upgrade.
 

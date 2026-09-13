@@ -15,7 +15,7 @@ provide a GitHub Action wrapper, test repositories, and reusable test utilities.
 
 | Project | Current tag |
 | --- | --- |
-| Docker Ansible | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) |
+| Docker Ansible | [`v6.4.9`](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) |
 | Docker Ansible GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) |
 | Docker Ansible Test | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) |
 | Docker Ansible GitHub Action Test | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
@@ -59,8 +59,6 @@ willhallonline/ansible
 Images are built across several base operating systems and Ansible versions.
 Current Ansible versions include:
 
-- `2.16.19`
-- `2.17.14`
 - `2.18.19`
 - `2.19.13`
 - `2.20.9`

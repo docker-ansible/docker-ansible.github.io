@@ -34,10 +34,10 @@ The ecosystem tests focus on practical behaviours:
 - the GitHub Action can invoke `ansible-playbook` in the Docker runtime; and
 - examples continue to represent realistic usage.
 
-The image-test release covers 61 tags: aliases (`latest`, `alpine`, `ubuntu`),
-Ansible 2.16 through 2.21, Alpine 3.21 through 3.24, Debian Bookworm/Trixie
-and slim variants, Rocky Linux 10, and Ubuntu 22.04/24.04/26.04. Ansible
-2.9 through 2.15 are excluded. Its smoke test is localhost-only and runs as
+The image-test release covers 41 tags: aliases (`latest`, `alpine`, `ubuntu`),
+Ansible 2.18 through 2.21, Alpine 3.21 through 3.24, Debian Bookworm/Trixie
+and slim variants, Rocky Linux 10, and Ubuntu 24.04/26.04. Ansible
+2.9 through 2.17 are excluded from the active matrix. Its smoke test is localhost-only and runs as
 the non-root `ansible` UID/GID 1000. CI also performs digest smoke tests, while
 pull requests do not publish images.
 

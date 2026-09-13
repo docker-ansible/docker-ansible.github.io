@@ -87,7 +87,7 @@ These questions cover common decisions and surprises when using the
     tags or digests for production jobs.
 
 ??? question "Are old Ansible versions available?"
-    Ansible core streams 2.9 through 2.15 are outside the active matrix and
+    Ansible core streams 2.9 through 2.17 are outside the active matrix and
     unmaintained. Historical image availability varies, so verify the exact tag
     in the upstream registry before depending on it.
 

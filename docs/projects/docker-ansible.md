@@ -9,8 +9,8 @@ that local development and CI jobs can use the same packaged toolchain.
 
 !!! note "Short description"
     Ansible inside Docker containers: Alpine, Ubuntu, Rocky Linux, and Debian
-    with active Ansible core streams 2.16 through 2.21. The current upstream
-    release is `v6.4.8` (commit `f054694`, 2026-09-11).
+    with active Ansible core streams 2.18 through 2.21. The current upstream
+    release is `v6.4.9` (commit `32ea135`, 2026-09-13).
 
 ## Links
 
@@ -56,11 +56,9 @@ Current versions published by the project include:
 | `2.20.9` | Current stable Ansible release line. |
 | `2.19.13` | Supported recent release line. |
 | `2.18.19` | Supported release line. |
-| `2.17.14` | Supported older release line. |
-| `2.16.19` | Supported older release line. |
 
 !!! warning "Older does not mean maintained"
-    Ansible core streams 2.9 through 2.15 are outside the active matrix and
+    Ansible core streams 2.9 through 2.17 are outside the active matrix and
     unmaintained. Do not assume that historical definitions or tags are
     published; verify any legacy dependency against the upstream registry.
 
@@ -77,7 +75,6 @@ The repository is organised around image definitions and support files.
 | `ansible-core/debian-trixie` | Debian Trixie image variant. |
 | `ansible-core/debian-trixie-slim` | Slim Debian Trixie variant. |
 | `ansible-core/rockylinux-10` | Rocky Linux 10 image variant. |
-| `ansible-core/ubuntu-22.04` | Ubuntu 22.04 image variant. |
 | `ansible-core/ubuntu-24.04` | Ubuntu 24.04 image variant. |
 | `ansible-core/ubuntu-26.04` | Ubuntu 26.04 image variant. |
 | `testing-utils/` | Helpers used by testing workflows. |
