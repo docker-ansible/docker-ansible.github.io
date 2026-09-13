@@ -119,10 +119,10 @@ Do not report vulnerabilities in public issues. Use the upstream security policy
 
 | Repository | Purpose |
 | --- | --- |
-| [`willhallonline/docker-ansible`](https://github.com/willhallonline/docker-ansible) | Core image builds. |
-| [`willhallonline/docker-ansible-github-action`](https://github.com/willhallonline/docker-ansible-github-action) | Docker-based GitHub Action. |
-| [`willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test) | Image tests. |
-| [`willhallonline/docker-ansible-github-action-test`](https://github.com/willhallonline/docker-ansible-github-action-test) | Action tests. |
+| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | Core image builds. |
+| [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | Docker-based GitHub Action. |
+| [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | Image tests. |
+| [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | Action tests. |
 
 ## License expectations
 

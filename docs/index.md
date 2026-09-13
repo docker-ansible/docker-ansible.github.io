@@ -19,10 +19,10 @@ Docker is available.
 
     | Project | Tag | Current image/default |
     | --- | --- | --- |
-    | Core images | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) (`f054694`, 2026-09-11) | `2.21-alpine-3.24` (`latest`/`alpine`) |
-    | GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) | Uses the non-root `ansible` image user |
-    | Image tests | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) | Tracks the current image matrix |
-    | Action tests | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) | Tests the GitHub Action |
+    | Docker Ansible | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) (`f054694`, 2026-09-11) | `2.21-alpine-3.24` (`latest`/`alpine`) |
+    | Docker Ansible GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) | Uses the non-root `ansible` image user |
+    | Docker Ansible Test | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) | Tracks the current image matrix |
+    | Docker Ansible GitHub Action Test | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) | Tests the GitHub Action |
 
     See the [ecosystem changelog](reference/changelog.md) for release notes and
     links.

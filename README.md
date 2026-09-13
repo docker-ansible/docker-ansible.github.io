@@ -1,2 +1,2 @@
-# docker-ansible.github.io
-Docker Ansible docs
+# Docker Ansible
+Documentation for Docker Ansible

@@ -157,8 +157,8 @@ base-image updates.
 
 ## Related documentation
 
-- [GitHub Action](github-action.md)
-- [Testing](testing.md)
+- [Docker Ansible GitHub Action](github-action.md)
+- [Docker Ansible Test](testing.md)
 - [FAQ](../reference/faq.md)
 - [Troubleshooting](../reference/troubleshooting.md)
 - [Security](../reference/security.md)

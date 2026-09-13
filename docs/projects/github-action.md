@@ -19,7 +19,7 @@ self-hosted runner.
 | Source repository | <https://github.com/willhallonline/docker-ansible-github-action> |
 | Core image project | <https://github.com/willhallonline/docker-ansible> |
 | Docker Hub image | <https://hub.docker.com/r/willhallonline/ansible> |
-| Action test repository | <https://github.com/willhallonline/docker-ansible-github-action-test> |
+| Docker Ansible GitHub Action Test | <https://github.com/willhallonline/docker-ansible-github-action-test> |
 
 ## What it contains
 
@@ -152,12 +152,12 @@ repository. The core image project is also covered by image-level tests.
 
 The integration-test repository's current release is `v1.1.0`. Its smoke test
 is localhost-only; it does not prove SSH, Vault, Galaxy, extra-vars, or
-deployment-host behaviour. See [Testing](testing.md) for the complete scope.
+deployment-host behaviour. See [Docker Ansible Test](testing.md) for the complete scope.
 
 ## Related documentation
 
 - [Docker Ansible](docker-ansible.md)
-- [Testing](testing.md)
+- [Docker Ansible Test](testing.md)
 - [GitHub Actions usage](../ci/github-actions.md)
 - [Troubleshooting](../reference/troubleshooting.md)
 - [Security](../reference/security.md)

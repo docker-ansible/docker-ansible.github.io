@@ -116,9 +116,9 @@ nav:
       - Woodpecker CI: ci/woodpecker.md
   - Projects:
       - projects/index.md
-      - docker-ansible: projects/docker-ansible.md
-      - GitHub Action: projects/github-action.md
-      - Testing: projects/testing.md
+      - Docker Ansible: projects/docker-ansible.md
+      - Docker Ansible GitHub Action: projects/github-action.md
+      - Docker Ansible Test: projects/testing.md
   - Reference:
       - FAQ: reference/faq.md
       - Troubleshooting: reference/troubleshooting.md
