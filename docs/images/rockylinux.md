@@ -10,7 +10,7 @@ The supported Rocky Linux base is Rocky Linux 10.
 
 | Base image | Supported tags |
 | --- | --- |
-| Rocky Linux 10 | `2.21-rockylinux-10`, `2.20-rockylinux-10`, `2.19-rockylinux-10`, `2.18-rockylinux-10`, `2.17-rockylinux-10`, `2.16-rockylinux-10` |
+| Rocky Linux 10 | `2.21-rockylinux-10`, `2.20-rockylinux-10`, `2.19-rockylinux-10`, `2.18-rockylinux-10` |
 
 See the complete [supported tag matrix](tags.md) for all operating systems.
 
@@ -28,10 +28,10 @@ See the complete [supported tag matrix](tags.md) for all operating systems.
     docker pull willhallonline/ansible:2.20-rockylinux-10
     ```
 
-=== "Ansible 2.16"
+=== "Ansible 2.18"
 
     ```bash
-    docker pull willhallonline/ansible:2.16-rockylinux-10
+    docker pull willhallonline/ansible:2.18-rockylinux-10
     ```
 
 ## Run Ansible from a Rocky Linux image

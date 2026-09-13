@@ -39,10 +39,8 @@ Current Ansible core versions available in containers are:
 | 2.20.9 | You need the 2.20 feature line |
 | 2.19.13 | You need the 2.19 feature line |
 | 2.18.19 | You need the 2.18 feature line |
-| 2.17.14 | You need the 2.17 feature line |
-| 2.16.19 | You need the 2.16 feature line |
 
-Ansible core streams **2.9 through 2.15** are outside the active matrix and
+Ansible core streams **2.9 through 2.17** are outside the active matrix and
 unmaintained. Verify legacy image availability before using them.
 
 ## Match your project requirements
@@ -172,7 +170,7 @@ The image set includes these base OS versions:
 - Debian Bookworm and Bookworm-slim
 - Debian Trixie and Trixie-slim
 - Rocky Linux 10
-- Ubuntu 22.04, 24.04, and 26.04
+- Ubuntu 24.04 and 26.04
 
 For the complete tag list, see [image tags](../images/tags.md).
 

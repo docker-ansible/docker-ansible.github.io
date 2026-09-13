@@ -13,10 +13,10 @@ Ansible control-node container.
 
 | Base image | Supported tags |
 | --- | --- |
-| Alpine 3.21 | `2.21-alpine-3.21`, `2.20-alpine-3.21`, `2.19-alpine-3.21`, `2.18-alpine-3.21`, `2.17-alpine-3.21`, `2.16-alpine-3.21` |
-| Alpine 3.22 | `2.21-alpine-3.22`, `2.20-alpine-3.22`, `2.19-alpine-3.22`, `2.18-alpine-3.22`, `2.17-alpine-3.22`, `2.16-alpine-3.22` |
-| Alpine 3.23 | `2.21-alpine-3.23`, `2.20-alpine-3.23`, `2.19-alpine-3.23`, `2.18-alpine-3.23`, `2.17-alpine-3.23`, `2.16-alpine-3.23` |
-| Alpine 3.24 | `2.21-alpine-3.24`, `2.20-alpine-3.24`, `2.19-alpine-3.24`, `2.18-alpine-3.24`, `2.17-alpine-3.24`, `2.16-alpine-3.24` |
+| Alpine 3.21 | `2.21-alpine-3.21`, `2.20-alpine-3.21`, `2.19-alpine-3.21`, `2.18-alpine-3.21` |
+| Alpine 3.22 | `2.21-alpine-3.22`, `2.20-alpine-3.22`, `2.19-alpine-3.22`, `2.18-alpine-3.22` |
+| Alpine 3.23 | `2.21-alpine-3.23`, `2.20-alpine-3.23`, `2.19-alpine-3.23`, `2.18-alpine-3.23` |
+| Alpine 3.24 | `2.21-alpine-3.24`, `2.20-alpine-3.24`, `2.19-alpine-3.24`, `2.18-alpine-3.24` |
 
 See the complete [supported tag matrix](tags.md) for cross-family comparisons.
 
@@ -34,10 +34,10 @@ See the complete [supported tag matrix](tags.md) for cross-family comparisons.
     docker pull willhallonline/ansible:2.21-alpine-3.24
     ```
 
-=== "Older supported stream"
+=== "Oldest supported stream"
 
     ```bash
-    docker pull willhallonline/ansible:2.16-alpine-3.24
+    docker pull willhallonline/ansible:2.18-alpine-3.24
     ```
 
 ## Run Ansible from an Alpine image

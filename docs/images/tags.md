@@ -24,8 +24,6 @@ the exact core patch release.
 | 2.20 | 2.20.9 |
 | 2.19 | 2.19.13 |
 | 2.18 | 2.18.19 |
-| 2.17 | 2.17.14 |
-| 2.16 | 2.16.19 |
 
 ## Convenience tags
 
@@ -50,20 +48,19 @@ the exact core patch release.
 
 ## Full supported tag matrix
 
-| Base image | 2.21 | 2.20 | 2.19 | 2.18 | 2.17 | 2.16 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Alpine 3.21 | `2.21-alpine-3.21` | `2.20-alpine-3.21` | `2.19-alpine-3.21` | `2.18-alpine-3.21` | `2.17-alpine-3.21` | `2.16-alpine-3.21` |
-| Alpine 3.22 | `2.21-alpine-3.22` | `2.20-alpine-3.22` | `2.19-alpine-3.22` | `2.18-alpine-3.22` | `2.17-alpine-3.22` | `2.16-alpine-3.22` |
-| Alpine 3.23 | `2.21-alpine-3.23` | `2.20-alpine-3.23` | `2.19-alpine-3.23` | `2.18-alpine-3.23` | `2.17-alpine-3.23` | `2.16-alpine-3.23` |
-| Alpine 3.24 | `2.21-alpine-3.24` | `2.20-alpine-3.24` | `2.19-alpine-3.24` | `2.18-alpine-3.24` | `2.17-alpine-3.24` | `2.16-alpine-3.24` |
-| Debian Bookworm | — | — | `2.19-debian-bookworm` | `2.18-debian-bookworm` | `2.17-debian-bookworm` | `2.16-debian-bookworm` |
-| Debian Bookworm Slim | — | — | `2.19-debian-bookworm-slim` | `2.18-debian-bookworm-slim` | `2.17-debian-bookworm-slim` | `2.16-debian-bookworm-slim` |
-| Debian Trixie | `2.21-debian-trixie` | `2.20-debian-trixie` | `2.19-debian-trixie` | `2.18-debian-trixie` | `2.17-debian-trixie` | — |
-| Debian Trixie Slim | `2.21-debian-trixie-slim` | `2.20-debian-trixie-slim` | `2.19-debian-trixie-slim` | `2.18-debian-trixie-slim` | `2.17-debian-trixie-slim` | — |
-| Rocky Linux 10 | `2.21-rockylinux-10` | `2.20-rockylinux-10` | `2.19-rockylinux-10` | `2.18-rockylinux-10` | `2.17-rockylinux-10` | `2.16-rockylinux-10` |
-| Ubuntu 22.04 | — | — | — | — | `2.17-ubuntu-22.04` | `2.16-ubuntu-22.04` |
-| Ubuntu 24.04 | `2.21-ubuntu-24.04` | `2.20-ubuntu-24.04` | `2.19-ubuntu-24.04` | `2.18-ubuntu-24.04` | `2.17-ubuntu-24.04` | `2.16-ubuntu-24.04` |
-| Ubuntu 26.04 | `2.21-ubuntu-26.04` | `2.20-ubuntu-26.04` | — | — | — | — |
+| Base image | 2.21 | 2.20 | 2.19 | 2.18 |
+| --- | --- | --- | --- | --- |
+| Alpine 3.21 | `2.21-alpine-3.21` | `2.20-alpine-3.21` | `2.19-alpine-3.21` | `2.18-alpine-3.21` |
+| Alpine 3.22 | `2.21-alpine-3.22` | `2.20-alpine-3.22` | `2.19-alpine-3.22` | `2.18-alpine-3.22` |
+| Alpine 3.23 | `2.21-alpine-3.23` | `2.20-alpine-3.23` | `2.19-alpine-3.23` | `2.18-alpine-3.23` |
+| Alpine 3.24 | `2.21-alpine-3.24` | `2.20-alpine-3.24` | `2.19-alpine-3.24` | `2.18-alpine-3.24` |
+| Debian Bookworm | — | — | `2.19-debian-bookworm` | `2.18-debian-bookworm` |
+| Debian Bookworm Slim | — | — | `2.19-debian-bookworm-slim` | `2.18-debian-bookworm-slim` |
+| Debian Trixie | `2.21-debian-trixie` | `2.20-debian-trixie` | `2.19-debian-trixie` | `2.18-debian-trixie` |
+| Debian Trixie Slim | `2.21-debian-trixie-slim` | `2.20-debian-trixie-slim` | `2.19-debian-trixie-slim` | `2.18-debian-trixie-slim` |
+| Rocky Linux 10 | `2.21-rockylinux-10` | `2.20-rockylinux-10` | `2.19-rockylinux-10` | `2.18-rockylinux-10` |
+| Ubuntu 24.04 | `2.21-ubuntu-24.04` | `2.20-ubuntu-24.04` | `2.19-ubuntu-24.04` | `2.18-ubuntu-24.04` |
+| Ubuntu 26.04 | `2.21-ubuntu-26.04` | `2.20-ubuntu-26.04` | — | — |
 
 ## Pull examples
 

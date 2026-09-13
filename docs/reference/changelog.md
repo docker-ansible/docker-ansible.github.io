@@ -8,7 +8,7 @@ at the latest release of each.
 
 | Project | Latest tag/release | What it is | Release notes |
 | --- | --- | --- | --- |
-| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) |
+| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.9`](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) |
 | [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
 | [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Test playbooks exercising the images | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
 | [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.0** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
@@ -24,7 +24,7 @@ at the latest release of each.
 The canonical changelog is maintained in the upstream repository:
 [CHANGELOG.md](https://github.com/willhallonline/docker-ansible/blob/main/CHANGELOG.md)
 
-Recent highlights (v6.4.3–v6.4.8):
+Recent highlights (v6.4.3–v6.4.9):
 
 - added Alpine 3.23 and 3.24 support;
 - kept the active matrix on Alpine 3.21 through 3.24;
@@ -32,10 +32,11 @@ Recent highlights (v6.4.3–v6.4.8):
 - switched dependency installation from `pip`/`pipx` to `uv`;
 - added the non-root `ansible` user and updated the SSH home to
   `/home/ansible/.ssh`;
-- updated Ansible core to 2.16.19, 2.18.19, 2.19.13, 2.20.9, and 2.21.4;
+- removed end-of-life Ansible core 2.16 and 2.17 from active image builds;
+- updated Ansible core to 2.18.19, 2.19.13, 2.20.9, and 2.21.4;
 - builds generally target Linux AMD64 and ARM64, with tag-specific exceptions.
 
-The current Ansible core lines shipped in the images are 2.16 through 2.21 —
+The current Ansible core lines shipped in the images are 2.18 through 2.21 —
 see [supported tags](../images/tags.md) for the full matrix.
 
 ### Docker Ansible GitHub Action
@@ -79,9 +80,9 @@ Recent project direction includes these broad changes:
 
 | Area | Summary |
 | --- | --- |
-| Ansible versions | Current images ship ansible-core 2.16.19 through 2.21.4. |
+| Ansible versions | Current images ship ansible-core 2.18.19 through 2.21.4. |
 | Alpine bases | Alpine 3.21 through 3.24 are supported in the active matrix. |
-| Ubuntu bases | Ubuntu 26.04 is available alongside Ubuntu 22.04 and 24.04. |
+| Ubuntu bases | Ubuntu 26.04 is available alongside Ubuntu 24.04. |
 | Debian bases | Debian Trixie variants are available alongside Bookworm variants. |
 | Rocky Linux | Rocky Linux 10 is available as a RHEL-family base. |
 | Older bases | Older bases and Ansible lines are outside the active matrix over time. |
@@ -120,7 +121,7 @@ Regular rebuilds are useful because they can pick up:
 
 ## Legacy policy
 
-Ansible core streams 2.9 through 2.15 are outside the active matrix and
+Ansible core streams 2.9 through 2.17 are outside the active matrix and
 unmaintained. Historical definitions or tags may not be published; verify any
 legacy reference in the upstream repository and registry.
 

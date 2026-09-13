@@ -28,7 +28,6 @@ Dockerfiles are grouped by base operating system and version. Examples include:
 - `ansible-core/debian-trixie/Dockerfile`
 - `ansible-core/debian-trixie-slim/Dockerfile`
 - `ansible-core/rockylinux-10/Dockerfile`
-- `ansible-core/ubuntu-22.04/Dockerfile`
 - `ansible-core/ubuntu-24.04/Dockerfile`
 - `ansible-core/ubuntu-26.04/Dockerfile`
 
@@ -117,8 +116,6 @@ The supported image matrix currently covers these Ansible core versions:
 
 | Minor | Current core version |
 | --- | --- |
-| 2.16 | 2.16.19 |
-| 2.17 | 2.17.14 |
 | 2.18 | 2.18.19 |
 | 2.19 | 2.19.13 |
 | 2.20 | 2.20.9 |
@@ -150,7 +147,7 @@ Renovate. This keeps the supported streams current without changing the public
 tagging scheme.
 
 !!! warning "Unsupported streams"
-    Older Ansible streams such as 2.9 through 2.15 are outside the active matrix
+    Older Ansible streams such as 2.9 through 2.17 are outside the active matrix
     and unmaintained. See [older releases](older-releases.md) before depending
     on any historical tag.
 

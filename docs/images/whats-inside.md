@@ -26,8 +26,6 @@ The current supported Ansible core streams are:
 | 2.20 | 2.20.9 |
 | 2.19 | 2.19.13 |
 | 2.18 | 2.18.19 |
-| 2.17 | 2.17.14 |
-| 2.16 | 2.16.19 |
 
 See [supported tags](tags.md) for which operating systems are available for each
 stream.

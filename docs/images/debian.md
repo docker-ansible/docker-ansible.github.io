@@ -11,16 +11,16 @@ releases.
 
 | Base image | Supported tags |
 | --- | --- |
-| Debian Trixie | `2.21-debian-trixie`, `2.20-debian-trixie`, `2.19-debian-trixie`, `2.18-debian-trixie`, `2.17-debian-trixie` |
-| Debian Trixie Slim | `2.21-debian-trixie-slim`, `2.20-debian-trixie-slim`, `2.19-debian-trixie-slim`, `2.18-debian-trixie-slim`, `2.17-debian-trixie-slim` |
-| Debian Bookworm | `2.19-debian-bookworm`, `2.18-debian-bookworm`, `2.17-debian-bookworm`, `2.16-debian-bookworm` |
-| Debian Bookworm Slim | `2.19-debian-bookworm-slim`, `2.18-debian-bookworm-slim`, `2.17-debian-bookworm-slim`, `2.16-debian-bookworm-slim` |
+| Debian Trixie | `2.21-debian-trixie`, `2.20-debian-trixie`, `2.19-debian-trixie`, `2.18-debian-trixie` |
+| Debian Trixie Slim | `2.21-debian-trixie-slim`, `2.20-debian-trixie-slim`, `2.19-debian-trixie-slim`, `2.18-debian-trixie-slim` |
+| Debian Bookworm | `2.19-debian-bookworm`, `2.18-debian-bookworm` |
+| Debian Bookworm Slim | `2.19-debian-bookworm-slim`, `2.18-debian-bookworm-slim` |
 
 See the complete [supported tag matrix](tags.md) for all operating systems.
 
 !!! note "Trixie and Bookworm coverage"
     Debian Trixie carries the newer supported Ansible streams. Debian Bookworm
-    remains available for Ansible 2.16 through 2.19.
+    remains available for Ansible 2.18 through 2.19.
 
 ## Pull a Debian image
 

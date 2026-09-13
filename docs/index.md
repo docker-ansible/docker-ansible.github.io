@@ -19,7 +19,7 @@ Docker is available.
 
     | Project | Tag | Current image/default |
     | --- | --- | --- |
-    | Docker Ansible | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) (`f054694`, 2026-09-11) | `2.21-alpine-3.24` (`latest`/`alpine`) |
+    | Docker Ansible | [`v6.4.9`](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) (`32ea135`, 2026-09-13) | `2.21-alpine-3.24` (`latest`/`alpine`) |
     | Docker Ansible GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) | Uses the non-root `ansible` image user |
     | Docker Ansible Test | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) | Tracks the current image matrix |
     | Docker Ansible GitHub Action Test | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) | Tests the GitHub Action |
@@ -166,10 +166,8 @@ Current Ansible core versions available in containers are:
 | 2.20.9 | Current container version |
 | 2.19.13 | Current container version |
 | 2.18.19 | Current container version |
-| 2.17.14 | Current container version |
-| 2.16.19 | Current container version |
 
-Ansible core streams **2.9 through 2.15** are outside the active image matrix and
+Ansible core streams **2.9 through 2.17** are outside the active image matrix and
 are unmaintained. Use a current stream unless you have a specific legacy
 compatibility requirement. See [older releases](images/older-releases.md).
 
@@ -198,7 +196,7 @@ Images are available across several base OS families:
 - Debian Bookworm and Bookworm-slim
 - Debian Trixie and Trixie-slim
 - Rocky Linux 10
-- Ubuntu 22.04, 24.04, and 26.04
+- Ubuntu 24.04 and 26.04
 
 Current tags generally publish **AMD64** and **ARM64** variants, but platform
 availability is tag-specific. For example, `2.21-ubuntu-24.04` is AMD64-only.
