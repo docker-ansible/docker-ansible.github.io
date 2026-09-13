@@ -17,8 +17,8 @@ provide a GitHub Action wrapper, test repositories, and reusable test utilities.
 | --- | --- |
 | Core images | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) |
 | GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) |
-| Image testing | [`v2.7.3`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.3) |
-| Action testing | Follows the action; no release tag |
+| Image testing | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) |
+| Action testing | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
 
 ## Ecosystem map
 

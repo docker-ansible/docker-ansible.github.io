@@ -1,37 +1,27 @@
 # Older releases
 
-Older `willhallonline/ansible` images remain available for historical use, but
-they are not part of the supported current matrix. Treat them as unmaintained and
-use them only when you have a specific compatibility requirement.
+Ansible core streams 2.9 through 2.15 are outside the supported current matrix
+and are unmaintained. Treat any historical image reference as a compatibility
+exception and verify that the exact tag is still available before using it.
 
-!!! warning "Unmaintained images"
-    Older release images no longer receive normal updates. Use them at your own
-    risk and migrate to a supported Ansible stream as soon as practical.
+!!! warning "Unmaintained streams"
+    These streams no longer receive normal updates. Use them at your own risk
+    and migrate to a supported Ansible stream as soon as practical.
 
-## Archived Ansible streams
-
-The archived image set includes older Ansible streams:
+## Inactive Ansible streams
 
 | Stream | Status | Notes |
 | --- | --- | --- |
-| Ansible 2.9 | Archived | Legacy pre-ansible-core era |
-| Ansible 2.10 | Archived | Unmaintained |
-| Ansible 2.11 | Archived | Unmaintained |
-| Ansible 2.12 | Archived | Unmaintained |
-| Ansible 2.13 | Archived | Unmaintained |
-| Ansible 2.14 | Archived | Final 2.14 release was 2.14.18 |
-| Ansible 2.15 | Archived | Final 2.15 release was 2.15.13 |
+| Ansible 2.9 | Outside active matrix | Legacy pre-ansible-core era |
+| Ansible 2.10 | Outside active matrix | Unmaintained |
+| Ansible 2.11 | Outside active matrix | Unmaintained |
+| Ansible 2.12 | Outside active matrix | Unmaintained |
+| Ansible 2.13 | Outside active matrix | Unmaintained |
+| Ansible 2.14 | Outside active matrix | Final 2.14 release was 2.14.18 |
+| Ansible 2.15 | Outside active matrix | Final 2.15 release was 2.15.13 |
 
-Archived releases may appear on older base images such as:
-
-- Rocky Linux 9;
-- Debian Bullseye;
-- Ubuntu 20.04; and
-- older Alpine releases.
-
-The source repository keeps archived definitions in the `archive/` directory.
-The upstream project also documents older releases in its
-`docs/older-releases.md` page.
+Historical tags and definitions may not be published or maintained. Check the
+upstream repository and container registry for the exact reference you need.
 
 ## Why older images are risky
 
@@ -69,26 +59,9 @@ Migration is usually easiest when done in stages:
 4. Update scheduled jobs and documentation to the new tag.
 5. Remove old image references from release workflows.
 
-## Finding archived definitions
+## Use cases for older streams
 
-Archived Dockerfiles live in the upstream source repository:
-
-```text
-archive/
-```
-
-Start from the current project page on GitHub:
-
-```text
-https://github.com/willhallonline/docker-ansible
-```
-
-Look for the archived base and Ansible stream you need, then verify the matching
-image tag on Docker Hub.
-
-## Use cases for older images
-
-Acceptable short-term reasons to use an archived image include:
+Acceptable short-term reasons to use a historical image include:
 
 - reproducing a historical CI result;
 - testing an old playbook before migration;
@@ -99,7 +72,7 @@ Acceptable short-term reasons to use an archived image include:
 They are not a good default for new automation.
 
 !!! tip "Create an exit plan"
-    If you must use an archived image, record why it is needed, who owns the
+    If you must use a historical image, record why it is needed, who owns the
     migration, and which supported tag will replace it.
 
 ## Supported alternatives

@@ -8,9 +8,9 @@ and Debian. The images include `ansible-core`, `ansible`, and `ansible-lint` so
 that local development and CI jobs can use the same packaged toolchain.
 
 !!! note "Short description"
-    Ansible inside Docker containers: Alpine, Ubuntu, Rocky Linux & Debian with
-    Ansible 2.21, 2.20, 2.19, 2.18 & more; older versions are still available
-    where maintained or archived.
+    Ansible inside Docker containers: Alpine, Ubuntu, Rocky Linux, and Debian
+    with active Ansible core streams 2.16 through 2.21. The current upstream
+    release is `v6.4.8` (commit `f054694`, 2026-09-11).
 
 ## Links
 
@@ -37,6 +37,9 @@ Each current image is intended to provide a ready-to-run Ansible environment:
 Current images run as the non-root `ansible` user (UID/GID 1000) by default.
 Mount SSH keys and `known_hosts` under `/home/ansible/.ssh/`. Use
 `--user root` only when a build or diagnostic step specifically needs root.
+The default command is `ansible-playbook --version`, and the healthcheck runs
+`ansible --version` every 30 seconds (5-second timeout, 5-second start period,
+three retries).
 
 ```bash
 docker run --rm willhallonline/ansible:latest ansible --version
@@ -57,9 +60,9 @@ Current versions published by the project include:
 | `2.16.19` | Supported older release line. |
 
 !!! warning "Older does not mean maintained"
-    Older Ansible versions, including the 2.9-2.15 range, may be available in
-    archived image definitions or historical tags. Treat them as legacy and pin
-    them explicitly if you must use them.
+    Ansible core streams 2.9 through 2.15 are outside the active matrix and
+    unmaintained. Do not assume that historical definitions or tags are
+    published; verify any legacy dependency against the upstream registry.
 
 ## Repository layout
 
@@ -77,9 +80,6 @@ The repository is organised around image definitions and support files.
 | `ansible-core/ubuntu-22.04` | Ubuntu 22.04 image variant. |
 | `ansible-core/ubuntu-24.04` | Ubuntu 24.04 image variant. |
 | `ansible-core/ubuntu-26.04` | Ubuntu 26.04 image variant. |
-| `archive/` | Older image definitions and legacy versions. |
-| `docs/older-releases.md` | Notes for older releases. |
-| `docs/using-mitogen.md` | Notes for using Mitogen. |
 | `testing-utils/` | Helpers used by testing workflows. |
 | `.github/` | GitHub workflows and automation. |
 | `.gitlab-ci.yml` | GitLab CI configuration. |
@@ -105,6 +105,18 @@ choose the runtime that best matches your playbooks and dependencies.
 !!! tip "Alpine versus glibc distributions"
     Alpine uses musl libc. Some Python packages with native extensions may need
     build dependencies or may be easier to install on Debian or Ubuntu variants.
+
+Python comes from each distribution's packages rather than one globally pinned
+Python release. The images use `uv`/`uvx` for Python tooling and package
+installation.
+
+## Image tags and platforms
+
+Tags are generated from the core version and operating system, for example
+`2.21-alpine-3.24` or `2.21-debian-trixie`; full core patch tags are also
+published. Current builds generally target `linux/amd64` and `linux/arm64`,
+but manifests are tag-specific: `2.21-ubuntu-24.04` is currently AMD64-only.
+There are no ARMv7/32-bit ARM builds.
 
 ## Basic usage
 

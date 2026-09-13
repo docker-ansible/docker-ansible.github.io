@@ -34,8 +34,10 @@ stream.
 
 ## Command-line tools
 
-The images include Python and common dependencies needed to run Ansible against
-remote hosts. This generally means the control-node tooling required for:
+The images include each distribution's Python runtime and common dependencies
+needed to run Ansible against remote hosts. Python is not pinned to one global
+version across all base images. The images use `uv`/`uvx` for Python tooling and
+package installation. This generally means the control-node tooling required for:
 
 - SSH-based connections;
 - password-based SSH workflows where supported;
@@ -46,6 +48,11 @@ remote hosts. This generally means the control-node tooling required for:
 
 Typical tools include OpenSSH client functionality, `sshpass`, Git, Python, and
 base operating-system packages required by the selected image family.
+
+The default command is `ansible-playbook --version`. Images also define a
+healthcheck that runs `ansible --version` every 30 seconds with a 5-second
+timeout, a 5-second start period, and three retries. Images run as the
+non-root `ansible` user (UID/GID 1000) by default.
 
 !!! tip "Keep project tools explicit"
     If your project needs cloud CLIs, custom Python packages, `jq`, `helm`, or

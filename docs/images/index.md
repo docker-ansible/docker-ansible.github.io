@@ -15,7 +15,7 @@ with tags that make the Ansible minor version and operating system explicit.
 | Docker Hub image | [`willhallonline/ansible`](https://hub.docker.com/r/willhallonline/ansible) |
 | GitHub source | [`willhallonline/docker-ansible`](https://github.com/willhallonline/docker-ansible) |
 | Dockerfiles | `ansible-core/<os-dir>/Dockerfile` |
-| Older releases | `archive/` in the source repository |
+| Older releases | Historical streams outside the active matrix |
 
 Dockerfiles are grouped by base operating system and version. Examples include:
 
@@ -138,9 +138,10 @@ are available for each stream.
 
 ## Architectures
 
-Current images are published for AMD64 and ARM64. See
-[architectures](architectures.md) for platform-specific pull and run examples,
-including Apple Silicon, AWS Graviton, and 64-bit Raspberry Pi OS.
+Current tags generally publish AMD64 and ARM64 variants, but manifests are
+tag-specific. For example, `2.21-ubuntu-24.04` is AMD64-only and no ARMv7/32-bit
+ARM images are published. See [architectures](architectures.md) for platform
+specific pull and run examples.
 
 ## Regular rebuilds
 
@@ -149,9 +150,9 @@ Renovate. This keeps the supported streams current without changing the public
 tagging scheme.
 
 !!! warning "Unsupported streams"
-    Older Ansible streams such as 2.9 through 2.15 are no longer maintained in
-    the current matrix. See [older releases](older-releases.md) before using
-    archived tags.
+    Older Ansible streams such as 2.9 through 2.15 are outside the active matrix
+    and unmaintained. See [older releases](older-releases.md) before depending
+    on any historical tag.
 
 ## Next steps
 
