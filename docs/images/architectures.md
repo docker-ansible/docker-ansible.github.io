@@ -74,7 +74,7 @@ AWS Graviton instances use ARM64. Pulls on those hosts should resolve to the
 ARM64 image automatically:
 
 ```bash
-docker run --rm willhallonline/ansible:2.21-ubuntu-24.04 ansible --version
+docker run --rm willhallonline/ansible:2.21-alpine-3.24 ansible --version
 ```
 
 For explicit platform selection:
@@ -82,7 +82,7 @@ For explicit platform selection:
 ```bash
 docker run --rm \
   --platform linux/arm64 \
-  willhallonline/ansible:2.21-ubuntu-24.04 \
+  willhallonline/ansible:2.21-alpine-3.24 \
   ansible --version
 ```
 

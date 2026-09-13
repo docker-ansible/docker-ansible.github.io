@@ -1,6 +1,6 @@
 # GitHub Actions
 
-GitHub Actions can run `willhallonline/ansible` either as a job container or through the official Docker-based action. Use a job container when you want normal shell steps. Use the action when you prefer a reusable action wrapper.
+GitHub Actions can run `willhallonline/ansible` either as a job container or through the project-maintained/community Docker-based action. Use a job container when you want normal shell steps. Use the action when you prefer a reusable action wrapper.
 
 !!! tip "Recommended image"
     Pin a specific tag, for example `willhallonline/ansible:2.21-alpine-3.24`. Do not use `latest` for deployment workflows.
