@@ -87,9 +87,9 @@ These questions cover common decisions and surprises when using the
     tags or digests for production jobs.
 
 ??? question "Are old Ansible versions available?"
-    Older versions, including Ansible 2.9 through 2.15, may be present in the
-    upstream `archive/` area or as historical tags. Treat those versions as
-    legacy and potentially unmaintained.
+    Ansible core streams 2.9 through 2.15 are outside the active matrix and
+    unmaintained. Historical image availability varies, so verify the exact tag
+    in the upstream registry before depending on it.
 
     Prefer current maintained Ansible versions unless you are supporting a legacy
     estate that cannot yet move forward.

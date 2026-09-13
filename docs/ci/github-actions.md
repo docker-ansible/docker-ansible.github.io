@@ -50,12 +50,17 @@ jobs:
         run: ansible-lint
 ```
 
-## Option 2: use the official action
+## Option 2: use the project-maintained action
 
-There is an official action repository: [willhallonline/docker-ansible-github-action](https://github.com/willhallonline/docker-ansible-github-action). It is described as "A GitHub Action using Ansible in Docker" and runs Ansible commands inside the `docker-ansible` container.
+The project-maintained composite action
+[willhallonline/docker-ansible-github-action](https://github.com/willhallonline/docker-ansible-github-action)
+runs `ansible-playbook` inside the `willhallonline/ansible` container.
 
-!!! note "Check current inputs"
-    The action repository contains the current `action.yml` and `entrypoint.sh`. Use that repository as the source of truth for supported inputs.
+!!! note "Runner and permissions"
+    The action requires Docker on the runner. Grant only `contents: read` for
+    checkout unless the workflow needs additional permissions. The
+    [action project page](../projects/github-action.md) lists every input
+    default and the sole `exit-code` output.
 
 A minimal shape is:
 
@@ -68,6 +73,8 @@ on:
 jobs:
   ansible:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -81,8 +88,8 @@ jobs:
 ```
 
 The action also accepts Galaxy requirements, Vault passwords, SSH keys,
-`known_hosts`, extra variables, and additional `ansible-playbook` options. Check
-the upstream action README when using an input not shown here.
+`known_hosts`, extra variables, and additional `ansible-playbook` options as
+listed on the [action project page](../projects/github-action.md).
 
 ## Full worked workflow
 

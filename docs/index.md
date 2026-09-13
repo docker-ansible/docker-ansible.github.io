@@ -19,10 +19,10 @@ Docker is available.
 
     | Project | Tag | Current image/default |
     | --- | --- | --- |
-    | Core images | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) | `2.21-alpine-3.24` (`latest`/`alpine`) |
+    | Core images | [`v6.4.8`](https://github.com/willhallonline/docker-ansible/tree/v6.4.8) (`f054694`, 2026-09-11) | `2.21-alpine-3.24` (`latest`/`alpine`) |
     | GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) | Uses the non-root `ansible` image user |
-    | Image tests | [`v2.7.3`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.3) | Tracks the current image matrix |
-    | Action tests | No release tag | Follows GitHub Action `v1.1.0` |
+    | Image tests | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) | Tracks the current image matrix |
+    | Action tests | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) | Tests the GitHub Action |
 
     See the [ecosystem changelog](reference/changelog.md) for release notes and
     links.
@@ -169,9 +169,9 @@ Current Ansible core versions available in containers are:
 | 2.17.14 | Current container version |
 | 2.16.19 | Current container version |
 
-Older Ansible versions from **2.9 through 2.15** exist, but are unmaintained.
-Use them only when you must support older automation and understand the trade-offs.
-See [older releases](images/older-releases.md).
+Ansible core streams **2.9 through 2.15** are outside the active image matrix and
+are unmaintained. Use a current stream unless you have a specific legacy
+compatibility requirement. See [older releases](images/older-releases.md).
 
 !!! warning "Avoid floating tags in CI"
     Convenience tags are useful for exploration, but CI should usually pin an exact
@@ -200,8 +200,10 @@ Images are available across several base OS families:
 - Rocky Linux 10
 - Ubuntu 22.04, 24.04, and 26.04
 
-Current images are multi-architecture and support **AMD64** and **ARM64**
-platforms, including Apple Silicon, AWS Graviton, and 64-bit Raspberry Pi OS.
+Current tags generally publish **AMD64** and **ARM64** variants, but platform
+availability is tag-specific. For example, `2.21-ubuntu-24.04` is AMD64-only.
+No ARMv7/32-bit ARM images are published. Check the selected tag's manifest
+before relying on ARM64 in CI; see [architectures](images/architectures.md).
 
 Explore the image families:
 

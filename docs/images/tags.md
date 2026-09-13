@@ -1,13 +1,15 @@
 # Supported tags
 
 This page is the reference matrix for supported `willhallonline/ansible` tags.
-Supported moving tags use the pattern:
+Moving tags use the core stream and operating system:
 
 ```text
 <ansible-minor>-<os>
 ```
 
-For example, `2.21-alpine-3.24` means Ansible 2.21 on Alpine Linux 3.24.
+For example, `2.21-alpine-3.24` means Ansible core 2.21 on Alpine Linux 3.24.
+Full patch tags such as `2.21.4-alpine-3.24` are also published when you need
+the exact core patch release.
 
 !!! tip "Use this table for automation"
     Pick one tag from the matrix and use it consistently in Dockerfiles, CI
@@ -36,6 +38,11 @@ For example, `2.21-alpine-3.24` means Ansible 2.21 on Alpine Linux 3.24.
 !!! warning "Convenience tags move"
     Convenience tags can change target as the project advances. Use matrix tags
     or fully pinned tags when repeatability matters.
+
+!!! note "Platform availability"
+    Current builds generally target `linux/amd64` and `linux/arm64`, but each
+    tag has its own manifest. `2.21-ubuntu-24.04` is AMD64-only, and no ARMv7
+    or other 32-bit ARM builds are published.
 
 !!! note "Retired Alpine bases"
     Alpine 3.19 is archived and Alpine 3.20 is deprecated upstream. They are

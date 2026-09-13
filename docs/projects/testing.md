@@ -6,8 +6,8 @@ utilities to exercise images and the GitHub Action.
 This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
-The current image-test tag is `v2.7.3`, and the action integration tests follow
-the `v1.1.0` action release across the active image matrix.
+The current image-test release is `v2.7.4`. The action integration-test release
+is `v1.1.0` (2026-09-12); its current main commit is `8ac13fd`.
 
 ## Test-related repositories
 
@@ -19,21 +19,32 @@ the `v1.1.0` action release across the active image matrix.
 
 !!! note "What these tests prove"
     The test repositories help confirm that images start, Ansible commands are
-    available, and representative workflows keep working. They do not prove that
-    every playbook, collection, Python dependency, or target platform will work
-    in your environment.
+    available, and representative workflows keep working. They do not prove
+    SSH, Vault, Galaxy, extra-vars, working-directory, host-key-checking,
+    deployment-host behaviour, every Python dependency, or every target platform.
 
 ## What is exercised
 
 The ecosystem tests focus on practical behaviours:
 
 - the image can be pulled and started;
-- `ansible` is installed;
-- `ansible-playbook` is available;
+- `ansible` and `ansible-playbook` are available;
 - `ansible-lint` is installed;
 - supported Ansible and base-OS combinations build successfully;
-- the GitHub Action can invoke the Docker-based runtime;
+- the GitHub Action can invoke `ansible-playbook` in the Docker runtime; and
 - examples continue to represent realistic usage.
+
+The image-test release covers 61 tags: aliases (`latest`, `alpine`, `ubuntu`),
+Ansible 2.16 through 2.21, Alpine 3.21 through 3.24, Debian Bookworm/Trixie
+and slim variants, Rocky Linux 10, and Ubuntu 22.04/24.04/26.04. Ansible
+2.9 through 2.15 are excluded. Its smoke test is localhost-only and runs as
+the non-root `ansible` UID/GID 1000. CI also performs digest smoke tests, while
+pull requests do not publish images.
+
+The action-test evidence is limited to a localhost playbook smoke test, the
+non-root runtime, and the `exit-code` output. The current head does not have a
+full-matrix CI run, and does not exercise SSH, Vault, Galaxy, extra-vars,
+working-directory, host-key-checking, or linting.
 
 ## Smoke-test an image
 

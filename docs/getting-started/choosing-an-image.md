@@ -42,8 +42,8 @@ Current Ansible core versions available in containers are:
 | 2.17.14 | You need the 2.17 feature line |
 | 2.16.19 | You need the 2.16 feature line |
 
-Older versions **2.9 through 2.15** exist, but are unmaintained. Use them only for
-legacy automation that cannot yet move forward.
+Ansible core streams **2.9 through 2.15** are outside the active matrix and
+unmaintained. Verify legacy image availability before using them.
 
 ## Match your project requirements
 
@@ -178,16 +178,14 @@ For the complete tag list, see [image tags](../images/tags.md).
 
 ## Multi-architecture considerations
 
-Current images are multi-architecture:
+Current tags generally publish:
 
 - AMD64
 - ARM64
 
-In most cases Docker chooses the correct architecture automatically for the host. This
-makes it practical to use the same tag on x86 CI runners, Apple Silicon, AWS
-Graviton, 64-bit Raspberry Pi OS, and other supported 64-bit platforms. 32-bit ARM
-images are not published for current tags; use a 64-bit OS for current images, or
-check Docker Hub tags if you rely on older archived images.
+Docker chooses an available architecture automatically for the host, but manifests
+are tag-specific. For example, `2.21-ubuntu-24.04` is AMD64-only. No ARMv7/32-bit
+ARM images are published; inspect the selected tag before relying on ARM64 in CI.
 
 For details, see [architectures](../images/architectures.md).
 

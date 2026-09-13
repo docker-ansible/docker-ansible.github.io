@@ -57,8 +57,8 @@ The upstream repository uses Renovate to automate dependency updates and rebuild
 images regularly. Rebuilds help pick up base image and Python package fixes.
 
 Do not stay on old Ansible versions unless you have a clear compatibility need.
-Legacy versions may be available in `archive/`, but old Ansible and base OS
-combinations can be unmaintained.
+Ansible core streams 2.9 through 2.15 are outside the active matrix and
+unmaintained; verify any historical tag before depending on it.
 
 ## Do not bake secrets into images
 

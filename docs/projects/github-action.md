@@ -3,13 +3,14 @@
 [`willhallonline/docker-ansible-github-action`](https://github.com/willhallonline/docker-ansible-github-action)
 provides a GitHub Action for running Ansible in Docker.
 
-The action wraps the Docker Ansible image family so workflows can run Ansible
-commands without installing Ansible directly on the GitHub-hosted or self-hosted
-runner.
+The action wraps the Docker Ansible image family so workflows can run
+`ansible-playbook` without installing Ansible directly on the GitHub-hosted or
+self-hosted runner.
 
 !!! note "Short description"
-    `v1.1.0` is the current release. It supports the non-root `ansible` user
-    used by current images and mounts SSH material under `/home/ansible/.ssh`.
+    `v1.1.0` is the current release of this project-maintained composite action.
+    It runs `ansible-playbook` in the non-root `ansible` image user and mounts SSH
+    material under `/home/ansible/.ssh`.
 
 ## Links
 
@@ -32,10 +33,33 @@ Action:
 | `examples/` | Example workflow usage. |
 | `README.md` | Current usage, inputs, and examples. |
 
-!!! tip "Use the action README for current inputs"
-    GitHub Action inputs can change over time. This documentation explains the
-    purpose and architecture; use the action repository README as the source of
-    truth for exact workflow syntax and current input names.
+## Inputs and output
+
+The `v1.1.0` action exposes the following contract:
+
+| Input | Required | Default | Description |
+| --- | --- | --- | --- |
+| `playbook` | Yes | — | Path to the Ansible playbook, relative to `working-directory`. |
+| `inventory` | No | `''` | Inventory file or directory, relative to `working-directory`. |
+| `working-directory` | No | `.` | Directory, relative to the workspace root, from which to run `ansible-playbook`. |
+| `requirements` | No | `''` | `requirements.yml` path, relative to `working-directory`, installed with `ansible-galaxy install`. |
+| `galaxy-options` | No | `''` | Additional arguments appended to `ansible-galaxy install`. |
+| `vault-password` | No | `''` | Plaintext Vault password written to a temporary runner file and passed as `--vault-password-file`; use a secret. |
+| `vault-password-file` | No | `''` | Existing Vault password file, relative to `working-directory`; ignored when `vault-password` is set. |
+| `private-key` | No | `''` | PEM SSH private key written to a temporary runner file with mode `600`; use a secret. |
+| `host-key-checking` | No | `'true'` | Whether to enforce SSH host key checking (`true`/`false`). |
+| `known-hosts` | No | `''` | Additional `known_hosts` entries to trust before connecting. |
+| `extra-vars` | No | `''` | Value passed to `--extra-vars`: `@file.yml`, `key=value`, or JSON. |
+| `options` | No | `''` | Additional raw, space-separated arguments appended to `ansible-playbook`. |
+| `image-tag` | No | `latest` | Tag of the `willhallonline/ansible` image to use; see the [available tags](https://hub.docker.com/r/willhallonline/ansible/tags). |
+
+The sole output is `exit-code`, the exit code returned by `ansible-playbook`.
+The action requires a runner with Docker. Workflows should grant only
+`contents: read` when using `actions/checkout`.
+
+The public README uses `@v1` as a major-version example. For safe pinning,
+use the current release tag `@v1.1.0`; `@v1` is not documented here as a
+separate repository tag.
 
 ## When to use the action
 
@@ -44,11 +68,10 @@ Docker Ansible environment.
 
 Common examples include:
 
-- linting Ansible content with `ansible-lint`
-- checking playbook syntax
-- running a playbook against test infrastructure
-- running localhost automation inside CI
-- keeping local and CI Ansible versions aligned
+- checking playbook syntax;
+- running a playbook against test infrastructure;
+- running localhost automation inside CI; and
+- keeping local and CI Ansible versions aligned.
 
 ## Typical workflow shape
 
@@ -77,9 +100,8 @@ jobs:
 ```
 
 The action also supports Galaxy requirements, Vault passwords, SSH keys,
-`known_hosts`, extra variables, and additional `ansible-playbook` options. See
-the upstream [README](https://github.com/willhallonline/docker-ansible-github-action#readme)
-for the complete input contract.
+`known_hosts`, extra variables, and additional `ansible-playbook` options as
+listed in the contract above.
 
 ## Why a Docker-based action?
 
@@ -117,7 +139,7 @@ Most action behaviour should be reproducible with the core Docker image. For
 example:
 
 ```bash
-docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:latest   ansible --version
+docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:latest   ansible-playbook --version
 ```
 
 This makes it easier to debug workflow failures before pushing another commit.
@@ -128,7 +150,9 @@ The action is exercised by the
 [`willhallonline/docker-ansible-github-action-test`](https://github.com/willhallonline/docker-ansible-github-action-test)
 repository. The core image project is also covered by image-level tests.
 
-See [Testing](testing.md) for smoke-test commands you can run yourself.
+The integration-test repository's current release is `v1.1.0`. Its smoke test
+is localhost-only; it does not prove SSH, Vault, Galaxy, extra-vars, or
+deployment-host behaviour. See [Testing](testing.md) for the complete scope.
 
 ## Related documentation
 
