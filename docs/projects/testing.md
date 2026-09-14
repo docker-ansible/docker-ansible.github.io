@@ -7,7 +7,7 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0` (2026-09-12); its current main commit is `8ac13fd`.
+is `v1.1.0` (2026-09-12); its current main commit is `cd0eae4` (2026-09-13).
 
 ## Test-related repositories
 
@@ -34,17 +34,27 @@ The ecosystem tests focus on practical behaviours:
 - the GitHub Action can invoke `ansible-playbook` in the Docker runtime; and
 - examples continue to represent realistic usage.
 
-The image-test release covers 41 tags: aliases (`latest`, `alpine`, `ubuntu`),
-Ansible 2.18 through 2.21, Alpine 3.21 through 3.24, Debian Bookworm/Trixie
-and slim variants, Rocky Linux 10, and Ubuntu 24.04/26.04. Ansible
-2.9 through 2.17 are excluded from the active matrix. Its smoke test is localhost-only and runs as
-the non-root `ansible` UID/GID 1000. CI also performs digest smoke tests, while
-pull requests do not publish images.
+The image-test release covers 41 active tags: aliases (`latest`, `alpine`,
+`ubuntu`), Ansible 2.18 through 2.21, Alpine 3.21 through 3.24, Debian
+Bookworm/Trixie and slim variants, Rocky Linux 10, and Ubuntu 24.04/26.04.
+Ansible 2.9 through 2.17 are excluded from the active matrix. Its smoke test is
+localhost-only and runs as the non-root `ansible` UID/GID 1000. Ubuntu 24.04
+images are AMD64-only; other current image-test builds publish AMD64 and ARM64,
+with no ARMv7 variants. CI also performs digest smoke tests and publishes test
+images to GHCR, while pull requests do not publish images.
 
-The action-test evidence is limited to a localhost playbook smoke test, the
-non-root runtime, and the `exit-code` output. The current head does not have a
-full-matrix CI run, and does not exercise SSH, Vault, Galaxy, extra-vars,
-working-directory, host-key-checking, or linting.
+The action-test repository runs a 61-tag matrix: aliases (`latest`, `alpine`,
+`ubuntu`); Alpine 3.21 through 3.24 with Ansible 2.16 through 2.21; Debian
+Bookworm (including slim) with 2.16 through 2.19; Debian Trixie (including
+slim) with 2.17 through 2.21; Rocky Linux 10 with 2.16 through 2.21; Ubuntu
+22.04 with 2.16 and 2.17; Ubuntu 24.04 with 2.16 through 2.21; and Ubuntu
+26.04 with 2.20 and 2.21. This is broader compatibility coverage, including
+legacy tags, rather than the active core image support matrix. Each job pins
+`willhallonline/docker-ansible-github-action@v1.1.0`, runs a localhost playbook
+smoke test, and asserts the `exit-code` output is zero. The playbook validates
+Ansible/system facts, the non-root `ansible` UID/GID 1000, and a ping. It does
+not exercise SSH, Vault, Galaxy, extra-vars, working-directory,
+host-key-checking, or linting.
 
 ## Smoke-test an image
 
