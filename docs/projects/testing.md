@@ -54,7 +54,8 @@ legacy tags, rather than the active core image support matrix. Each job pins
 smoke test, and asserts the `exit-code` output is zero. The playbook validates
 Ansible/system facts, the non-root `ansible` UID/GID 1000, and a ping. It does
 not exercise SSH, Vault, Galaxy, extra-vars, working-directory,
-host-key-checking, or linting.
+host-key-checking, or linting. The current main commit `cd0eae4` passed the
+full matrix in [workflow run #34751712073](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/34751712073).
 
 ## Smoke-test an image
 
