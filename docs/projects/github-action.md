@@ -150,11 +150,11 @@ The action is exercised by the
 [`willhallonline/docker-ansible-github-action-test`](https://github.com/willhallonline/docker-ansible-github-action-test)
 repository. The core image project is also covered by image-level tests.
 
-The integration-test repository's current release is `v1.1.0`. Its CI runs a
-61-tag matrix and pins this action release, but each test remains a localhost
-smoke test; it does not prove SSH, Vault, Galaxy, extra-vars, or
-deployment-host behaviour. See [Docker Ansible Test](testing.md) for the
-complete scope.
+The integration-test repository's current release is `v1.1.0`. Its current
+workflow enumerates 69 image tags—three aliases plus 66 versioned tags—and pins
+this action release, but each test remains a localhost smoke test; it does not
+prove SSH, Vault, Galaxy, extra-vars, or deployment-host behaviour. See
+[Docker Ansible Test](testing.md) for the complete scope.
 
 ## Related documentation
 

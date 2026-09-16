@@ -55,8 +55,8 @@ for current inputs and examples.
 - **Docker Ansible Test** (latest tag **v2.7.4**) — playbooks and scenarios
   used to exercise the images themselves.
 - **Docker Ansible GitHub Action Test** (integration-test **v1.1.0**) —
-  a 61-tag matrix with localhost/non-root/exit-code smoke coverage for the
-  GitHub Action.
+  a 69-tag matrix (three aliases plus 66 versioned tags) with
+  localhost/non-root/exit-code smoke coverage for the GitHub Action.
 
 See [Docker Ansible Test](../projects/testing.md) for how these fit together.
 
