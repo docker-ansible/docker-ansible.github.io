@@ -7,7 +7,14 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0` (2026-09-12); its current main commit is `cd0eae4` (2026-09-13).
+is `v1.1.0`. The current default-branch snapshot is:
+
+| Project | `main` commit | Release/tag |
+| --- | --- | --- |
+| Docker Ansible | [`32ea13589e1b3ad7cbcf03f3966cf2cbb91fd3e6`](https://github.com/willhallonline/docker-ansible/commit/32ea13589e1b3ad7cbcf03f3966cf2cbb91fd3e6) | `v6.4.9` |
+| Docker Ansible Test | [`78a7a87575d94c2f42c30b3eefc76667cb9be19b`](https://github.com/willhallonline/docker-ansible-test/commit/78a7a87575d94c2f42c30b3eefc76667cb9be19b) | `v2.7.4` |
+| Docker Ansible GitHub Action | [`fb244e71e224dba83fa95631cfafb42f038ba191`](https://github.com/willhallonline/docker-ansible-github-action/commit/fb244e71e224dba83fa95631cfafb42f038ba191) | `v1.1.0` |
+| Docker Ansible GitHub Action Test | [`cd0eae4810fec5692d33df6e7c9c9bff35f972ec`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/cd0eae4810fec5692d33df6e7c9c9bff35f972ec) | `v1.1.0` |
 
 ## Test-related repositories
 
@@ -34,28 +41,28 @@ The ecosystem tests focus on practical behaviours:
 - the GitHub Action can invoke `ansible-playbook` in the Docker runtime; and
 - examples continue to represent realistic usage.
 
-The image-test release covers 41 active tags: aliases (`latest`, `alpine`,
-`ubuntu`), Ansible 2.18 through 2.21, Alpine 3.21 through 3.24, Debian
-Bookworm/Trixie and slim variants, Rocky Linux 10, and Ubuntu 24.04/26.04.
+The `docker-ansible-test` systemd test-image workflow currently exercises 26
+explicit image/version combinations and emits only the `latest` convenience
+alias. The source matrix covers Debian Bookworm and Bookworm Slim (2 each),
+Debian Trixie and Trixie Slim (4 each), Rocky Linux 10 (4), Ubuntu 24.04 (4),
+and Ubuntu 26.04 (2). It is systemd-only and intentionally excludes Alpine.
 Ansible 2.9 through 2.17 are excluded from the active matrix. Its smoke test is
 localhost-only and runs as the non-root `ansible` UID/GID 1000. Ubuntu 24.04
 images are AMD64-only; other current image-test builds publish AMD64 and ARM64,
 with no ARMv7 variants. CI also performs digest smoke tests and publishes test
 images to GHCR, while pull requests do not publish images.
 
-The action-test repository runs a 61-tag matrix: aliases (`latest`, `alpine`,
-`ubuntu`); Alpine 3.21 through 3.24 with Ansible 2.16 through 2.21; Debian
-Bookworm (including slim) with 2.16 through 2.19; Debian Trixie (including
-slim) with 2.17 through 2.21; Rocky Linux 10 with 2.16 through 2.21; Ubuntu
-22.04 with 2.16 and 2.17; Ubuntu 24.04 with 2.16 through 2.21; and Ubuntu
-26.04 with 2.20 and 2.21. This is broader compatibility coverage, including
-legacy tags, rather than the active core image support matrix. Each job pins
+The action-test repository's current workflow enumerates 69 image tags: three
+aliases (`latest`, `alpine`, and `ubuntu`) plus 66 versioned tags. This is
+broader compatibility coverage, including legacy tags, rather than the active
+core image support matrix. Each job pins
 `willhallonline/docker-ansible-github-action@v1.1.0`, runs a localhost playbook
 smoke test, and asserts the `exit-code` output is zero. The playbook validates
 Ansible/system facts, the non-root `ansible` UID/GID 1000, and a ping. It does
 not exercise SSH, Vault, Galaxy, extra-vars, working-directory,
-host-key-checking, or linting. The current main commit `cd0eae4` passed the
-full matrix in [workflow run #34751712073](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/34751712073).
+host-key-checking, or linting. The current main commit
+`cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed the full matrix in [workflow
+run #34751712073](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/34751712073).
 
 ## Smoke-test an image
 
