@@ -7,7 +7,7 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot is:
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-09-23, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
@@ -61,8 +61,9 @@ smoke test, and asserts the `exit-code` output is zero. The playbook validates
 Ansible/system facts, the non-root `ansible` UID/GID 1000, and a ping. It does
 not exercise SSH, Vault, Galaxy, extra-vars, working-directory,
 host-key-checking, or linting. The current main commit
-`cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed the full matrix in [workflow
-run #34751712073](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/34751712073).
+`cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed the full matrix in the
+[latest successful workflow run #35597209424](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/35597209424)
+on 2026-09-21.
 
 ## Smoke-test an image
 
