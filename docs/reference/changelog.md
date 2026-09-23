@@ -2,13 +2,13 @@
 
 This page tracks changes **across the Docker Ansible ecosystem** — the core
 container images, the GitHub Action, and the testing projects — and points you
-at the latest release of each.
+at the current tag or release of each.
 
-## Latest tags and releases at a glance
+## Current tags and releases at a glance
 
-| Project | Latest tag/release | What it is | Release notes |
+| Project | Current tag/release | What it is | Release notes |
 | --- | --- | --- | --- |
-| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.9`](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) |
+| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.9` (source tag)](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) |
 | [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
 | [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Test playbooks exercising the images | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
 | [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.0** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |

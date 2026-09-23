@@ -14,8 +14,8 @@ Docker is available.
     - GitHub: [willhallonline/docker-ansible](https://github.com/willhallonline/docker-ansible)
     - Maintainer: [Will Hall](https://www.willhallonline.co.uk)
 
-!!! important "Current release tags"
-    Keep these release tags in mind when choosing a runtime or CI integration:
+!!! important "Current project tags"
+    Keep these project tags in mind when choosing a runtime or CI integration:
 
     | Project | Tag | Current image/default |
     | --- | --- | --- |

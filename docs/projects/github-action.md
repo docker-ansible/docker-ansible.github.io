@@ -57,9 +57,9 @@ The sole output is `exit-code`, the exit code returned by `ansible-playbook`.
 The action requires a runner with Docker. Workflows should grant only
 `contents: read` when using `actions/checkout`.
 
-The public README uses `@v1` as a major-version example. For safe pinning,
-use the current release tag `@v1.1.0`; `@v1` is not documented here as a
-separate repository tag.
+The public README uses `@v1` as a major-version example. The repository currently
+publishes `v1.0.0` and `v1.1.0`; for safe pinning, use the current release tag
+`@v1.1.0`. `@v1` is not a separately published repository tag.
 
 ## When to use the action
 
