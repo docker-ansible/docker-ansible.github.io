@@ -129,7 +129,9 @@ Use `apt-get` in non-interactive Dockerfile steps:
 ```dockerfile
 FROM willhallonline/ansible:2.21-debian-trixie
 
+USER root
 RUN apt-get update     && apt-get install -y --no-install-recommends jq     && rm -rf /var/lib/apt/lists/*
+USER ansible
 ```
 
 Use slim tags when the extra package set is known:
@@ -137,7 +139,9 @@ Use slim tags when the extra package set is known:
 ```dockerfile
 FROM willhallonline/ansible:2.21-debian-trixie-slim
 
+USER root
 RUN apt-get update     && apt-get install -y --no-install-recommends ca-certificates curl     && rm -rf /var/lib/apt/lists/*
+USER ansible
 ```
 
 See [extending images](../usage/extending-images.md) for more patterns.

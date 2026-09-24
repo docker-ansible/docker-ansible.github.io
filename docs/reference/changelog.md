@@ -2,13 +2,13 @@
 
 This page tracks changes **across the Docker Ansible ecosystem** — the core
 container images, the GitHub Action, and the testing projects — and points you
-at the latest release of each.
+at the current source tag or formal release of each.
 
-## Latest tags and releases at a glance
+## Current tags and releases at a glance
 
-| Project | Latest tag/release | What it is | Release notes |
+| Project | Current tag/release | What it is | Release notes |
 | --- | --- | --- | --- |
-| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.9`](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) |
+| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.9` source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9); formal release `v6.4.2` | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) · [Releases](https://github.com/willhallonline/docker-ansible/releases) |
 | [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
 | [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Test playbooks exercising the images | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
 | [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.0** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
@@ -48,15 +48,17 @@ mounts SSH material under `/home/ansible/.ssh`, and updates the smoke-test
 example to Alpine 3.24. See the
 [Docker Ansible GitHub Action](../projects/github-action.md) page and the
 [action repository](https://github.com/willhallonline/docker-ansible-github-action/releases)
-for current inputs and examples.
+for current inputs and examples. The default branch includes unreleased retry
+changes after this tag; pin `@v1.1.0` or a commit SHA for a stable workflow.
 
 ### Docker Ansible Test and Docker Ansible GitHub Action Test
 
 - **Docker Ansible Test** (latest tag **v2.7.4**) — playbooks and scenarios
   used to exercise the images themselves.
 - **Docker Ansible GitHub Action Test** (integration-test **v1.1.0**) —
-  a 69-tag matrix (three aliases plus 66 versioned tags) with
-  localhost/non-root/exit-code smoke coverage for the GitHub Action.
+  a 61-tag compatibility matrix (three aliases plus 58 versioned tags) with
+  localhost/non-root/exit-code smoke coverage for the GitHub Action. It retains
+  legacy image tags and should not be read as the active core image matrix.
 
 See [Docker Ansible Test](../projects/testing.md) for how these fit together.
 

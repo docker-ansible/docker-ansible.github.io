@@ -22,8 +22,9 @@ exception and verify that the exact tag is still available before using it.
 | Ansible 2.16 | Outside active matrix | Final 2.16 release was 2.16.19 |
 | Ansible 2.17 | Outside active matrix | Final 2.17 release was 2.17.14 |
 
-Historical tags and definitions may not be published or maintained. Check the
-upstream repository and container registry for the exact reference you need.
+Some historical tags remain visible in the container registry, but they no
+longer receive active matrix builds or maintenance. Check the upstream
+repository and container registry for the exact reference you need.
 
 ## Why older images are risky
 

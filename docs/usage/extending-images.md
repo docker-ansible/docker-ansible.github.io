@@ -10,6 +10,12 @@ FROM willhallonline/ansible:2.21-alpine-3.24
 
 See [image tags](../images/tags.md) for available variants.
 
+The base images include `uv`/`uvx` and run as the non-root `ansible` user by
+default. The Python examples below switch to `root` for the image build, use
+`uv pip` for system installation, and switch back to `ansible` at the end.
+`pip` remains available for compatibility, but `uv pip` matches the upstream
+image build path.
+
 !!! warning "Do not bake secrets"
     Do not copy SSH keys, Vault passwords, cloud credentials, or private tokens into Dockerfiles. Inject secrets at runtime with mounts or CI secrets.
 
@@ -27,6 +33,7 @@ See [image tags](../images/tags.md) for available variants.
           rsync \
           curl \
           jq
+    USER ansible
 
     WORKDIR /ansible
     ```
@@ -45,6 +52,7 @@ See [image tags](../images/tags.md) for available variants.
           curl \
           jq \
      && rm -rf /var/lib/apt/lists/*
+    USER ansible
 
     WORKDIR /ansible
     ```
@@ -62,6 +70,7 @@ See [image tags](../images/tags.md) for available variants.
           curl \
           jq \
      && dnf clean all
+    USER ansible
 
     WORKDIR /ansible
     ```
@@ -77,13 +86,15 @@ docker build -t registry.example.com/platform/ansible:2.21-alpine .
 ```dockerfile
 FROM willhallonline/ansible:2.21-alpine-3.24
 
-RUN pip install --no-cache-dir \
+USER root
+RUN uv pip install --system --break-system-packages --no-cache \
       boto3 \
       botocore \
       netaddr \
       pywinrm \
       kubernetes
 
+USER ansible
 WORKDIR /ansible
 ```
 
@@ -100,6 +111,7 @@ Common control-node libraries:
 ```dockerfile
 FROM willhallonline/ansible:2.21-alpine-3.24
 
+USER root
 WORKDIR /build
 COPY requirements.yml requirements.yml
 RUN ansible-galaxy collection install \
@@ -107,6 +119,7 @@ RUN ansible-galaxy collection install \
       -p /usr/share/ansible/collections
 
 ENV ANSIBLE_COLLECTIONS_PATH=/usr/share/ansible/collections
+USER ansible
 WORKDIR /ansible
 ```
 
@@ -127,6 +140,7 @@ collections:
 ```dockerfile
 FROM willhallonline/ansible:2.21-alpine-3.24
 
+USER root
 WORKDIR /build
 COPY requirements.yml requirements.yml
 RUN ansible-galaxy role install \
@@ -134,6 +148,7 @@ RUN ansible-galaxy role install \
       -p /usr/share/ansible/roles
 
 ENV ANSIBLE_ROLES_PATH=/usr/share/ansible/roles
+USER ansible
 WORKDIR /ansible
 ```
 
@@ -145,13 +160,14 @@ FROM willhallonline/ansible:2.21-alpine-3.24
 USER root
 RUN apk add --no-cache git openssh-client rsync jq
 
-RUN pip install --no-cache-dir boto3 netaddr pywinrm kubernetes
+RUN uv pip install --system --break-system-packages --no-cache boto3 netaddr pywinrm kubernetes
 
 WORKDIR /build
 COPY requirements.yml requirements.yml
 RUN ansible-galaxy collection install -r requirements.yml -p /usr/share/ansible/collections
 
 ENV ANSIBLE_COLLECTIONS_PATH=/usr/share/ansible/collections
+USER ansible
 WORKDIR /ansible
 ```
 
@@ -170,9 +186,11 @@ docker run --rm -it \
 ```dockerfile
 FROM willhallonline/ansible:2.21-alpine-3.24
 
+USER root
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
+USER ansible
 WORKDIR /ansible
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["ansible-playbook", "site.yml"]
@@ -201,14 +219,16 @@ FROM willhallonline/ansible:2.21-alpine-3.24 AS builder
 
 USER root
 RUN apk add --no-cache build-base python3-dev
-RUN pip wheel --wheel-dir /wheels cryptography
+RUN uv pip wheel --wheel-dir /wheels cryptography
 
 FROM willhallonline/ansible:2.21-alpine-3.24
 
+USER root
 COPY --from=builder /wheels /wheels
-RUN pip install --no-cache-dir /wheels/* \
+RUN uv pip install --system --break-system-packages --no-cache /wheels/* \
  && rm -rf /wheels
 
+USER ansible
 WORKDIR /ansible
 ```
 

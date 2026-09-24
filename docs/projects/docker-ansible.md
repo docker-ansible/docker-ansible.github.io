@@ -10,7 +10,8 @@ that local development and CI jobs can use the same packaged toolchain.
 !!! note "Short description"
     Ansible inside Docker containers: Alpine, Ubuntu, Rocky Linux, and Debian
     with active Ansible core streams 2.18 through 2.21. The current upstream
-    release is `v6.4.9` (commit `32ea135`, 2026-09-13).
+    source tag is `v6.4.9` (commit `32ea135`, 2026-09-13). The latest formal
+    GitHub Release is `v6.4.2`.
 
 ## Links
 
@@ -96,7 +97,7 @@ choose the runtime that best matches your playbooks and dependencies.
 | Alpine | `alpine-3.21` through `alpine-3.24` | Small images and fast pulls. |
 | Debian | `debian-bookworm`, `debian-trixie` | Broad Python package compatibility. |
 | Debian slim | `debian-bookworm-slim`, `debian-trixie-slim` | Debian compatibility with a smaller footprint. |
-| Ubuntu | `ubuntu-22.04`, `ubuntu-24.04`, `ubuntu-26.04` | Familiar apt-based CI and enterprise workflows. |
+| Ubuntu | `ubuntu-24.04`, `ubuntu-26.04` | Familiar apt-based CI and enterprise workflows. |
 | Rocky Linux | `rockylinux-10` | RHEL-family compatibility testing. |
 
 !!! tip "Alpine versus glibc distributions"
@@ -107,13 +108,19 @@ Python comes from each distribution's packages rather than one globally pinned
 Python release. The images use `uv`/`uvx` for Python tooling and package
 installation.
 
+!!! note "Ubuntu 22.04 is inactive"
+    The upstream repository retains an `ubuntu-22.04` Dockerfile for historical
+    dependency tooling, but it has no active build-matrix entries. Do not treat
+    Ubuntu 22.04 tags as current supported image variants; use Ubuntu 24.04 or
+    26.04 instead.
+
 ## Image tags and platforms
 
 Tags are generated from the core version and operating system, for example
 `2.21-alpine-3.24` or `2.21-debian-trixie`; full core patch tags are also
 published. Current builds generally target `linux/amd64` and `linux/arm64`,
-but manifests are tag-specific: `2.21-ubuntu-24.04` is currently AMD64-only.
-There are no ARMv7/32-bit ARM builds.
+but all current Ubuntu 24.04 tags are AMD64-only because of the upstream base
+manifest. There are no ARMv7/32-bit ARM builds.
 
 ## Basic usage
 

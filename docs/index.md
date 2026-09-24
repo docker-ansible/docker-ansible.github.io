@@ -14,8 +14,8 @@ Docker is available.
     - GitHub: [willhallonline/docker-ansible](https://github.com/willhallonline/docker-ansible)
     - Maintainer: [Will Hall](https://www.willhallonline.co.uk)
 
-!!! important "Current release tags"
-    Keep these release tags in mind when choosing a runtime or CI integration:
+!!! important "Current project tags"
+    Keep these project tags in mind when choosing a runtime or CI integration:
 
     | Project | Tag | Current image/default |
     | --- | --- | --- |
@@ -26,6 +26,10 @@ Docker is available.
 
     See the [ecosystem changelog](reference/changelog.md) for release notes and
     links.
+
+    `docker-ansible` `v6.4.9` is the current source tag on `main`; its latest
+    formal GitHub Release is `v6.4.2`. The source tag tracks the current image
+    matrix, while the formal release page records published release metadata.
 
 ## Quick example
 

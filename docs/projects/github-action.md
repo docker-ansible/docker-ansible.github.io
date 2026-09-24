@@ -57,9 +57,11 @@ The sole output is `exit-code`, the exit code returned by `ansible-playbook`.
 The action requires a runner with Docker. Workflows should grant only
 `contents: read` when using `actions/checkout`.
 
-The public README uses `@v1` as a major-version example. For safe pinning,
-use the current release tag `@v1.1.0`; `@v1` is not documented here as a
-separate repository tag.
+The latest published action release is `v1.1.0`; the repository also has
+`v1.0.0`. The public README's `@v1` example is not a separately published
+repository tag. Pin workflows to `@v1.1.0` (or a commit SHA) for the released
+behaviour. The default branch is ahead of that release and contains unreleased
+retry changes, so do not use `@main` when a stable action contract is required.
 
 ## When to use the action
 
@@ -151,9 +153,11 @@ The action is exercised by the
 repository. The core image project is also covered by image-level tests.
 
 The integration-test repository's current release is `v1.1.0`. Its current
-workflow enumerates 69 image tags—three aliases plus 66 versioned tags—and pins
-this action release, but each test remains a localhost smoke test; it does not
-prove SSH, Vault, Galaxy, extra-vars, or deployment-host behaviour. See
+workflow enumerates 61 image tags—three aliases plus 58 versioned tags—and pins
+this action release. The matrix includes retained legacy image tags as
+compatibility coverage; it is not the active core image matrix. Each test
+remains a localhost smoke test and does not prove SSH, Vault, Galaxy, extra
+variables, deployment-host behaviour, failure handling, or linting. See
 [Docker Ansible Test](testing.md) for the complete scope.
 
 ## Related documentation

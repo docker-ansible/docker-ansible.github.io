@@ -147,6 +147,7 @@ docker run --rm \
 ```dockerfile
 FROM willhallonline/ansible:2.21-alpine-3.24
 
+USER root
 WORKDIR /ansible
 COPY requirements.yml /ansible/requirements.yml
 RUN ansible-galaxy role install -r requirements.yml -p /usr/share/ansible/roles \
@@ -154,6 +155,7 @@ RUN ansible-galaxy role install -r requirements.yml -p /usr/share/ansible/roles 
 
 ENV ANSIBLE_ROLES_PATH=/usr/share/ansible/roles
 ENV ANSIBLE_COLLECTIONS_PATH=/usr/share/ansible/collections
+USER ansible
 ```
 
 Build and run:

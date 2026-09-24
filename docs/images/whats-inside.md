@@ -30,6 +30,23 @@ The current supported Ansible core streams are:
 See [supported tags](tags.md) for which operating systems are available for each
 stream.
 
+## Python compatibility
+
+The images install the distribution-provided `python3`; the exact interpreter
+version varies by Alpine, Debian, Ubuntu, and Rocky Linux base. The minimum
+Python versions required by the pinned Ansible core releases are:
+
+| Ansible core | Minimum Python |
+| --- | --- |
+| 2.18.19 | 3.11 |
+| 2.19.13 | 3.11 |
+| 2.20.9 | 3.12 |
+| 2.21.4 | 3.12 |
+
+These are package compatibility minimums, not a promise that every image uses
+the same Python minor version. Check `python --version` in the selected tag when
+native dependencies or interpreter-specific tooling matters.
+
 ## Command-line tools
 
 The images include each distribution's Python runtime and common dependencies
@@ -55,7 +72,8 @@ non-root `ansible` user (UID/GID 1000) by default.
 !!! tip "Keep project tools explicit"
     If your project needs cloud CLIs, custom Python packages, `jq`, `helm`, or
     other tools, build a small derived image so those dependencies are visible in
-    version control.
+    version control. The images include `uv`/`uvx` and retain `pip`; use `uv pip`
+    in build instructions for repeatable system installs.
 
 ## Commands available in the container
 
@@ -114,7 +132,9 @@ A derived image keeps project dependencies repeatable:
     ```dockerfile
     FROM willhallonline/ansible:2.21-alpine-3.24
 
+    USER root
     RUN apk add --no-cache jq
+    USER ansible
     ```
 
 === "Debian or Ubuntu"
@@ -122,7 +142,9 @@ A derived image keeps project dependencies repeatable:
     ```dockerfile
     FROM willhallonline/ansible:2.21-ubuntu-24.04
 
+    USER root
     RUN apt-get update         && apt-get install -y --no-install-recommends jq         && rm -rf /var/lib/apt/lists/*
+    USER ansible
     ```
 
 === "Rocky Linux"
@@ -130,7 +152,9 @@ A derived image keeps project dependencies repeatable:
     ```dockerfile
     FROM willhallonline/ansible:2.21-rockylinux-10
 
+    USER root
     RUN dnf install -y jq         && dnf clean all
+    USER ansible
     ```
 
 See [extending images](../usage/extending-images.md) for complete guidance.

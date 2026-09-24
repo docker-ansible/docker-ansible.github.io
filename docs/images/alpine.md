@@ -130,7 +130,9 @@ versions:
 ```dockerfile
 FROM willhallonline/ansible:2.21-alpine-3.24
 
-RUN pip install --no-cache-dir molecule
+USER root
+RUN uv pip install --system --break-system-packages --no-cache molecule
+USER ansible
 ```
 
 See [extending images](../usage/extending-images.md) for project-specific image

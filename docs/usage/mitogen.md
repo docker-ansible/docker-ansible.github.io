@@ -2,7 +2,10 @@
 
 Mitogen can accelerate some Ansible runs by replacing the default execution strategy with Mitogen's strategy plugin. It is most useful for many-host, many-task playbooks where connection setup and module transfer overhead are significant.
 
-In a container workflow, install Mitogen in a derived image or mount it into the container, then configure `ansible.cfg` with `strategy_plugins` and `strategy = mitogen_linear`.
+Current `willhallonline/ansible` images already include Mitogen. In a container
+workflow, configure `ansible.cfg` with `strategy_plugins` and
+`strategy = mitogen_linear`; use a derived image only when you need to pin or
+override the bundled Mitogen version.
 
 !!! warning "Check compatibility"
     Mitogen must support the `ansible-core` version in your selected image tag. Test with a small inventory before enabling it in CI or production.
@@ -24,17 +27,26 @@ It may help less when you have:
 - cloud API calls from the control node
 - modules or plugins incompatible with your Mitogen and Ansible versions
 
-## Install Mitogen in a derived image
+## Use the bundled Mitogen
+
+```bash
+docker run --rm willhallonline/ansible:2.21-alpine-3.24 \
+  python -c "import mitogen; print(mitogen.__version__)"
+```
+
+The package is installed in every current image. To pin a different version,
+build a derived image:
 
 ```dockerfile
 FROM willhallonline/ansible:2.21-alpine-3.24
 
-RUN pip install --no-cache-dir mitogen
-
+USER root
+RUN uv pip install --system --break-system-packages --no-cache "mitogen==<version>"
+USER ansible
 WORKDIR /ansible
 ```
 
-Build:
+Build the derived image:
 
 ```bash
 docker build -t registry.example.com/platform/ansible-mitogen:2.21 .
@@ -49,35 +61,24 @@ docker run --rm -it registry.example.com/platform/ansible-mitogen:2.21 \
 
 ## Find the strategy plugin path
 
-Use Python inside the same image. The strategy plugin is under the top-level `ansible_mitogen` package:
+Use Python inside the same image. The strategy plugin is under the top-level
+`ansible_mitogen` package. Discover its path instead of assuming a Python minor
+version:
 
 ```bash
-docker run --rm -it registry.example.com/platform/ansible-mitogen:2.21 \
+docker run --rm registry.example.com/platform/ansible-mitogen:2.21 \
   python -c "import ansible_mitogen, os; print(os.path.join(os.path.dirname(ansible_mitogen.__file__), 'plugins', 'strategy'))"
 ```
 
-Or inspect package metadata:
-
-```bash
-docker run --rm -it registry.example.com/platform/ansible-mitogen:2.21 \
-  pip show mitogen
-```
-
-Typical paths include:
-
-```text
-/usr/lib/python3.12/site-packages/ansible_mitogen/plugins/strategy
-/usr/local/lib/python3.12/site-packages/ansible_mitogen/plugins/strategy
-```
-
-Use the path from your image, not a path copied from another host.
+Use the path printed by that command in `ansible.cfg`; it varies with the base
+distribution and its Python installation.
 
 ## Configure ansible.cfg
 
 ```ini
 [defaults]
 inventory = inventory.ini
-strategy_plugins = /usr/local/lib/python3.12/site-packages/ansible_mitogen/plugins/strategy
+strategy_plugins = <path printed by the discovery command>
 strategy = mitogen_linear
 ```
 
@@ -101,7 +102,7 @@ Create `ansible-mitogen.cfg` when you do not want Mitogen enabled for every run:
 inventory = inventory.ini
 roles_path = roles
 collections_paths = collections
-strategy_plugins = /usr/local/lib/python3.12/site-packages/ansible_mitogen/plugins/strategy
+strategy_plugins = <path printed by the discovery command>
 strategy = mitogen_linear
 ```
 

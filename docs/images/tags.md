@@ -46,6 +46,27 @@ the exact core patch release.
     Alpine 3.19 is archived and Alpine 3.20 is deprecated upstream. They are
     intentionally omitted from the current matrix; use Alpine 3.21 through 3.24.
 
+## Systemd test-image tags
+
+The separate `willhallonline/ansible-test` image family adds systemd for
+service-management tests. Its active tag matrix is maintained by
+[`willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test):
+
+| Base image | Active Ansible streams |
+| --- | --- |
+| Debian Bookworm and Bookworm Slim | 2.18, 2.19 |
+| Debian Trixie and Trixie Slim | 2.18, 2.19, 2.20, 2.21 |
+| Rocky Linux 10 | 2.18, 2.19, 2.20, 2.21 |
+| Ubuntu 24.04 | 2.18, 2.19, 2.20, 2.21 |
+| Ubuntu 26.04 | 2.20, 2.21 |
+
+Only `2.21-debian-trixie` also receives the `latest` alias. Alpine is
+intentionally excluded because it uses OpenRC rather than systemd. Ubuntu
+24.04 test images are AMD64-only; other current test builds publish AMD64 and
+ARM64, with no ARMv7 variants. Retained historical registry tags are not part
+of the active support matrix. See [Docker Ansible Test](../projects/testing.md)
+for cgroup requirements and systemd examples.
+
 ## Full supported tag matrix
 
 | Base image | 2.21 | 2.20 | 2.19 | 2.18 |

@@ -112,7 +112,9 @@ Install Python tools only when the project needs them:
 ```dockerfile
 FROM willhallonline/ansible:2.21-rockylinux-10
 
-RUN pip install --no-cache-dir molecule
+USER root
+RUN uv pip install --system --break-system-packages --no-cache molecule
+USER ansible
 ```
 
 See [extending images](../usage/extending-images.md) for additional patterns.
