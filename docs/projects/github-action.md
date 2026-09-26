@@ -151,7 +151,7 @@ The action is exercised by the
 repository. The core image project is also covered by image-level tests.
 
 The integration-test repository's current release is `v1.1.0`. Its current
-workflow enumerates 69 image tags—three aliases plus 66 versioned tags—and pins
+workflow enumerates 61 image tags—three aliases plus 58 versioned tags—and pins
 this action release, but each test remains a localhost smoke test; it does not
 prove SSH, Vault, Galaxy, extra-vars, or deployment-host behaviour. See
 [Docker Ansible Test](testing.md) for the complete scope.

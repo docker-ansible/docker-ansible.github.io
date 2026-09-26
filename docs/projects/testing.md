@@ -52,8 +52,8 @@ images are AMD64-only; other current image-test builds publish AMD64 and ARM64,
 with no ARMv7 variants. CI also performs digest smoke tests and publishes test
 images to GHCR, while pull requests do not publish images.
 
-The action-test repository's current workflow enumerates 69 image tags: three
-aliases (`latest`, `alpine`, and `ubuntu`) plus 66 versioned tags. This is
+The action-test repository's current workflow enumerates 61 image tags: three
+aliases (`latest`, `alpine`, and `ubuntu`) plus 58 versioned tags. This is
 broader compatibility coverage, including legacy tags, rather than the active
 core image support matrix. Each job pins
 `willhallonline/docker-ansible-github-action@v1.1.0`, runs a localhost playbook
