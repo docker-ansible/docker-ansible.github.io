@@ -54,8 +54,9 @@ Fix the host-side permissions before mounting:
 chmod 600 ./id_rsa
 ```
 
-Remember that many containers run as `root` by default. Ensure the key path is
-readable inside the container and that SSH uses the expected file:
+Current images run as the non-root `ansible` user (UID/GID 1000) by default.
+Ensure the key path is readable inside the container and that SSH uses the
+expected file:
 
 ```bash
 ansible-playbook -i inventory site.yml --private-key /ansible/id_rsa
@@ -156,8 +157,10 @@ Example derived image pattern:
 
 ```Dockerfile
 FROM willhallonline/ansible:2.21.4-alpine-3.24
+USER root
 RUN apk add --no-cache build-base python3-dev
-RUN pip install --no-cache-dir example-package
+RUN uv pip install --system --break-system-packages --no-cache example-package
+USER ansible
 ```
 
 ## Playbook cannot find files

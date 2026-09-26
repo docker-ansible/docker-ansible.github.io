@@ -47,7 +47,9 @@ Example:
 ```Dockerfile
 FROM willhallonline/ansible:2.21.4-debian-trixie
 COPY requirements.txt /requirements.txt
-RUN pip install --no-cache-dir -r /requirements.txt
+USER root
+RUN uv pip install --system --break-system-packages --no-cache -r /requirements.txt
+USER ansible
 ```
 
 Your `requirements.txt` dependencies may bring additional license obligations.

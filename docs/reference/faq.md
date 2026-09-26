@@ -73,7 +73,9 @@ These questions cover common decisions and surprises when using the
 
     ```Dockerfile
     FROM willhallonline/ansible:2.21.4-debian-trixie
-    RUN pip install --no-cache-dir netaddr jmespath
+    USER root
+    RUN uv pip install --system --break-system-packages --no-cache netaddr jmespath
+    USER ansible
     ```
 
     See the guide to extending images:

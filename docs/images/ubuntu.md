@@ -125,18 +125,24 @@ Add Python packages only when they are project requirements:
 ```dockerfile
 FROM willhallonline/ansible:2.21-ubuntu-24.04
 
-RUN pip install --no-cache-dir molecule
+USER root
+RUN uv pip install --system --break-system-packages --no-cache molecule
+USER ansible
 ```
 
 See [extending images](../usage/extending-images.md) for more guidance.
 
 ## Dockerfiles
 
-The Ubuntu Dockerfiles are in the upstream repository under `ansible-core/`:
+The active Ubuntu Dockerfiles are in the upstream repository under `ansible-core/`:
 
-- [`ansible-core/ubuntu-22.04/Dockerfile`](https://github.com/willhallonline/docker-ansible/blob/main/ansible-core/ubuntu-22.04/Dockerfile)
 - [`ansible-core/ubuntu-24.04/Dockerfile`](https://github.com/willhallonline/docker-ansible/blob/main/ansible-core/ubuntu-24.04/Dockerfile)
 - [`ansible-core/ubuntu-26.04/Dockerfile`](https://github.com/willhallonline/docker-ansible/blob/main/ansible-core/ubuntu-26.04/Dockerfile)
+
+The repository also retains an
+[`ubuntu-22.04/Dockerfile`](https://github.com/willhallonline/docker-ansible/blob/main/ansible-core/ubuntu-22.04/Dockerfile)
+for historical tooling, but the current workflow has no Ubuntu 22.04 matrix
+entries and does not publish it as an active supported variant.
 
 ## Related pages
 

@@ -1,9 +1,9 @@
 # Architectures
 
 Current `willhallonline/ansible` images generally publish AMD64 and ARM64
-variants, but platform availability is specific to each tag. For example,
-`2.21-ubuntu-24.04` is currently AMD64-only. No ARMv7/32-bit ARM images are
-published.
+variants. All currently published Ubuntu 24.04 tags are AMD64-only because
+that upstream base currently has no ARM64 manifest. Platform availability
+remains tag-specific, and no ARMv7/32-bit ARM images are published.
 
 ## Supported architectures
 
@@ -13,8 +13,9 @@ published.
 | ARM64 | `linux/arm64` | Apple Silicon, AWS Graviton, ARM servers, 64-bit Raspberry Pi OS |
 
 !!! note "Current image manifests"
-    Most current tags publish AMD64 and ARM64 variants. If you use a Raspberry
-    Pi, run a 64-bit OS and verify that the selected tag publishes ARM64.
+    Most current tags publish AMD64 and ARM64 variants. Ubuntu 24.04 tags are
+    the current exception. If you use a Raspberry Pi, run a 64-bit OS and
+    verify that the selected tag publishes ARM64.
 
 ## Pulling images
 
@@ -108,7 +109,7 @@ system. The image manifest then maps that tag to its available platforms.
 | Question | Answer |
 | --- | --- |
 | Do tags include the CPU architecture? | No. Docker selects the matching image from the manifest. |
-| Can the same tag run on AMD64 and ARM64? | Usually, but check the selected tag's manifest; `2.21-ubuntu-24.04` is AMD64-only. |
+| Can the same tag run on AMD64 and ARM64? | Usually, but check the selected tag's manifest; all current `ubuntu-24.04` tags are AMD64-only. |
 | Does Apple Silicon need a special tag? | No. Use the normal tag. |
 | Can I use current tags on 32-bit Raspberry Pi OS? | No. ARMv7/32-bit ARM images are not published. |
 
