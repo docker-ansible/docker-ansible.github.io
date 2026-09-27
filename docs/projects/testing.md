@@ -25,30 +25,33 @@ is `v1.1.0`. The current default-branch snapshot, verified on 2026-09-24, is:
 | Test utilities | [`testing-utils/`](https://github.com/willhallonline/docker-ansible/tree/main/testing-utils) | Helpers kept in the core repository for image testing. |
 
 !!! note "What these tests prove"
-    The test repositories help confirm that images start, Ansible commands are
-    available, and representative workflows keep working. They do not prove
-    SSH, Vault, Galaxy, extra-vars, working-directory, host-key-checking,
-    deployment-host behaviour, every Python dependency, or every target platform.
+    The image-test workflow confirms that each matrix image builds and that
+    `ansible-playbook --version` runs from the pushed digest. The action-test
+    workflow runs a localhost playbook and checks the action's reported exit
+    code. Neither workflow is a systemd or general playbook-integration test,
+    and neither proves SSH, Vault, Galaxy, extra-vars, working-directory,
+    host-key-checking, deployment-host behaviour, every Python dependency, or
+    every target platform.
 
 ## What is exercised
 
 The ecosystem tests focus on practical behaviours:
 
 - the image can be pulled and started;
-- `ansible` and `ansible-playbook` are available;
-- `ansible-lint` is installed;
 - supported Ansible and base-OS combinations build successfully;
-- the GitHub Action can invoke `ansible-playbook` in the Docker runtime; and
-- examples continue to represent realistic usage.
+- the published image digest runs `ansible-playbook --version`; and
+- the GitHub Action can invoke a localhost playbook and report its exit code.
 
-The `docker-ansible-test` systemd build workflow currently exercises 22 explicit
+The `docker-ansible-test` systemd-image workflow currently exercises 22 explicit
 image/version combinations and emits `latest` only for
 `2.21-debian-trixie`. The active matrix covers Debian Bookworm and Bookworm
 Slim (2.18 and 2.19 each), Debian Trixie and Trixie Slim (2.18 through 2.21
 each), Rocky Linux 10 (2.18 through 2.21), Ubuntu 24.04 (2.18 through 2.21),
 and Ubuntu 26.04 (2.20 and 2.21). Alpine is intentionally excluded because
 these images provide systemd, while Alpine uses OpenRC. Ubuntu 22.04 has a
-repository Dockerfile but no active workflow entries.
+repository Dockerfile but no active workflow entries. Docker Hub retains 35
+tags in total: 22 active matrix tags, retained 2.16 and 2.17 compatibility
+tags, and the `latest` alias. The retained tags are not active support.
 
 Successful push and scheduled builds publish to both
 [`willhallonline/ansible-test`](https://hub.docker.com/r/willhallonline/ansible-test)
@@ -76,8 +79,7 @@ service-management behaviour, a localhost playbook, the default non-root
 `ansible` user, or healthcheck behaviour. See the systemd usage guidance below
 when testing those behaviours yourself. Current image-test builds publish
 AMD64 and ARM64 except Ubuntu 24.04, which is AMD64-only; no ARMv7 variants
-are built. Historical tags can remain visible in Docker Hub after their
-matrix entries are retired, but they are not active support.
+are built.
 
 The action-test repository's current workflow enumerates 61 image tags: three
 aliases (`latest`, `alpine`, and `ubuntu`) plus 58 versioned tags. This is
@@ -88,6 +90,9 @@ smoke test, and asserts the `exit-code` output is zero. The playbook validates
 Ansible/system facts, the non-root `ansible` UID/GID 1000, and a ping. It does
 not exercise SSH, Vault, Galaxy, extra-vars, working-directory,
 host-key-checking, linting, failure paths, or architecture variants. The
+61 image-tag entries are all available for AMD64; 54 also have ARM64 manifests.
+The seven AMD64-only entries are the `ubuntu` alias and the
+`2.16`-through-`2.21` Ubuntu 24.04 tags. No ARMv7 variants are published.
 `v1.1.0` test-repository tag predates the current fact-key fix; the current main
 commit
 `cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed the full matrix in [workflow
