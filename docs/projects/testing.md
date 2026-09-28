@@ -7,12 +7,12 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-09-24, is:
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-09-28, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
-| Docker Ansible | [`32ea13589e1b3ad7cbcf03f3966cf2cbb91fd3e6`](https://github.com/willhallonline/docker-ansible/commit/32ea13589e1b3ad7cbcf03f3966cf2cbb91fd3e6) | `v6.4.9` source tag; formal release `v6.4.2` |
-| Docker Ansible Test | [`78a7a87575d94c2f42c30b3eefc76667cb9be19b`](https://github.com/willhallonline/docker-ansible-test/commit/78a7a87575d94c2f42c30b3eefc76667cb9be19b) | `v2.7.4` |
+| Docker Ansible | [`d90ad6d41ad3f49dfec313c3af84b7d850b04d4c`](https://github.com/willhallonline/docker-ansible/commit/d90ad6d41ad3f49dfec313c3af84b7d850b04d4c) | `v6.4.9` source tag; formal release `v6.4.2` |
+| Docker Ansible Test | [`2c8f289ef8f59e79b58473a405b89850b6c3f2b4`](https://github.com/willhallonline/docker-ansible-test/commit/2c8f289ef8f59e79b58473a405b89850b6c3f2b4) | `v2.7.4` |
 | Docker Ansible GitHub Action | [`fb244e71e224dba83fa95631cfafb42f038ba191`](https://github.com/willhallonline/docker-ansible-github-action/commit/fb244e71e224dba83fa95631cfafb42f038ba191) | `v1.1.0` |
 | Docker Ansible GitHub Action Test | [`cd0eae4810fec5692d33df6e7c9c9bff35f972ec`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/cd0eae4810fec5692d33df6e7c9c9bff35f972ec) | `v1.1.0` |
 
@@ -49,9 +49,12 @@ Slim (2.18 and 2.19 each), Debian Trixie and Trixie Slim (2.18 through 2.21
 each), Rocky Linux 10 (2.18 through 2.21), Ubuntu 24.04 (2.18 through 2.21),
 and Ubuntu 26.04 (2.20 and 2.21). Alpine is intentionally excluded because
 these images provide systemd, while Alpine uses OpenRC. Ubuntu 22.04 has a
-repository Dockerfile but no active workflow entries. Docker Hub retains 35
-tags in total: 22 active matrix tags, retained 2.16 and 2.17 compatibility
-tags, and the `latest` alias. The retained tags are not active support.
+repository Dockerfile but no active workflow entries. The current/retained
+image-test set contains 35 tags: 22 active matrix tags, 12 retained 2.16 and
+2.17 compatibility tags, and the `latest` alias. Docker Hub currently lists 59
+tags in total because 24 older historical tags from Ansible 2.5 through 2.10
+remain visible. Neither the retained compatibility tags nor the older
+historical tags are active support.
 
 Successful push and scheduled builds publish to both
 [`willhallonline/ansible-test`](https://hub.docker.com/r/willhallonline/ansible-test)
