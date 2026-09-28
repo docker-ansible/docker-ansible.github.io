@@ -58,11 +58,11 @@ The action requires a runner with Docker. Workflows should grant only
 `contents: read` when using `actions/checkout`.
 
 The latest published action release is `v1.1.0`; the repository also has
-`v1.0.0`, and the `@v1` major tag tracks the v1 release line. Use `@v1` when
-you want compatible v1 updates, or pin workflows to `@v1.1.0` (or a commit
-SHA) for the released behaviour. The default branch is ahead of that release
-and contains unreleased retry changes, so do not use `@main` when a stable
-action contract is required.
+`v1.0.0`. The upstream README currently shows `@v1`, but no `v1` branch or
+tag is published in the repository, so use `@v1.1.0` (or a commit SHA) for a
+resolvable stable reference. The default branch is ahead of that release and
+contains unreleased retry changes, so do not use `@main` when a stable action
+contract is required.
 
 ## When to use the action
 
