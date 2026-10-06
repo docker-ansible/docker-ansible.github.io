@@ -7,12 +7,12 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-09-24, is:
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-10-06, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
-| Docker Ansible | [`32ea13589e1b3ad7cbcf03f3966cf2cbb91fd3e6`](https://github.com/willhallonline/docker-ansible/commit/32ea13589e1b3ad7cbcf03f3966cf2cbb91fd3e6) | `v6.4.9` source tag; formal release `v6.4.2` |
-| Docker Ansible Test | [`78a7a87575d94c2f42c30b3eefc76667cb9be19b`](https://github.com/willhallonline/docker-ansible-test/commit/78a7a87575d94c2f42c30b3eefc76667cb9be19b) | `v2.7.4` |
+| Docker Ansible | [`d4640b92cc34abfa2444ef9aa1c01769a0f0c5bc`](https://github.com/willhallonline/docker-ansible/commit/d4640b92cc34abfa2444ef9aa1c01769a0f0c5bc) | `v6.4.9` source tag; formal release `v6.4.2` |
+| Docker Ansible Test | [`2c8f289ef8f59e79b58473a405b89850b6c3f2b4`](https://github.com/willhallonline/docker-ansible-test/commit/2c8f289ef8f59e79b58473a405b89850b6c3f2b4) | `v2.7.4` |
 | Docker Ansible GitHub Action | [`fb244e71e224dba83fa95631cfafb42f038ba191`](https://github.com/willhallonline/docker-ansible-github-action/commit/fb244e71e224dba83fa95631cfafb42f038ba191) | `v1.1.0` |
 | Docker Ansible GitHub Action Test | [`cd0eae4810fec5692d33df6e7c9c9bff35f972ec`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/cd0eae4810fec5692d33df6e7c9c9bff35f972ec) | `v1.1.0` |
 
@@ -25,37 +25,43 @@ is `v1.1.0`. The current default-branch snapshot, verified on 2026-09-24, is:
 | Test utilities | [`testing-utils/`](https://github.com/willhallonline/docker-ansible/tree/main/testing-utils) | Helpers kept in the core repository for image testing. |
 
 !!! note "What these tests prove"
-    The test repositories help confirm that images start, Ansible commands are
-    available, and representative workflows keep working. They do not prove
-    SSH, Vault, Galaxy, extra-vars, working-directory, host-key-checking,
-    deployment-host behaviour, every Python dependency, or every target platform.
+    The image-test workflow confirms that each matrix image builds and that
+    `ansible-playbook --version` runs from the pushed digest. The action-test
+    workflow runs a localhost playbook and checks the action's reported exit
+    code. Neither workflow is a systemd or general playbook-integration test,
+    and neither proves SSH, Vault, Galaxy, extra-vars, working-directory,
+    host-key-checking, deployment-host behaviour, every Python dependency, or
+    every target platform.
 
 ## What is exercised
 
 The ecosystem tests focus on practical behaviours:
 
 - the image can be pulled and started;
-- `ansible` and `ansible-playbook` are available;
-- `ansible-lint` is installed;
 - supported Ansible and base-OS combinations build successfully;
-- the GitHub Action can invoke `ansible-playbook` in the Docker runtime; and
-- examples continue to represent realistic usage.
+- the published image digest runs `ansible-playbook --version`; and
+- the GitHub Action can invoke a localhost playbook and report its exit code.
 
-The `docker-ansible-test` systemd build workflow currently exercises 22 explicit
+The `docker-ansible-test` systemd-image workflow currently exercises 22 explicit
 image/version combinations and emits `latest` only for
 `2.21-debian-trixie`. The active matrix covers Debian Bookworm and Bookworm
 Slim (2.18 and 2.19 each), Debian Trixie and Trixie Slim (2.18 through 2.21
 each), Rocky Linux 10 (2.18 through 2.21), Ubuntu 24.04 (2.18 through 2.21),
 and Ubuntu 26.04 (2.20 and 2.21). Alpine is intentionally excluded because
 these images provide systemd, while Alpine uses OpenRC. Ubuntu 22.04 has a
-repository Dockerfile but no active workflow entries.
+repository Dockerfile but no active workflow entries. The current/retained
+image-test set contains 35 tags: 22 active matrix tags, 12 retained 2.16 and
+2.17 compatibility tags, and the `latest` alias. Docker Hub currently lists 59
+tags in total because 24 older historical tags from Ansible 2.5 through 2.10
+remain visible. Neither the retained compatibility tags nor the older
+historical tags are active support.
 
 Successful push and scheduled builds publish to both
 [`willhallonline/ansible-test`](https://hub.docker.com/r/willhallonline/ansible-test)
 and
 [`ghcr.io/willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test/pkgs/container/docker-ansible-test);
 pull requests build without publishing. The workflow runs once weekly on
-Monday at 02:00 UTC.
+Monday at 02:00 UTC, and also supports pushes to `main` and manual dispatch.
 
 After a published image is built, CI runs the exact GHCR image by its immutable
 build digest with cgroup support, `/run` and `/run/lock` tmpfs mounts, and
@@ -73,11 +79,12 @@ docker run --rm \
 
 This digest smoke test does not validate default systemd/PID 1 startup,
 service-management behaviour, a localhost playbook, the default non-root
-`ansible` user, or healthcheck behaviour. See the systemd usage guidance below
-when testing those behaviours yourself. Current image-test builds publish
+`ansible` user, or healthcheck behaviour. These systemd test images explicitly
+run as `root`, so this smoke test does not represent the core image family's
+default user. See the systemd usage guidance below when testing those
+behaviours yourself. Current image-test builds publish
 AMD64 and ARM64 except Ubuntu 24.04, which is AMD64-only; no ARMv7 variants
-are built. Historical tags can remain visible in Docker Hub after their
-matrix entries are retired, but they are not active support.
+are built.
 
 The action-test repository's current workflow enumerates 61 image tags: three
 aliases (`latest`, `alpine`, and `ubuntu`) plus 58 versioned tags. This is
@@ -88,36 +95,46 @@ smoke test, and asserts the `exit-code` output is zero. The playbook validates
 Ansible/system facts, the non-root `ansible` UID/GID 1000, and a ping. It does
 not exercise SSH, Vault, Galaxy, extra-vars, working-directory,
 host-key-checking, linting, failure paths, or architecture variants. The
+61 image-tag entries are all available for AMD64; 54 also have ARM64 manifests.
+The seven AMD64-only entries are the `ubuntu` alias and the
+`2.16`-through-`2.21` Ubuntu 24.04 tags. No ARMv7 variants are published.
 `v1.1.0` test-repository tag predates the current fact-key fix; the current main
 commit
-`cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed the full matrix in [workflow
-run #35597209424](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/35597209424)
-on 2026-09-21.
+`cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed all 61 jobs in [workflow run
+#37318397873](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/37318397873)
+on 2026-10-05. The workflow also runs on pushes to `main`, pull requests, and
+manual dispatch; scheduled runs start Monday at 06:00 UTC with up to 20
+parallel jobs and fail-fast disabled.
 
 ## Use the systemd test images
 
 `willhallonline/ansible-test` starts systemd as PID 1 and needs a delegated
-cgroup hierarchy. A modern cgroup v2 host normally works without
-`--privileged`:
+cgroup hierarchy. Start it in the background so commands can be run with
+`docker exec`; a modern cgroup v2 host normally works without `--privileged`:
 
 ```bash
-docker run --rm -it \
+docker run -d --name ansible-test \
   --cgroupns=private \
   --tmpfs /run --tmpfs /run/lock \
   -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
-  willhallonline/ansible-test:2.21-debian-trixie /bin/bash
+  willhallonline/ansible-test:2.21-debian-trixie
+
+docker exec -it ansible-test /bin/bash
+docker rm -f ansible-test
 ```
 
 For role or playbook testing, add the project mount and run the selected image:
 
 ```bash
-docker run --rm \
+docker run -d --name ansible-test \
   --cgroupns=private \
   --tmpfs /run --tmpfs /run/lock \
   -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
   -v "$PWD:/ansible" \
-  willhallonline/ansible-test:2.21-debian-trixie \
-  ansible-playbook /ansible/playbook.yml
+  willhallonline/ansible-test:2.21-debian-trixie
+
+docker exec ansible-test ansible-playbook /ansible/playbook.yml
+docker rm -f ansible-test
 ```
 
 Prefer rootless Podman or the cgroup v2 configuration above. Use
@@ -207,7 +224,7 @@ docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:late
 For CI and production, smoke-test the same tag you plan to use:
 
 ```bash
-docker run --rm willhallonline/ansible:2.21.4-alpine-3.24 ansible --version
+docker run --rm willhallonline/ansible:2.21.5-alpine-3.24 ansible --version
 ```
 
 Replace the tag with the Ansible-version and base-OS combination you selected.
@@ -219,7 +236,7 @@ small derived image or a controlled CI step rather than mutating a long-lived
 container manually.
 
 ```Dockerfile
-FROM willhallonline/ansible:2.21.4-debian-trixie
+FROM willhallonline/ansible:2.21.5-debian-trixie
 USER root
 RUN uv pip install --system --break-system-packages --no-cache example-package
 USER ansible

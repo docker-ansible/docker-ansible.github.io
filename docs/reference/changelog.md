@@ -10,7 +10,7 @@ at the current source tag or formal release of each.
 | --- | --- | --- | --- |
 | [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.9` source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9); formal release `v6.4.2` | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) · [Releases](https://github.com/willhallonline/docker-ansible/releases) |
 | [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
-| [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Test playbooks exercising the images | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
+| [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Systemd image builds and `ansible-playbook --version` smoke tests | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
 | [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.0** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
 
 !!! tip "Checking for newer releases"
@@ -24,7 +24,7 @@ at the current source tag or formal release of each.
 The canonical changelog is maintained in the upstream repository:
 [CHANGELOG.md](https://github.com/willhallonline/docker-ansible/blob/main/CHANGELOG.md)
 
-Recent highlights (v6.4.3–v6.4.9):
+Recent highlights (v6.4.3–v6.4.9 and subsequent `main` updates):
 
 - added Alpine 3.23 and 3.24 support;
 - kept the active matrix on Alpine 3.21 through 3.24;
@@ -33,8 +33,12 @@ Recent highlights (v6.4.3–v6.4.9):
 - added the non-root `ansible` user and updated the SSH home to
   `/home/ansible/.ssh`;
 - removed end-of-life Ansible core 2.16 and 2.17 from active image builds;
-- updated Ansible core to 2.18.19, 2.19.13, 2.20.9, and 2.21.4;
+- updated Ansible core to 2.18.19, 2.19.14, 2.20.10, and 2.21.5;
 - builds generally target Linux AMD64 and ARM64, with tag-specific exceptions.
+
+The current default branch has refreshed the patch versions beyond the
+`v6.4.9` source tag; the source tag and formal release labels above remain
+unchanged.
 
 The current Ansible core lines shipped in the images are 2.18 through 2.21 —
 see [supported tags](../images/tags.md) for the full matrix.
@@ -53,8 +57,8 @@ changes after this tag; pin `@v1.1.0` or a commit SHA for a stable workflow.
 
 ### Docker Ansible Test and Docker Ansible GitHub Action Test
 
-- **Docker Ansible Test** (latest tag **v2.7.4**) — playbooks and scenarios
-  used to exercise the images themselves.
+- **Docker Ansible Test** (latest tag **v2.7.4**) — systemd image builds and
+  `ansible-playbook --version` smoke tests for the images themselves.
 - **Docker Ansible GitHub Action Test** (integration-test **v1.1.0**) —
   a 61-tag compatibility matrix (three aliases plus 58 versioned tags) with
   localhost/non-root/exit-code smoke coverage for the GitHub Action. It retains
@@ -83,7 +87,7 @@ Recent project direction includes these broad changes:
 
 | Area | Summary |
 | --- | --- |
-| Ansible versions | Current images ship ansible-core 2.18.19 through 2.21.4. |
+| Ansible versions | Current images ship ansible-core 2.18.19 through 2.21.5. |
 | Alpine bases | Alpine 3.21 through 3.24 are supported in the active matrix. |
 | Ubuntu bases | Ubuntu 26.04 is available alongside Ubuntu 24.04. |
 | Debian bases | Debian Trixie variants are available alongside Bookworm variants. |
@@ -100,8 +104,8 @@ operating-system variant. For example, production users should prefer an explici
 Ansible-version and base-OS tag over a floating tag.
 
 ```text
-willhallonline/ansible:2.21.4-alpine-3.24
-willhallonline/ansible:2.21.4-debian-trixie
+willhallonline/ansible:2.21.5-alpine-3.24
+willhallonline/ansible:2.21.5-debian-trixie
 ```
 
 !!! note "Digest pinning"
@@ -143,15 +147,15 @@ When moving to a newer image tag:
 ## Example validation commands
 
 ```bash
-docker run --rm willhallonline/ansible:2.21.4-debian-trixie ansible --version
+docker run --rm willhallonline/ansible:2.21.5-debian-trixie ansible --version
 ```
 
 ```bash
-docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.4-debian-trixie   ansible-lint
+docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.5-debian-trixie   ansible-lint
 ```
 
 ```bash
-docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.4-debian-trixie   ansible-playbook --syntax-check -i inventory site.yml
+docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.5-debian-trixie   ansible-playbook --syntax-check -i inventory site.yml
 ```
 
 ## Related documentation

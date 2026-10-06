@@ -8,7 +8,7 @@ Moving tags use the core stream and operating system:
 ```
 
 For example, `2.21-alpine-3.24` means Ansible core 2.21 on Alpine Linux 3.24.
-Full patch tags such as `2.21.4-alpine-3.24` are also published when you need
+Full patch tags such as `2.21.5-alpine-3.24` are also published when you need
 the exact core patch release.
 
 !!! tip "Use this table for automation"
@@ -20,9 +20,9 @@ the exact core patch release.
 
 | Ansible minor | Current ansible-core version |
 | --- | --- |
-| 2.21 | 2.21.4 |
-| 2.20 | 2.20.9 |
-| 2.19 | 2.19.13 |
+| 2.21 | 2.21.5 |
+| 2.20 | 2.20.10 |
+| 2.19 | 2.19.14 |
 | 2.18 | 2.18.19 |
 
 ## Convenience tags
@@ -35,7 +35,8 @@ the exact core patch release.
 
 !!! warning "Convenience tags move"
     Convenience tags can change target as the project advances. Use matrix tags
-    or fully pinned tags when repeatability matters.
+    for planned upgrades, and pin an image digest when exact repeatability
+    matters.
 
 !!! note "Platform availability"
     Current builds generally target `linux/amd64` and `linux/arm64`, but each
@@ -115,16 +116,18 @@ for cgroup requirements and systemd examples.
     docker pull willhallonline/ansible:2.21-rockylinux-10
     ```
 
-## Fully pinned tags
+## Versioned tags and digests
 
-Immutable tags are also published with full patch versions. They follow this
+Versioned tags are also published with full patch versions. They follow this
 pattern:
 
 ```text
 AnsibleVersion-BaseOSversion
 ```
 
-Use fully pinned tags when you need to reproduce an exact image. Browse
+Use a full patch-version tag when you need a narrower version selection, but
+remember that scheduled rebuilds can refresh tag contents. Use an image digest
+for exact reproduction. Browse
 [Docker Hub tags](https://hub.docker.com/r/willhallonline/ansible/tags) for the
 specific patch-level tag you need.
 
@@ -134,7 +137,7 @@ specific patch-level tag you need.
 | --- | --- |
 | Quick local test | `latest`, `alpine`, or `ubuntu` |
 | CI pipeline with planned upgrades | Matrix tag such as `2.21-ubuntu-24.04` |
-| Reproducible release build | Fully pinned patch-level tag |
+| Reproducible release build | Patch-level tag plus a pinned digest |
 | Small image footprint | Alpine tag |
 | glibc compatibility | Debian, Ubuntu, or Rocky Linux tag |
 

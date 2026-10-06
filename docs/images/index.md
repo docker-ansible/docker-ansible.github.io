@@ -5,14 +5,17 @@ Ansible automation. They are built from common Linux base images and published
 with tags that make the Ansible minor version and operating system explicit.
 
 !!! note "Image repository"
-    The public image name is `willhallonline/ansible` on Docker Hub. The source
-    repository is [willhallonline/docker-ansible](https://github.com/willhallonline/docker-ansible).
+    The public image name is `willhallonline/ansible` on Docker Hub, and the
+    same images are published to GHCR as
+    `ghcr.io/willhallonline/docker-ansible`. The source repository is
+    [willhallonline/docker-ansible](https://github.com/willhallonline/docker-ansible).
 
 ## Registries and source
 
 | Resource | Location |
 | --- | --- |
 | Docker Hub image | [`willhallonline/ansible`](https://hub.docker.com/r/willhallonline/ansible) |
+| GitHub Container Registry | [`ghcr.io/willhallonline/docker-ansible`](https://github.com/willhallonline/docker-ansible/pkgs/container/docker-ansible) |
 | GitHub source | [`willhallonline/docker-ansible`](https://github.com/willhallonline/docker-ansible) |
 | Dockerfiles | `ansible-core/<os-dir>/Dockerfile` |
 | Older releases | Historical streams outside the active matrix |
@@ -77,9 +80,9 @@ For repeatable builds, pin the operating system and Ansible stream instead:
 docker pull willhallonline/ansible:2.21-alpine-3.24
 ```
 
-## Immutable and pinned tags
+## Versioned and pinned tags
 
-In addition to moving minor tags, immutable tags are also published with the
+In addition to moving minor tags, versioned tags are also published with the
 full Ansible patch version and full base operating system version. The pattern
 is:
 
@@ -93,8 +96,9 @@ need a specific patch release.
 
 !!! note "Moving versus pinned tags"
     Tags such as `2.21-alpine-3.24` track the current image for that Ansible
-    minor stream and base. Fully pinned tags are better when exact image
-    reproduction matters.
+    minor stream and base. Full patch-version tags identify a narrower build,
+    but scheduled rebuilds can refresh their contents. Pin an image digest when
+    exact byte-for-byte reproduction matters.
 
 ## Image philosophy
 
@@ -117,9 +121,9 @@ The supported image matrix currently covers these Ansible core versions:
 | Minor | Current core version |
 | --- | --- |
 | 2.18 | 2.18.19 |
-| 2.19 | 2.19.13 |
-| 2.20 | 2.20.9 |
-| 2.21 | 2.21.4 |
+| 2.19 | 2.19.14 |
+| 2.20 | 2.20.10 |
+| 2.21 | 2.21.5 |
 
 See the complete [supported tag matrix](tags.md) for the operating systems that
 are available for each stream.
@@ -143,8 +147,11 @@ specific pull and run examples.
 ## Regular rebuilds
 
 Images are rebuilt regularly, including dependency updates managed through
-Renovate. This keeps the supported streams current without changing the public
-tagging scheme.
+Renovate. The upstream workflow also rebuilds on changes under
+`ansible-core/**/Dockerfile` or the build workflow, runs on a Monday 00:00 UTC
+schedule, and supports manual dispatch. Pull requests build without publishing;
+canonical non-PR runs publish to Docker Hub and GHCR. This keeps the supported
+streams current without changing the public tagging scheme.
 
 !!! warning "Unsupported streams"
     Older Ansible streams such as 2.9 through 2.17 are outside the active matrix
