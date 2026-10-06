@@ -24,7 +24,7 @@ at the current source tag or formal release of each.
 The canonical changelog is maintained in the upstream repository:
 [CHANGELOG.md](https://github.com/willhallonline/docker-ansible/blob/main/CHANGELOG.md)
 
-Recent highlights (v6.4.3–v6.4.9):
+Recent highlights (v6.4.3–v6.4.9 and subsequent `main` updates):
 
 - added Alpine 3.23 and 3.24 support;
 - kept the active matrix on Alpine 3.21 through 3.24;
@@ -33,8 +33,12 @@ Recent highlights (v6.4.3–v6.4.9):
 - added the non-root `ansible` user and updated the SSH home to
   `/home/ansible/.ssh`;
 - removed end-of-life Ansible core 2.16 and 2.17 from active image builds;
-- updated Ansible core to 2.18.19, 2.19.13, 2.20.9, and 2.21.4;
+- updated Ansible core to 2.18.19, 2.19.14, 2.20.10, and 2.21.5;
 - builds generally target Linux AMD64 and ARM64, with tag-specific exceptions.
+
+The current default branch has refreshed the patch versions beyond the
+`v6.4.9` source tag; the source tag and formal release labels above remain
+unchanged.
 
 The current Ansible core lines shipped in the images are 2.18 through 2.21 —
 see [supported tags](../images/tags.md) for the full matrix.
@@ -83,7 +87,7 @@ Recent project direction includes these broad changes:
 
 | Area | Summary |
 | --- | --- |
-| Ansible versions | Current images ship ansible-core 2.18.19 through 2.21.4. |
+| Ansible versions | Current images ship ansible-core 2.18.19 through 2.21.5. |
 | Alpine bases | Alpine 3.21 through 3.24 are supported in the active matrix. |
 | Ubuntu bases | Ubuntu 26.04 is available alongside Ubuntu 24.04. |
 | Debian bases | Debian Trixie variants are available alongside Bookworm variants. |
@@ -100,8 +104,8 @@ operating-system variant. For example, production users should prefer an explici
 Ansible-version and base-OS tag over a floating tag.
 
 ```text
-willhallonline/ansible:2.21.4-alpine-3.24
-willhallonline/ansible:2.21.4-debian-trixie
+willhallonline/ansible:2.21.5-alpine-3.24
+willhallonline/ansible:2.21.5-debian-trixie
 ```
 
 !!! note "Digest pinning"
@@ -143,15 +147,15 @@ When moving to a newer image tag:
 ## Example validation commands
 
 ```bash
-docker run --rm willhallonline/ansible:2.21.4-debian-trixie ansible --version
+docker run --rm willhallonline/ansible:2.21.5-debian-trixie ansible --version
 ```
 
 ```bash
-docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.4-debian-trixie   ansible-lint
+docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.5-debian-trixie   ansible-lint
 ```
 
 ```bash
-docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.4-debian-trixie   ansible-playbook --syntax-check -i inventory site.yml
+docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:2.21.5-debian-trixie   ansible-playbook --syntax-check -i inventory site.yml
 ```
 
 ## Related documentation

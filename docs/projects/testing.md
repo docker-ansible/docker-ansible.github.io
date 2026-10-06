@@ -11,7 +11,7 @@ is `v1.1.0`. The current default-branch snapshot, verified on 2026-10-06, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
-| Docker Ansible | [`d90ad6d41ad3f49dfec313c3af84b7d850b04d4c`](https://github.com/willhallonline/docker-ansible/commit/d90ad6d41ad3f49dfec313c3af84b7d850b04d4c) | `v6.4.9` source tag; formal release `v6.4.2` |
+| Docker Ansible | [`d4640b92cc34abfa2444ef9aa1c01769a0f0c5bc`](https://github.com/willhallonline/docker-ansible/commit/d4640b92cc34abfa2444ef9aa1c01769a0f0c5bc) | `v6.4.9` source tag; formal release `v6.4.2` |
 | Docker Ansible Test | [`2c8f289ef8f59e79b58473a405b89850b6c3f2b4`](https://github.com/willhallonline/docker-ansible-test/commit/2c8f289ef8f59e79b58473a405b89850b6c3f2b4) | `v2.7.4` |
 | Docker Ansible GitHub Action | [`fb244e71e224dba83fa95631cfafb42f038ba191`](https://github.com/willhallonline/docker-ansible-github-action/commit/fb244e71e224dba83fa95631cfafb42f038ba191) | `v1.1.0` |
 | Docker Ansible GitHub Action Test | [`cd0eae4810fec5692d33df6e7c9c9bff35f972ec`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/cd0eae4810fec5692d33df6e7c9c9bff35f972ec) | `v1.1.0` |
@@ -224,7 +224,7 @@ docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:late
 For CI and production, smoke-test the same tag you plan to use:
 
 ```bash
-docker run --rm willhallonline/ansible:2.21.4-alpine-3.24 ansible --version
+docker run --rm willhallonline/ansible:2.21.5-alpine-3.24 ansible --version
 ```
 
 Replace the tag with the Ansible-version and base-OS combination you selected.
@@ -236,7 +236,7 @@ small derived image or a controlled CI step rather than mutating a long-lived
 container manually.
 
 ```Dockerfile
-FROM willhallonline/ansible:2.21.4-debian-trixie
+FROM willhallonline/ansible:2.21.5-debian-trixie
 USER root
 RUN uv pip install --system --break-system-packages --no-cache example-package
 USER ansible
