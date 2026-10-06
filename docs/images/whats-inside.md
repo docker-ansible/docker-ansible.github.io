@@ -165,9 +165,10 @@ Supported images are rebuilt regularly. Dependency updates are managed through
 Renovate, which helps keep base images and packaged dependencies current.
 
 !!! warning "Rebuilds can update dependencies"
-    Moving tags can receive dependency updates over time. Use fully pinned tags
-    from [Docker Hub](https://hub.docker.com/r/willhallonline/ansible/tags) when
-    exact image reproduction is required.
+    Moving and versioned tags can receive dependency updates during scheduled
+    rebuilds. Use a tag from
+    [Docker Hub](https://hub.docker.com/r/willhallonline/ansible/tags) together
+    with its image digest when exact image reproduction is required.
 
 ## Security considerations
 

@@ -62,7 +62,9 @@ The latest published action release is `v1.1.0`; the repository also has
 tag is published in the repository, so use `@v1.1.0` (or a commit SHA) for a
 resolvable stable reference. The default branch is ahead of that release and
 contains unreleased retry changes, so do not use `@main` when a stable action
-contract is required.
+contract is required. On the current default branch, a failed `docker pull` is
+retried up to three total attempts with a five-second delay between attempts;
+the action fails after the final attempt.
 
 ## When to use the action
 

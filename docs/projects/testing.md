@@ -7,7 +7,7 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-09-28, is:
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-10-06, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
@@ -61,7 +61,7 @@ Successful push and scheduled builds publish to both
 and
 [`ghcr.io/willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test/pkgs/container/docker-ansible-test);
 pull requests build without publishing. The workflow runs once weekly on
-Monday at 02:00 UTC.
+Monday at 02:00 UTC, and also supports pushes to `main` and manual dispatch.
 
 After a published image is built, CI runs the exact GHCR image by its immutable
 build digest with cgroup support, `/run` and `/run/lock` tmpfs mounts, and
@@ -79,8 +79,10 @@ docker run --rm \
 
 This digest smoke test does not validate default systemd/PID 1 startup,
 service-management behaviour, a localhost playbook, the default non-root
-`ansible` user, or healthcheck behaviour. See the systemd usage guidance below
-when testing those behaviours yourself. Current image-test builds publish
+`ansible` user, or healthcheck behaviour. These systemd test images explicitly
+run as `root`, so this smoke test does not represent the core image family's
+default user. See the systemd usage guidance below when testing those
+behaviours yourself. Current image-test builds publish
 AMD64 and ARM64 except Ubuntu 24.04, which is AMD64-only; no ARMv7 variants
 are built.
 
@@ -98,34 +100,41 @@ The seven AMD64-only entries are the `ubuntu` alias and the
 `2.16`-through-`2.21` Ubuntu 24.04 tags. No ARMv7 variants are published.
 `v1.1.0` test-repository tag predates the current fact-key fix; the current main
 commit
-`cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed the full matrix in [workflow
-run #35597209424](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/35597209424)
-on 2026-09-21.
+`cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed all 61 jobs in [workflow run
+#37318397873](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/37318397873)
+on 2026-10-05. The workflow also runs on pushes to `main`, pull requests, and
+manual dispatch; scheduled runs start Monday at 06:00 UTC with up to 20
+parallel jobs and fail-fast disabled.
 
 ## Use the systemd test images
 
 `willhallonline/ansible-test` starts systemd as PID 1 and needs a delegated
-cgroup hierarchy. A modern cgroup v2 host normally works without
-`--privileged`:
+cgroup hierarchy. Start it in the background so commands can be run with
+`docker exec`; a modern cgroup v2 host normally works without `--privileged`:
 
 ```bash
-docker run --rm -it \
+docker run -d --name ansible-test \
   --cgroupns=private \
   --tmpfs /run --tmpfs /run/lock \
   -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
-  willhallonline/ansible-test:2.21-debian-trixie /bin/bash
+  willhallonline/ansible-test:2.21-debian-trixie
+
+docker exec -it ansible-test /bin/bash
+docker rm -f ansible-test
 ```
 
 For role or playbook testing, add the project mount and run the selected image:
 
 ```bash
-docker run --rm \
+docker run -d --name ansible-test \
   --cgroupns=private \
   --tmpfs /run --tmpfs /run/lock \
   -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
   -v "$PWD:/ansible" \
-  willhallonline/ansible-test:2.21-debian-trixie \
-  ansible-playbook /ansible/playbook.yml
+  willhallonline/ansible-test:2.21-debian-trixie
+
+docker exec ansible-test ansible-playbook /ansible/playbook.yml
+docker rm -f ansible-test
 ```
 
 Prefer rootless Podman or the cgroup v2 configuration above. Use

@@ -80,7 +80,7 @@ The repository is organised around image definitions and support files.
 | `ansible-core/ubuntu-26.04` | Ubuntu 26.04 image variant. |
 | `testing-utils/` | Helpers used by testing workflows. |
 | `.github/` | GitHub workflows and automation. |
-| `.gitlab-ci.yml` | GitLab CI configuration. |
+| `.gitlab-ci.yml` | Retired GitLab CI entry point; archived configuration. |
 | `renovate.json` | Renovate dependency update configuration. |
 | `CHANGELOG.md` | Upstream change history. |
 | `CONTRIBUTING.md` | Contribution guidance. |
@@ -119,8 +119,9 @@ installation.
 Tags are generated from the core version and operating system, for example
 `2.21-alpine-3.24` or `2.21-debian-trixie`; full core patch tags are also
 published. Current builds generally target `linux/amd64` and `linux/arm64`,
-but all current Ubuntu 24.04 tags are AMD64-only because of the upstream base
-manifest. There are no ARMv7/32-bit ARM builds.
+but all current Ubuntu 24.04 tags are AMD64-only because the upstream workflow
+forces AMD64 for build stability and to avoid builds taking more than 1.5 hours.
+There are no ARMv7/32-bit ARM builds.
 
 ## Basic usage
 

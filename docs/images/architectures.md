@@ -2,8 +2,9 @@
 
 Current `willhallonline/ansible` images generally publish AMD64 and ARM64
 variants. All currently published Ubuntu 24.04 tags are AMD64-only because
-that upstream base currently has no ARM64 manifest. Platform availability
-remains tag-specific, and no ARMv7/32-bit ARM images are published.
+the upstream build workflow forces AMD64 for that variant: ARM64 builds are
+unstable and take more than 1.5 hours. Platform availability remains
+tag-specific, and no ARMv7/32-bit ARM images are published.
 
 ## Supported architectures
 

@@ -10,7 +10,7 @@ at the current source tag or formal release of each.
 | --- | --- | --- | --- |
 | [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.9` source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9); formal release `v6.4.2` | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) · [Releases](https://github.com/willhallonline/docker-ansible/releases) |
 | [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
-| [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Test playbooks exercising the images | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
+| [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Systemd image builds and `ansible-playbook --version` smoke tests | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
 | [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.0** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
 
 !!! tip "Checking for newer releases"
@@ -53,8 +53,8 @@ changes after this tag; pin `@v1.1.0` or a commit SHA for a stable workflow.
 
 ### Docker Ansible Test and Docker Ansible GitHub Action Test
 
-- **Docker Ansible Test** (latest tag **v2.7.4**) — playbooks and scenarios
-  used to exercise the images themselves.
+- **Docker Ansible Test** (latest tag **v2.7.4**) — systemd image builds and
+  `ansible-playbook --version` smoke tests for the images themselves.
 - **Docker Ansible GitHub Action Test** (integration-test **v1.1.0**) —
   a 61-tag compatibility matrix (three aliases plus 58 versioned tags) with
   localhost/non-root/exit-code smoke coverage for the GitHub Action. It retains

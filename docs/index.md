@@ -190,7 +190,7 @@ The repository also publishes convenience tags for common defaults:
 | `ubuntu` | Ansible 2.21 on Ubuntu 24.04 |
 
 These are handy for local testing and examples. For long-lived automation, prefer a
-fully pinned tag.
+versioned tag and pin its digest when exact reproduction matters.
 
 ## Base operating systems
 
