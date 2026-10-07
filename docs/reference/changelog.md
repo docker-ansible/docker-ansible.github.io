@@ -8,7 +8,7 @@ at the current source tag or formal release of each.
 
 | Project | Current tag/release | What it is | Release notes |
 | --- | --- | --- | --- |
-| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.9` source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9); formal release `v6.4.2` | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) · [Releases](https://github.com/willhallonline/docker-ansible/releases) |
+| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.10` source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.10); formal release `v6.4.2` | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.10) · [Releases](https://github.com/willhallonline/docker-ansible/releases) |
 | [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
 | [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Systemd image builds and `ansible-playbook --version` smoke tests | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
 | [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.0** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
@@ -24,7 +24,7 @@ at the current source tag or formal release of each.
 The canonical changelog is maintained in the upstream repository:
 [CHANGELOG.md](https://github.com/willhallonline/docker-ansible/blob/main/CHANGELOG.md)
 
-Recent highlights (v6.4.3–v6.4.9 and subsequent `main` updates):
+Recent highlights (v6.4.3–v6.4.10):
 
 - added Alpine 3.23 and 3.24 support;
 - kept the active matrix on Alpine 3.21 through 3.24;
