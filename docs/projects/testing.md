@@ -7,11 +7,11 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-09-24, is:
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-10-06, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
-| Docker Ansible | [`32ea13589e1b3ad7cbcf03f3966cf2cbb91fd3e6`](https://github.com/willhallonline/docker-ansible/commit/32ea13589e1b3ad7cbcf03f3966cf2cbb91fd3e6) | `v6.4.9` source tag; formal release `v6.4.2` |
+| Docker Ansible | [`d4640b92cc34abfa2444ef9aa1c01769a0f0c5bc`](https://github.com/willhallonline/docker-ansible/commit/d4640b92cc34abfa2444ef9aa1c01769a0f0c5bc) | `v6.4.10` source tag; formal release `v6.4.2` |
 | Docker Ansible Test | [`78a7a87575d94c2f42c30b3eefc76667cb9be19b`](https://github.com/willhallonline/docker-ansible-test/commit/78a7a87575d94c2f42c30b3eefc76667cb9be19b) | `v2.7.4` |
 | Docker Ansible GitHub Action | [`fb244e71e224dba83fa95631cfafb42f038ba191`](https://github.com/willhallonline/docker-ansible-github-action/commit/fb244e71e224dba83fa95631cfafb42f038ba191) | `v1.1.0` |
 | Docker Ansible GitHub Action Test | [`cd0eae4810fec5692d33df6e7c9c9bff35f972ec`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/cd0eae4810fec5692d33df6e7c9c9bff35f972ec) | `v1.1.0` |
@@ -207,7 +207,7 @@ docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:late
 For CI and production, smoke-test the same tag you plan to use:
 
 ```bash
-docker run --rm willhallonline/ansible:2.21.4-alpine-3.24 ansible --version
+docker run --rm willhallonline/ansible:2.21.5-alpine-3.24 ansible --version
 ```
 
 Replace the tag with the Ansible-version and base-OS combination you selected.
@@ -219,7 +219,7 @@ small derived image or a controlled CI step rather than mutating a long-lived
 container manually.
 
 ```Dockerfile
-FROM willhallonline/ansible:2.21.4-debian-trixie
+FROM willhallonline/ansible:2.21.5-debian-trixie
 USER root
 RUN uv pip install --system --break-system-packages --no-cache example-package
 USER ansible

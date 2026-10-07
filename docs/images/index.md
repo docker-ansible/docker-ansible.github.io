@@ -117,9 +117,9 @@ The supported image matrix currently covers these Ansible core versions:
 | Minor | Current core version |
 | --- | --- |
 | 2.18 | 2.18.19 |
-| 2.19 | 2.19.13 |
-| 2.20 | 2.20.9 |
-| 2.21 | 2.21.4 |
+| 2.19 | 2.19.14 |
+| 2.20 | 2.20.10 |
+| 2.21 | 2.21.5 |
 
 See the complete [supported tag matrix](tags.md) for the operating systems that
 are available for each stream.
