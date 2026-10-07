@@ -60,9 +60,9 @@ Images are built across several base operating systems and Ansible versions.
 Current Ansible versions include:
 
 - `2.18.19`
-- `2.19.13`
-- `2.20.9`
-- `2.21.4`
+- `2.19.14`
+- `2.20.10`
+- `2.21.5`
 
 !!! tip "Pin your runtime"
     Use an explicit Ansible-version and base-OS tag for repeatable automation.

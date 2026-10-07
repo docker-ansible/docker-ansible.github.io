@@ -156,7 +156,7 @@ Options:
 Example derived image pattern:
 
 ```Dockerfile
-FROM willhallonline/ansible:2.21.4-alpine-3.24
+FROM willhallonline/ansible:2.21.5-alpine-3.24
 USER root
 RUN apk add --no-cache build-base python3-dev
 RUN uv pip install --system --break-system-packages --no-cache example-package
