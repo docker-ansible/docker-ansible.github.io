@@ -8,6 +8,17 @@ exception and verify that the exact tag is still available before using it.
     These streams no longer receive normal updates. Use them at your own risk
     and migrate to a supported Ansible stream as soon as practical.
 
+## Current supported streams
+
+The active image matrix is separate from the historical definitions below:
+
+| Stream | Current patch |
+| --- | --- |
+| Ansible 2.18 | 2.18.19 |
+| Ansible 2.19 | 2.19.14 |
+| Ansible 2.20 | 2.20.10 |
+| Ansible 2.21 | 2.21.5 |
+
 ## Inactive Ansible streams
 
 | Stream | Status | Notes |
@@ -22,9 +33,25 @@ exception and verify that the exact tag is still available before using it.
 | Ansible 2.16 | Outside active matrix | Final 2.16 release was 2.16.19 |
 | Ansible 2.17 | Outside active matrix | Final 2.17 release was 2.17.14 |
 
-Some historical tags remain visible in the container registry, but they no
-longer receive active matrix builds or maintenance. Check the upstream
-repository and container registry for the exact reference you need.
+## Archived image definitions
+
+The upstream repository keeps historical Dockerfiles under the versioned
+`archive/ansible-core/` directory. These are the archive paths that exist in
+the `v6.4.10` source tree:
+
+| Historical base | Archive path |
+| --- | --- |
+| Alpine 3.18 | [`archive/ansible-core/alpine-3.18`](https://github.com/willhallonline/docker-ansible/tree/v6.4.10/archive/ansible-core/alpine-3.18) |
+| Alpine 3.19 | [`archive/ansible-core/alpine-3.19`](https://github.com/willhallonline/docker-ansible/tree/v6.4.10/archive/ansible-core/alpine-3.19) |
+| Debian Bullseye | [`archive/ansible-core/debian-bullseye`](https://github.com/willhallonline/docker-ansible/tree/v6.4.10/archive/ansible-core/debian-bullseye) |
+| Debian Bullseye Slim | [`archive/ansible-core/debian-bullseye-slim`](https://github.com/willhallonline/docker-ansible/tree/v6.4.10/archive/ansible-core/debian-bullseye-slim) |
+| Rocky Linux 9 | [`archive/ansible-core/rockylinux-9`](https://github.com/willhallonline/docker-ansible/tree/v6.4.10/archive/ansible-core/rockylinux-9) |
+| Ubuntu 20.04 | [`archive/ansible-core/ubuntu-20.04`](https://github.com/willhallonline/docker-ansible/tree/v6.4.10/archive/ansible-core/ubuntu-20.04) |
+
+Alpine 3.20 was removed from the supported builds and does not have an
+`archive/ansible-core/alpine-3.20` directory in this source tree. Historical
+registry tags may still be visible, but they are not active builds or supported
+archive definitions. Verify any exact tag in Docker Hub before using it.
 
 ## Why older images are risky
 

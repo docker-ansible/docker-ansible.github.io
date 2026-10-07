@@ -8,7 +8,7 @@ Moving tags use the core stream and operating system:
 ```
 
 For example, `2.21-alpine-3.24` means Ansible core 2.21 on Alpine Linux 3.24.
-Full patch tags such as `2.21.4-alpine-3.24` are also published when you need
+Full patch tags such as `2.21.5-alpine-3.24` are also published when you need
 the exact core patch release.
 
 !!! tip "Use this table for automation"
@@ -20,9 +20,9 @@ the exact core patch release.
 
 | Ansible minor | Current ansible-core version |
 | --- | --- |
-| 2.21 | 2.21.4 |
-| 2.20 | 2.20.9 |
-| 2.19 | 2.19.13 |
+| 2.21 | 2.21.5 |
+| 2.20 | 2.20.10 |
+| 2.19 | 2.19.14 |
 | 2.18 | 2.18.19 |
 
 ## Convenience tags
