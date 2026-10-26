@@ -7,12 +7,12 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-10-06, is:
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-10-26, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
 | Docker Ansible | [`d4640b92cc34abfa2444ef9aa1c01769a0f0c5bc`](https://github.com/willhallonline/docker-ansible/commit/d4640b92cc34abfa2444ef9aa1c01769a0f0c5bc) | `v6.4.10` source tag; formal release `v6.4.2` |
-| Docker Ansible Test | [`78a7a87575d94c2f42c30b3eefc76667cb9be19b`](https://github.com/willhallonline/docker-ansible-test/commit/78a7a87575d94c2f42c30b3eefc76667cb9be19b) | `v2.7.4` |
+| Docker Ansible Test | [`2c8f289ef8f59e79b58473a405b89850b6c3f2b4`](https://github.com/willhallonline/docker-ansible-test/commit/2c8f289ef8f59e79b58473a405b89850b6c3f2b4) | `v2.7.4` |
 | Docker Ansible GitHub Action | [`fb244e71e224dba83fa95631cfafb42f038ba191`](https://github.com/willhallonline/docker-ansible-github-action/commit/fb244e71e224dba83fa95631cfafb42f038ba191) | `v1.1.0` |
 | Docker Ansible GitHub Action Test | [`cd0eae4810fec5692d33df6e7c9c9bff35f972ec`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/cd0eae4810fec5692d33df6e7c9c9bff35f972ec) | `v1.1.0` |
 
@@ -101,8 +101,8 @@ The seven AMD64-only entries are the `ubuntu` alias and the
 `v1.1.0` test-repository tag predates the current fact-key fix; the current main
 commit
 `cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed all 61 jobs in [workflow run
-#37318397873](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/37318397873)
-on 2026-10-05. The workflow also runs on pushes to `main`, pull requests, and
+#39249956816](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/39249956816)
+on 2026-10-19. The workflow also runs on pushes to `main`, pull requests, and
 manual dispatch; scheduled runs start Monday at 06:00 UTC with up to 20
 parallel jobs and fail-fast disabled.
 
