@@ -212,7 +212,7 @@ Document those commands in your project README so contributors do not need local
 ```yaml
 services:
   ansible:
-    image: registry.example.com/platform/ansible:2.21.4-20260714
+    image: registry.example.com/platform/ansible:2.21.5-20260714
     working_dir: /ansible
     volumes:
       - .:/ansible

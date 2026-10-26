@@ -45,7 +45,7 @@ from any added dependencies.
 Example:
 
 ```Dockerfile
-FROM willhallonline/ansible:2.21.4-debian-trixie
+FROM willhallonline/ansible:2.21.5-debian-trixie
 COPY requirements.txt /requirements.txt
 USER root
 RUN uv pip install --system --break-system-packages --no-cache -r /requirements.txt
