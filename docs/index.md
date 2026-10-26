@@ -19,7 +19,7 @@ Docker is available.
 
     | Project | Tag | Current image/default |
     | --- | --- | --- |
-    | Docker Ansible | [`v6.4.9`](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) source tag; `main` [`d4640b9`](https://github.com/willhallonline/docker-ansible/commit/d4640b92cc34abfa2444ef9aa1c01769a0f0c5bc) (2026-10-06) | `2.21-alpine-3.24` (`latest`/`alpine`) |
+    | Docker Ansible | [`v6.4.10`](https://github.com/willhallonline/docker-ansible/tree/v6.4.10) source tag; `main` [`d4640b9`](https://github.com/willhallonline/docker-ansible/commit/d4640b92cc34abfa2444ef9aa1c01769a0f0c5bc) (2026-10-06) | `2.21-alpine-3.24` (`latest`/`alpine`) |
     | Docker Ansible GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) | Uses the non-root `ansible` image user |
     | Docker Ansible Test | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) | Tracks the current image matrix |
     | Docker Ansible GitHub Action Test | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) | Tests the GitHub Action |
@@ -27,7 +27,7 @@ Docker is available.
     See the [ecosystem changelog](reference/changelog.md) for release notes and
     links.
 
-    `docker-ansible` `v6.4.9` is the current source tag on `main`; its latest
+    `docker-ansible` `v6.4.10` is the current source tag on `main`; its latest
     formal GitHub Release is `v6.4.2`. The source tag tracks the current image
     matrix, while the formal release page records published release metadata.
 
