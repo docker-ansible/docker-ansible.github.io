@@ -57,11 +57,40 @@ The sole output is `exit-code`, the exit code returned by `ansible-playbook`.
 The action requires a runner with Docker. Workflows should grant only
 `contents: read` when using `actions/checkout`.
 
+For a localhost-only playbook, use a no-SSH inventory and the local connection:
+
+```ini
+[local]
+localhost ansible_connection=local
+```
+
+```yaml
+- name: Local CI smoke test
+  hosts: local
+  gather_facts: false
+  tasks:
+    - ansible.builtin.debug:
+        msg: "Ansible is running in the action container"
+```
+
+Invoke it without `private-key`, `known-hosts`, or other SSH inputs:
+
+```yaml
+- uses: willhallonline/docker-ansible-github-action@v1.1.0
+  with:
+    playbook: playbooks/smoke.yml
+    inventory: inventory/localhost.ini
+    image-tag: 2.21-alpine-3.24
+```
+
 The latest published action release is `v1.1.0`; the repository also has
-`v1.0.0`. The public README's `@v1` example is not a separately published
-repository tag. Pin workflows to `@v1.1.0` (or a commit SHA) for the released
-behaviour. The default branch is ahead of that release and contains unreleased
-retry changes, so do not use `@main` when a stable action contract is required.
+`v1.0.0`. The upstream README currently shows `@v1`, but no `v1` branch or
+tag is published in the repository, so use `@v1.1.0` (or a commit SHA) for a
+resolvable stable reference. The default branch is ahead of that release and
+contains unreleased retry changes, so do not use `@main` when a stable action
+contract is required. On the current default branch, a failed `docker pull` is
+retried up to three total attempts with a five-second delay between attempts;
+the action fails after the final attempt.
 
 ## When to use the action
 

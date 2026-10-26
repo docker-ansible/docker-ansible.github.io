@@ -22,9 +22,9 @@ The current supported Ansible core streams are:
 
 | Minor | Current core version |
 | --- | --- |
-| 2.21 | 2.21.4 |
-| 2.20 | 2.20.9 |
-| 2.19 | 2.19.13 |
+| 2.21 | 2.21.5 |
+| 2.20 | 2.20.10 |
+| 2.19 | 2.19.14 |
 | 2.18 | 2.18.19 |
 
 See [supported tags](tags.md) for which operating systems are available for each
@@ -39,9 +39,9 @@ Python versions required by the pinned Ansible core releases are:
 | Ansible core | Minimum Python |
 | --- | --- |
 | 2.18.19 | 3.11 |
-| 2.19.13 | 3.11 |
-| 2.20.9 | 3.12 |
-| 2.21.4 | 3.12 |
+| 2.19.14 | 3.11 |
+| 2.20.10 | 3.12 |
+| 2.21.5 | 3.12 |
 
 These are package compatibility minimums, not a promise that every image uses
 the same Python minor version. Check `python --version` in the selected tag when
@@ -165,9 +165,10 @@ Supported images are rebuilt regularly. Dependency updates are managed through
 Renovate, which helps keep base images and packaged dependencies current.
 
 !!! warning "Rebuilds can update dependencies"
-    Moving tags can receive dependency updates over time. Use fully pinned tags
-    from [Docker Hub](https://hub.docker.com/r/willhallonline/ansible/tags) when
-    exact image reproduction is required.
+    Moving and versioned tags can receive dependency updates during scheduled
+    rebuilds. Use a tag from
+    [Docker Hub](https://hub.docker.com/r/willhallonline/ansible/tags) together
+    with its image digest when exact image reproduction is required.
 
 ## Security considerations
 

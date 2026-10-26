@@ -195,9 +195,9 @@ directly to the [tag reference](../images/tags.md).
 Current Ansible core versions in the containers are:
 
 - 2.18.19
-- 2.19.13
-- 2.20.9
-- 2.21.4
+- 2.19.14
+- 2.20.10
+- 2.21.5
 
 Ansible core streams 2.9 through 2.17 are outside the active matrix and
 unmaintained. Prefer a current stream for new automation.
