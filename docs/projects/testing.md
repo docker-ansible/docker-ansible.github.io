@@ -7,7 +7,7 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-10-26, is:
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-11-05, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
@@ -101,8 +101,8 @@ The seven AMD64-only entries are the `ubuntu` alias and the
 `v1.1.0` test-repository tag predates the current fact-key fix; the current main
 commit
 `cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed all 61 jobs in [workflow run
-#39249956816](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/39249956816)
-on 2026-10-19. The workflow also runs on pushes to `main`, pull requests, and
+#41465384861](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/41465384861)
+on 2026-11-02. The workflow also runs on pushes to `main`, pull requests, and
 manual dispatch; scheduled runs start Monday at 06:00 UTC with up to 20
 parallel jobs and fail-fast disabled.
 

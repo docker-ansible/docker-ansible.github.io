@@ -36,8 +36,8 @@ The active image matrix is separate from the historical definitions below:
 ## Archived image definitions
 
 The upstream repository keeps historical Dockerfiles under the versioned
-`archive/ansible-core/` directory. These are the archive paths that exist in
-the `v6.4.10` source tree:
+`archive/ansible-core/` directory. The `v6.4.10` source tree includes, among
+others, these archive paths:
 
 | Historical base | Archive path |
 | --- | --- |

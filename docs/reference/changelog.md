@@ -36,9 +36,8 @@ Recent highlights (v6.4.3–v6.4.10):
 - updated Ansible core to 2.18.19, 2.19.14, 2.20.10, and 2.21.5;
 - builds generally target Linux AMD64 and ARM64, with tag-specific exceptions.
 
-The current default branch has refreshed the patch versions beyond the
-`v6.4.9` source tag; the source tag and formal release labels above remain
-unchanged.
+The current default branch and `v6.4.10` source tag contain these refreshed
+patch versions; the formal release label above remains unchanged.
 
 The current Ansible core lines shipped in the images are 2.18 through 2.21 —
 see [supported tags](../images/tags.md) for the full matrix.
