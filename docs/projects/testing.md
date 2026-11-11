@@ -7,12 +7,12 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-09-24, is:
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-11-11, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
-| Docker Ansible | [`32ea13589e1b3ad7cbcf03f3966cf2cbb91fd3e6`](https://github.com/willhallonline/docker-ansible/commit/32ea13589e1b3ad7cbcf03f3966cf2cbb91fd3e6) | `v6.4.9` source tag; formal release `v6.4.2` |
-| Docker Ansible Test | [`78a7a87575d94c2f42c30b3eefc76667cb9be19b`](https://github.com/willhallonline/docker-ansible-test/commit/78a7a87575d94c2f42c30b3eefc76667cb9be19b) | `v2.7.4` |
+| Docker Ansible | [`9ad5e39d7b587f17b6b81c541a6a8305697ddd18`](https://github.com/willhallonline/docker-ansible/commit/9ad5e39d7b587f17b6b81c541a6a8305697ddd18) | `v6.4.12` source tag; formal release `v6.4.11` |
+| Docker Ansible Test | [`2c8f289ef8f59e79b58473a405b89850b6c3f2b4`](https://github.com/willhallonline/docker-ansible-test/commit/2c8f289ef8f59e79b58473a405b89850b6c3f2b4) | `v2.7.4` |
 | Docker Ansible GitHub Action | [`fb244e71e224dba83fa95631cfafb42f038ba191`](https://github.com/willhallonline/docker-ansible-github-action/commit/fb244e71e224dba83fa95631cfafb42f038ba191) | `v1.1.0` |
 | Docker Ansible GitHub Action Test | [`cd0eae4810fec5692d33df6e7c9c9bff35f972ec`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/cd0eae4810fec5692d33df6e7c9c9bff35f972ec) | `v1.1.0` |
 
@@ -84,15 +84,19 @@ aliases (`latest`, `alpine`, and `ubuntu`) plus 58 versioned tags. This is
 broader compatibility coverage, including retained 2.16/2.17 and Ubuntu 22.04
 tags, rather than the active core image support matrix. Each job pins
 `willhallonline/docker-ansible-github-action@v1.1.0`, runs a localhost playbook
-smoke test, and asserts the `exit-code` output is zero. The playbook validates
-Ansible/system facts, the non-root `ansible` UID/GID 1000, and a ping. It does
-not exercise SSH, Vault, Galaxy, extra-vars, working-directory,
+smoke test, and asserts the `exit-code` output is zero. The workflow runs weekly
+on Monday at 06:00 UTC with up to 20 matrix jobs in parallel. The playbook
+validates Ansible/system facts, the non-root `ansible` UID/GID 1000, and a ping.
+It does not exercise SSH, Vault, Galaxy, extra-vars, working-directory,
 host-key-checking, linting, failure paths, or architecture variants. The
 `v1.1.0` test-repository tag predates the current fact-key fix; the current main
 commit
 `cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed the full matrix in [workflow
-run #35597209424](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/35597209424)
-on 2026-09-21.
+run #42642398513](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/42642398513)
+on 2026-11-09. The image-test workflow also passed on the current
+`docker-ansible-test` commit in [run
+#42589990803](https://github.com/willhallonline/docker-ansible-test/actions/runs/42589990803)
+on 2026-11-09.
 
 ## Use the systemd test images
 
@@ -207,7 +211,7 @@ docker run --rm   -v "$PWD:/ansible"   -w /ansible   willhallonline/ansible:late
 For CI and production, smoke-test the same tag you plan to use:
 
 ```bash
-docker run --rm willhallonline/ansible:2.21.4-alpine-3.24 ansible --version
+docker run --rm willhallonline/ansible:2.21.6-alpine-3.24 ansible --version
 ```
 
 Replace the tag with the Ansible-version and base-OS combination you selected.
@@ -219,7 +223,7 @@ small derived image or a controlled CI step rather than mutating a long-lived
 container manually.
 
 ```Dockerfile
-FROM willhallonline/ansible:2.21.4-debian-trixie
+FROM willhallonline/ansible:2.21.6-debian-trixie
 USER root
 RUN uv pip install --system --break-system-packages --no-cache example-package
 USER ansible

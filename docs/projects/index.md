@@ -15,7 +15,7 @@ provide a GitHub Action wrapper, test repositories, and reusable test utilities.
 
 | Project | Current tag |
 | --- | --- |
-| Docker Ansible | [`v6.4.9` source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.9); formal release `v6.4.2` |
+| Docker Ansible | [`v6.4.12` source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.12); formal release `v6.4.11` |
 | Docker Ansible GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) |
 | Docker Ansible Test | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) |
 | Docker Ansible GitHub Action Test | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
@@ -57,12 +57,15 @@ willhallonline/ansible
 ```
 
 Images are built across several base operating systems and Ansible versions.
-Current Ansible versions include:
+Current Ansible Core patch versions include:
 
-- `2.18.19`
-- `2.19.13`
-- `2.20.9`
-- `2.21.4`
+- `2.18.20`
+- `2.19.15`
+- `2.20.11`
+- `2.21.6`
+
+The action-test repository also retains older 2.16/2.17 tags for compatibility
+coverage; those are not part of the active core image build matrix.
 
 !!! tip "Pin your runtime"
     Use an explicit Ansible-version and base-OS tag for repeatable automation.

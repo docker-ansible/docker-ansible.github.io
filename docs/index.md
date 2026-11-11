@@ -19,7 +19,7 @@ Docker is available.
 
     | Project | Tag | Current image/default |
     | --- | --- | --- |
-    | Docker Ansible | [`v6.4.9`](https://github.com/willhallonline/docker-ansible/tree/v6.4.9) (`32ea135`, 2026-09-13) | `2.21-alpine-3.24` (`latest`/`alpine`) |
+    | Docker Ansible | [`v6.4.12`](https://github.com/willhallonline/docker-ansible/tree/v6.4.12) (`9ad5e39`, 2026-11-10) | `2.21-alpine-3.24` (`latest`/`alpine`) |
     | Docker Ansible GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) | Uses the non-root `ansible` image user |
     | Docker Ansible Test | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) | Tracks the current image matrix |
     | Docker Ansible GitHub Action Test | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) | Tests the GitHub Action |
@@ -27,9 +27,11 @@ Docker is available.
     See the [ecosystem changelog](reference/changelog.md) for release notes and
     links.
 
-    `docker-ansible` `v6.4.9` is the current source tag on `main`; its latest
-    formal GitHub Release is `v6.4.2`. The source tag tracks the current image
+    `docker-ansible` `v6.4.12` is the current source tag on `main`; its latest
+    formal GitHub Release is `v6.4.11`. The source tag tracks the current image
     matrix, while the formal release page records published release metadata.
+    The separate action-test repository retains 2.16/2.17 tags for compatibility
+    testing even though the active core image matrix is 2.18 through 2.21.
 
 ## Quick example
 
@@ -166,10 +168,10 @@ Current Ansible core versions available in containers are:
 
 | Ansible core | Status |
 | --- | --- |
-| 2.21.4 | Current container version |
-| 2.20.9 | Current container version |
-| 2.19.13 | Current container version |
-| 2.18.19 | Current container version |
+| 2.21.6 | Current container version |
+| 2.20.11 | Current container version |
+| 2.19.15 | Current container version |
+| 2.18.20 | Current container version |
 
 Ansible core streams **2.9 through 2.17** are outside the active image matrix and
 are unmaintained. Use a current stream unless you have a specific legacy
