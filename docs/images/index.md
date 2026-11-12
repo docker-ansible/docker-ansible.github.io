@@ -120,13 +120,19 @@ The supported image matrix currently covers these Ansible core versions:
 
 | Minor | Current core version |
 | --- | --- |
-| 2.18 | 2.18.19 |
-| 2.19 | 2.19.14 |
-| 2.20 | 2.20.10 |
-| 2.21 | 2.21.5 |
+| 2.18 | 2.18.20 |
+| 2.19 | 2.19.15 |
+| 2.20 | 2.20.11 |
+| 2.21 | 2.21.6 |
 
 See the complete [supported tag matrix](tags.md) for the operating systems that
 are available for each stream.
+
+!!! warning "Ansible Core 2.22 is not yet a supported image stream"
+    The upstream [Ansible Core 2.22 pull request](https://github.com/willhallonline/docker-ansible/pull/194)
+    remains open as a draft and is blocked on a stable Ansible 15 release. Its
+    Ansible 15.0.0rc1 dependency is a release candidate, not a stable release,
+    so 2.22 variants are intentionally absent from this stable image matrix.
 
 ## Base image families
 

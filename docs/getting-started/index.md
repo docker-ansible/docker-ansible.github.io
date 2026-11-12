@@ -135,10 +135,10 @@ Convenience tags are also available:
 
 The current Ansible core versions available in containers are:
 
-- 2.21.5
-- 2.20.10
-- 2.19.14
-- 2.18.19
+- 2.21.6
+- 2.20.11
+- 2.19.15
+- 2.18.20
 
 Ansible core streams 2.9 through 2.17 are outside the active matrix and
 unmaintained. If you have a legacy dependency, verify its image availability and

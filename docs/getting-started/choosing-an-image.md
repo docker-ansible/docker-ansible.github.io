@@ -35,10 +35,10 @@ Current Ansible core versions available in containers are:
 
 | Ansible core | Use when |
 | --- | --- |
-| 2.21.5 | You want the newest current container version documented here |
-| 2.20.10 | You need the 2.20 feature line |
-| 2.19.14 | You need the 2.19 feature line |
-| 2.18.19 | You need the 2.18 feature line |
+| 2.21.6 | You want the newest current container version documented here |
+| 2.20.11 | You need the 2.20 feature line |
+| 2.19.15 | You need the 2.19 feature line |
+| 2.18.20 | You need the 2.18 feature line |
 
 Ansible core streams **2.9 through 2.17** are outside the active matrix and
 unmaintained. Verify legacy image availability before using them.
