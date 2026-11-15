@@ -7,7 +7,7 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-11-12, is:
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-11-15, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
@@ -62,6 +62,8 @@ and
 [`ghcr.io/willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test/pkgs/container/docker-ansible-test);
 pull requests build without publishing. The workflow runs once weekly on
 Monday at 02:00 UTC, and also supports pushes to `main` and manual dispatch.
+The latest successful scheduled matrix run was [#42589990803](https://github.com/willhallonline/docker-ansible-test/actions/runs/42589990803)
+on 2026-11-09 at the `2c8f289ef8f59e79b58473a405b89850b6c3f2b4` commit.
 
 After a published image is built, CI runs the exact GHCR image by its immutable
 build digest with cgroup support, `/run` and `/run/lock` tmpfs mounts, and
@@ -101,8 +103,8 @@ The seven AMD64-only entries are the `ubuntu` alias and the
 `v1.1.0` test-repository tag predates the current fact-key fix; the current main
 commit
 `cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed all 61 jobs in [workflow run
-#41465384861](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/41465384861)
-on 2026-11-02. The workflow also runs on pushes to `main`, pull requests, and
+#42642398513](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/42642398513)
+on 2026-11-09. The workflow also runs on pushes to `main`, pull requests, and
 manual dispatch; scheduled runs start Monday at 06:00 UTC with up to 20
 parallel jobs and fail-fast disabled.
 
