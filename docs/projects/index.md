@@ -57,12 +57,15 @@ willhallonline/ansible
 ```
 
 Images are built across several base operating systems and Ansible versions.
-Current Ansible versions include:
+Current Ansible Core patch versions include:
 
 - `2.18.20`
 - `2.19.15`
 - `2.20.11`
 - `2.21.6`
+
+The action-test repository also retains older 2.16/2.17 tags for compatibility
+coverage; those are not part of the active core image build matrix.
 
 !!! tip "Pin your runtime"
     Use an explicit Ansible-version and base-OS tag for repeatable automation.

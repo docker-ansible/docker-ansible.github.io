@@ -68,8 +68,9 @@ Current versions published by the project include:
 
 !!! warning "Older does not mean maintained"
     Ansible core streams 2.9 through 2.17 are outside the active matrix and
-    unmaintained. Do not assume that historical definitions or tags are
-    published; verify any legacy dependency against the upstream registry.
+    unmaintained for current core image builds. The separate action-test matrix
+    retains selected 2.16/2.17 tags for compatibility coverage; do not treat
+    those test tags as active core support.
 
 ## Repository layout
 

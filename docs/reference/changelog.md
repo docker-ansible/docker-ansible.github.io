@@ -41,7 +41,9 @@ The current default branch and `v6.4.12` source tag contain these refreshed
 patch versions; the latest formal release is `v6.4.11`.
 
 The current Ansible core lines shipped in the images are 2.18 through 2.21 —
-see [supported tags](../images/tags.md) for the full matrix.
+see [supported tags](../images/tags.md) for the full matrix. The action-test
+repository retains 2.16/2.17 tags for compatibility testing and is not the
+active core image support matrix.
 
 ### Docker Ansible GitHub Action
 
@@ -128,9 +130,10 @@ Regular rebuilds are useful because they can pick up:
 
 ## Legacy policy
 
-Ansible core streams 2.9 through 2.17 are outside the active matrix and
-unmaintained. Historical definitions or tags may not be published; verify any
-legacy reference in the upstream repository and registry.
+Ansible core streams 2.9 through 2.17 are outside the active core image matrix
+and unmaintained. The action-test project may retain selected 2.16/2.17 tags
+for compatibility coverage; verify any legacy reference in the upstream
+repository and registry.
 
 ## How to evaluate an upgrade
 

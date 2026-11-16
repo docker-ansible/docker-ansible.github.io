@@ -30,6 +30,8 @@ Docker is available.
     `docker-ansible` `v6.4.12` is the current source tag on `main`; its latest
     formal GitHub Release is `v6.4.11`. The source tag tracks the current image
     matrix, while the formal release page records published release metadata.
+    The separate action-test repository retains 2.16/2.17 tags for compatibility
+    testing even though the active core image matrix is 2.18 through 2.21.
 
 ## Quick example
 
