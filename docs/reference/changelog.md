@@ -4,6 +4,16 @@ This page tracks changes **across the Docker Ansible ecosystem** — the core
 container images, the GitHub Action, and the testing projects — and points you
 at the current source tag or formal release of each.
 
+## Documentation site releases
+
+### v1.1.0 - 2026-11-16
+
+- Refreshed image patch versions, core release metadata, and current project/test
+  snapshots against the upstream repositories.
+- Clarified active core support versus legacy tags retained by the action-test
+  compatibility matrix.
+- Updated runnable examples and linked current successful test workflow runs.
+
 ## Current tags and releases at a glance
 
 | Project | Current tag/release | What it is | Release notes |
