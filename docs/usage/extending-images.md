@@ -237,8 +237,8 @@ Use this pattern when build tools are needed only temporarily.
 ## Pin and push
 
 ```bash
-docker build -t registry.example.com/platform/ansible:2.21.6-20261111 .
-docker push registry.example.com/platform/ansible:2.21.6-20261111
+docker build -t registry.example.com/platform/ansible:2.21.6-20261110 .
+docker push registry.example.com/platform/ansible:2.21.6-20261110
 ```
 
 Use the pushed image in Compose or CI:
@@ -246,7 +246,7 @@ Use the pushed image in Compose or CI:
 ```yaml
 services:
   ansible:
-    image: registry.example.com/platform/ansible:2.21.6-20261111
+    image: registry.example.com/platform/ansible:2.21.6-20261110
     working_dir: /ansible
     volumes:
       - .:/ansible

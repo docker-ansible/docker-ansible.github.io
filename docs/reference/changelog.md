@@ -10,7 +10,7 @@ at the current source tag or formal release of each.
 | --- | --- | --- | --- |
 | [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.12` source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.12); formal release `v6.4.11` | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.12) · [Releases](https://github.com/willhallonline/docker-ansible/releases) |
 | [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
-| [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Test playbooks exercising the images | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
+| [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Systemd image builds and `ansible-playbook --version` smoke tests | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
 | [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.0** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
 
 !!! tip "Checking for newer releases"
@@ -32,10 +32,13 @@ Recent highlights (v6.4.3–v6.4.12):
 - switched dependency installation from `pip`/`pipx` to `uv`;
 - added the non-root `ansible` user and updated the SSH home to
   `/home/ansible/.ssh`;
-- removed end-of-life Ansible core 2.16 and 2.17 from active core image builds;
-- refreshed Ansible core to 2.18.20, 2.19.15, 2.20.11, and 2.21.6;
+- removed end-of-life Ansible core 2.16 and 2.17 from active image builds;
 - added the Image Matrix Maintainer and Build Failure Triager Copilot agents;
+- updated Ansible core to 2.18.20, 2.19.15, 2.20.11, and 2.21.6;
 - builds generally target Linux AMD64 and ARM64, with tag-specific exceptions.
+
+The current default branch and `v6.4.12` source tag contain these refreshed
+patch versions; the latest formal release is `v6.4.11`.
 
 The current Ansible core lines shipped in the images are 2.18 through 2.21 —
 see [supported tags](../images/tags.md) for the full matrix. The action-test
@@ -56,8 +59,8 @@ changes after this tag; pin `@v1.1.0` or a commit SHA for a stable workflow.
 
 ### Docker Ansible Test and Docker Ansible GitHub Action Test
 
-- **Docker Ansible Test** (latest tag **v2.7.4**) — playbooks and scenarios
-  used to exercise the images themselves.
+- **Docker Ansible Test** (latest tag **v2.7.4**) — systemd image builds and
+  `ansible-playbook --version` smoke tests for the images themselves.
 - **Docker Ansible GitHub Action Test** (integration-test **v1.1.0**) —
   a 61-tag compatibility matrix (three aliases plus 58 versioned tags) with
   localhost/non-root/exit-code smoke coverage for the GitHub Action. It retains

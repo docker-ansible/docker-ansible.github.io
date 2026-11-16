@@ -19,7 +19,7 @@ Docker is available.
 
     | Project | Tag | Current image/default |
     | --- | --- | --- |
-    | Docker Ansible | [`v6.4.12`](https://github.com/willhallonline/docker-ansible/tree/v6.4.12) (`9ad5e39`, 2026-11-10) | `2.21-alpine-3.24` (`latest`/`alpine`) |
+    | Docker Ansible | [`v6.4.12`](https://github.com/willhallonline/docker-ansible/tree/v6.4.12) (`9ad5e3`, 2026-11-10) | `2.21-alpine-3.24` (`latest`/`alpine`) |
     | Docker Ansible GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) | Uses the non-root `ansible` image user |
     | Docker Ansible Test | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) | Tracks the current image matrix |
     | Docker Ansible GitHub Action Test | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) | Tests the GitHub Action |
@@ -192,7 +192,7 @@ The repository also publishes convenience tags for common defaults:
 | `ubuntu` | Ansible 2.21 on Ubuntu 24.04 |
 
 These are handy for local testing and examples. For long-lived automation, prefer a
-fully pinned tag.
+versioned tag and pin its digest when exact reproduction matters.
 
 ## Base operating systems
 
