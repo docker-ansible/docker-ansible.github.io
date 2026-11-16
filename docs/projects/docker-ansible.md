@@ -10,8 +10,8 @@ that local development and CI jobs can use the same packaged toolchain.
 !!! note "Short description"
     Ansible inside Docker containers: Alpine, Ubuntu, Rocky Linux, and Debian
     with active Ansible core streams 2.18 through 2.21. The current upstream
-    source tag is `v6.4.9` (commit `32ea135`, 2026-09-13). The latest formal
-    GitHub Release is `v6.4.2`.
+    source tag is `v6.4.12` (commit `9ad5e3`, 2026-11-10). The latest formal
+    GitHub Release is `v6.4.11`.
 
 ## Links
 
@@ -53,10 +53,18 @@ Current versions published by the project include:
 
 | Ansible version | Notes |
 | --- | --- |
-| `2.21.4` | Current newer Ansible release line. |
-| `2.20.9` | Current stable Ansible release line. |
-| `2.19.13` | Supported recent release line. |
-| `2.18.19` | Supported release line. |
+| `2.21.6` | Current newer Ansible release line. |
+| `2.20.11` | Current stable Ansible release line. |
+| `2.19.15` | Supported recent release line. |
+| `2.18.20` | Supported release line. |
+
+!!! warning "Ansible Core 2.22 is not yet supported"
+    Upstream pull request [#194](https://github.com/willhallonline/docker-ansible/pull/194)
+    is still open as a draft. It proposes Ansible Core 2.22 image variants and
+    currently uses Ansible 15.0.0rc1, which is a release candidate rather than
+    a stable release. Until that work is merged and released, 2.22 is excluded
+    from the supported matrix and should not be treated as a supported image
+    tag.
 
 !!! warning "Older does not mean maintained"
     Ansible core streams 2.9 through 2.17 are outside the active matrix and
@@ -80,7 +88,7 @@ The repository is organised around image definitions and support files.
 | `ansible-core/ubuntu-26.04` | Ubuntu 26.04 image variant. |
 | `testing-utils/` | Helpers used by testing workflows. |
 | `.github/` | GitHub workflows and automation. |
-| `.gitlab-ci.yml` | GitLab CI configuration. |
+| `.gitlab-ci.yml` | Retired GitLab CI entry point; archived configuration. |
 | `renovate.json` | Renovate dependency update configuration. |
 | `CHANGELOG.md` | Upstream change history. |
 | `CONTRIBUTING.md` | Contribution guidance. |
@@ -119,8 +127,9 @@ installation.
 Tags are generated from the core version and operating system, for example
 `2.21-alpine-3.24` or `2.21-debian-trixie`; full core patch tags are also
 published. Current builds generally target `linux/amd64` and `linux/arm64`,
-but all current Ubuntu 24.04 tags are AMD64-only because of the upstream base
-manifest. There are no ARMv7/32-bit ARM builds.
+but all current Ubuntu 24.04 tags are AMD64-only because the upstream workflow
+forces AMD64 for build stability and to avoid builds taking more than 1.5 hours.
+There are no ARMv7/32-bit ARM builds.
 
 ## Basic usage
 

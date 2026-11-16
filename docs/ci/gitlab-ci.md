@@ -2,8 +2,11 @@
 
 GitLab CI can run Ansible directly inside the `willhallonline/ansible` image by setting `image:` at the job level. This keeps runners lightweight and makes Ansible upgrades explicit in `.gitlab-ci.yml`.
 
-!!! note "Upstream example"
-    The upstream `docker-ansible` repository itself has a `.gitlab-ci.yml`, so GitLab users can follow the same container-first approach.
+!!! note "Retired upstream configuration"
+    The upstream `docker-ansible` repository's `.gitlab-ci.yml` is retired and
+    points to an archived configuration. The pipeline below is a generic
+    container-first example for GitLab users, not a description of the
+    project's current CI.
 
 ## Prerequisites
 
