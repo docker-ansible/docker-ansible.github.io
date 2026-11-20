@@ -16,9 +16,9 @@ provide a GitHub Action wrapper, test repositories, and reusable test utilities.
 | Project | Current tag |
 | --- | --- |
 | Docker Ansible | [`v6.5.0`](https://github.com/willhallonline/docker-ansible/releases/tag/v6.5.0) |
-| Docker Ansible GitHub Action | [`v1.1.1`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.1) |
+| Docker Ansible GitHub Action | [`v1.1.2`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.2) |
 | Docker Ansible Test | [`v2.7.5`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.5) |
-| Docker Ansible GitHub Action Test | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
+| Docker Ansible GitHub Action Test | [`integration-test v1.1.1`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.1) |
 
 ## Ecosystem map
 

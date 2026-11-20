@@ -20,9 +20,9 @@ Docker is available.
     | Project | Tag | Current image/default |
     | --- | --- | --- |
     | Docker Ansible | [`v6.5.0`](https://github.com/willhallonline/docker-ansible/releases/tag/v6.5.0) (`39da62`, 2026-11-18) | `2.22-alpine-3.24` (`latest`/`alpine`) |
-    | Docker Ansible GitHub Action | [`v1.1.1`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.1) | Uses the non-root `ansible` image user |
+    | Docker Ansible GitHub Action | [`v1.1.2`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.2) | Uses the non-root `ansible` image user |
     | Docker Ansible Test | [`v2.7.5`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.5) | Tracks the current image matrix |
-    | Docker Ansible GitHub Action Test | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) | Tests the GitHub Action |
+    | Docker Ansible GitHub Action Test | [`integration-test v1.1.1`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.1) | Tests the GitHub Action |
 
     See the [ecosystem changelog](reference/changelog.md) for release notes and
     links.

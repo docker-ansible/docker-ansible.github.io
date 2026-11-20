@@ -8,7 +8,7 @@ The action wraps the Docker Ansible image family so workflows can run
 self-hosted runner.
 
 !!! note "Short description"
-    `v1.1.1` is the current release of this project-maintained composite action.
+    `v1.1.2` is the current release of this project-maintained composite action.
     It runs `ansible-playbook` in the non-root `ansible` image user and mounts SSH
     material under `/home/ansible/.ssh`.
 
@@ -35,7 +35,7 @@ Action:
 
 ## Inputs and output
 
-The `v1.1.1` action exposes the following contract:
+The `v1.1.2` action exposes the following contract:
 
 | Input | Required | Default | Description |
 | --- | --- | --- | --- |
@@ -76,17 +76,17 @@ localhost ansible_connection=local
 Invoke it without `private-key`, `known-hosts`, or other SSH inputs:
 
 ```yaml
-- uses: willhallonline/docker-ansible-github-action@v1.1.1
+- uses: willhallonline/docker-ansible-github-action@v1.1.2
   with:
     playbook: playbooks/smoke.yml
     inventory: inventory/localhost.ini
     image-tag: 2.22-alpine-3.24
 ```
 
-The latest published action release is `v1.1.1`; the repository also publishes
-the `v1` major-version tag. Use `@v1.1.1` for an exact release, `@v1` for the
+The latest published action release is `v1.1.2`; the repository also publishes
+the `v1` major-version tag. Use `@v1.1.2` for an exact release, `@v1` for the
 moving major-version reference, or a commit SHA when you need immutable
-behaviour. Release `v1.1.1` retries transient Docker image pulls up to three
+behaviour. Release `v1.1.2` retries transient Docker image pulls up to three
 total attempts with a five-second delay between attempts, then fails after the
 final attempt.
 
@@ -121,7 +121,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: willhallonline/docker-ansible-github-action@v1.1.1
+      - uses: willhallonline/docker-ansible-github-action@v1.1.2
         with:
           playbook: playbooks/site.yml
           inventory: inventory/localhost.ini
@@ -179,8 +179,8 @@ The action is exercised by the
 [`willhallonline/docker-ansible-github-action-test`](https://github.com/willhallonline/docker-ansible-github-action-test)
 repository. The core image project is also covered by image-level tests.
 
-The integration-test repository's current release is `v1.1.0`. Its current
-workflow enumerates 61 image tags—three aliases plus 58 versioned tags—and pins
+The integration-test repository's current release is `v1.1.1`. Its current
+workflow enumerates 65 image tags—three aliases plus 62 versioned tags—and pins
 `willhallonline/docker-ansible-github-action@v1.1.1`. The matrix includes
 retained legacy image tags as compatibility coverage; it is not the active core
 image matrix. Each test remains a localhost smoke test and does not prove SSH,

@@ -6,14 +6,16 @@ at the current source tag or formal release of each.
 
 ## Documentation site releases
 
-### v1.1.1 - 2026-11-20
+### v1.1.2 - 2026-11-20
 
 - Refreshed the upstream repository snapshot to the latest verified `main`
   commits and formal releases.
 - Added scheduled and `repository_dispatch` rebuild triggers for upstream
   documentation changes.
 - Added a bounded upstream snapshot synchronizer for the testing page.
-- Documented the unresolved Core 2.22 gap in the GitHub Action Test matrix.
+- Updated the action and action-test release references after upstream 2.22
+  matrix coverage was restored.
+*** Update File: /home/will/.copilot/session-state/443d2ac0-3915-4fdb-94a0-af979bdee54f/files/pr13-resolution/docs/reference/changelog.md
 
 ### v1.1.0 - 2026-11-16
 
@@ -28,9 +30,9 @@ at the current source tag or formal release of each.
 | Project | Current tag/release | What it is | Release notes |
 | --- | --- | --- | --- |
 | [Docker Ansible](https://github.com/willhallonline/docker-ansible) | **v6.5.0** | The core container images (`willhallonline/ansible`) | [Release](https://github.com/willhallonline/docker-ansible/releases/tag/v6.5.0) |
-| [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.1** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
+| [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.2** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
 | [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.5** | Systemd image builds and `ansible-playbook --version` smoke tests | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
-| [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.0** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
+| [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.1** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.1) |
 
 !!! tip "Checking for newer releases"
     This table is a snapshot. Each project's **Releases** or **Tags** page on
@@ -72,21 +74,22 @@ active core image support matrix.
 
 ![GitHub release](https://img.shields.io/github/v/release/willhallonline/docker-ansible-github-action)
 
-**v1.1.1** retries transient Docker image pulls up to three total attempts with
-five-second delays between attempts, refreshes the documentation link and pinned
-image reference, and retains the non-root `ansible` user support from v1.1.0.
+**v1.1.2** updates deployment documentation and smoke tests to the current
+`2.22-alpine-3.24` image and clarifies exact-version tag pinning. v1.1.1
+retries transient Docker image pulls up to three total attempts and refreshes
+the documentation link and pinned image reference.
 See the
 [Docker Ansible GitHub Action](../projects/github-action.md) page and the
 [action repository](https://github.com/willhallonline/docker-ansible-github-action/releases)
-for current inputs and examples. Pin `@v1.1.1` or a commit SHA for a stable
+for current inputs and examples. Pin `@v1.1.2` or a commit SHA for a stable
 workflow; the repository also publishes the `v1` major-version tag.
 
 ### Docker Ansible Test and Docker Ansible GitHub Action Test
 
 - **Docker Ansible Test** (latest tag **v2.7.5**) — systemd image builds and
   `ansible-playbook --version` smoke tests for the images themselves.
-- **Docker Ansible GitHub Action Test** (integration-test **v1.1.0**) —
-  a 61-tag compatibility matrix (three aliases plus 58 versioned tags) with
+- **Docker Ansible GitHub Action Test** (integration-test **v1.1.1**) —
+  a 65-tag compatibility matrix (three aliases plus 62 versioned tags) with
   localhost/non-root/exit-code smoke coverage for the GitHub Action. It retains
   legacy image tags and should not be read as the active core image matrix.
 
