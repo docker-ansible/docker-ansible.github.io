@@ -7,7 +7,7 @@ Moving tags use the core stream and operating system:
 <ansible-minor>-<os>
 ```
 
-For example, `2.21-alpine-3.24` means Ansible core 2.21 on Alpine Linux 3.24.
+For example, `2.22-alpine-3.24` means Ansible core 2.22 on Alpine Linux 3.24.
 Full patch tags such as `2.21.6-alpine-3.24` are also published when you need
 the exact core patch release.
 
@@ -20,6 +20,7 @@ the exact core patch release.
 
 | Ansible minor | Current ansible-core version |
 | --- | --- |
+| 2.22 | 2.22.0 |
 | 2.21 | 2.21.6 |
 | 2.20 | 2.20.11 |
 | 2.19 | 2.19.15 |
@@ -29,8 +30,8 @@ the exact core patch release.
 
 | Tag | Current target | Use case |
 | --- | --- | --- |
-| `latest` | `2.21-alpine-3.24` | Quick tests and default pulls |
-| `alpine` | `2.21-alpine-3.24` | Latest supported Alpine image |
+| `latest` | `2.22-alpine-3.24` | Quick tests and default pulls |
+| `alpine` | `2.22-alpine-3.24` | Latest supported Alpine image |
 | `ubuntu` | `2.21-ubuntu-24.04` | Latest supported Ubuntu image |
 
 !!! warning "Convenience tags move"
@@ -70,19 +71,19 @@ for cgroup requirements and systemd examples.
 
 ## Full supported tag matrix
 
-| Base image | 2.21 | 2.20 | 2.19 | 2.18 |
-| --- | --- | --- | --- | --- |
-| Alpine 3.21 | `2.21-alpine-3.21` | `2.20-alpine-3.21` | `2.19-alpine-3.21` | `2.18-alpine-3.21` |
-| Alpine 3.22 | `2.21-alpine-3.22` | `2.20-alpine-3.22` | `2.19-alpine-3.22` | `2.18-alpine-3.22` |
-| Alpine 3.23 | `2.21-alpine-3.23` | `2.20-alpine-3.23` | `2.19-alpine-3.23` | `2.18-alpine-3.23` |
-| Alpine 3.24 | `2.21-alpine-3.24` | `2.20-alpine-3.24` | `2.19-alpine-3.24` | `2.18-alpine-3.24` |
-| Debian Bookworm | — | — | `2.19-debian-bookworm` | `2.18-debian-bookworm` |
-| Debian Bookworm Slim | — | — | `2.19-debian-bookworm-slim` | `2.18-debian-bookworm-slim` |
-| Debian Trixie | `2.21-debian-trixie` | `2.20-debian-trixie` | `2.19-debian-trixie` | `2.18-debian-trixie` |
-| Debian Trixie Slim | `2.21-debian-trixie-slim` | `2.20-debian-trixie-slim` | `2.19-debian-trixie-slim` | `2.18-debian-trixie-slim` |
-| Rocky Linux 10 | `2.21-rockylinux-10` | `2.20-rockylinux-10` | `2.19-rockylinux-10` | `2.18-rockylinux-10` |
-| Ubuntu 24.04 | `2.21-ubuntu-24.04` | `2.20-ubuntu-24.04` | `2.19-ubuntu-24.04` | `2.18-ubuntu-24.04` |
-| Ubuntu 26.04 | `2.21-ubuntu-26.04` | `2.20-ubuntu-26.04` | — | — |
+| Base image | 2.22 | 2.21 | 2.20 | 2.19 | 2.18 |
+| --- | --- | --- | --- | --- | --- |
+| Alpine 3.21 | — | `2.21-alpine-3.21` | `2.20-alpine-3.21` | `2.19-alpine-3.21` | `2.18-alpine-3.21` |
+| Alpine 3.22 | — | `2.21-alpine-3.22` | `2.20-alpine-3.22` | `2.19-alpine-3.22` | `2.18-alpine-3.22` |
+| Alpine 3.23 | — | `2.21-alpine-3.23` | `2.20-alpine-3.23` | `2.19-alpine-3.23` | `2.18-alpine-3.23` |
+| Alpine 3.24 | `2.22-alpine-3.24` | `2.21-alpine-3.24` | `2.20-alpine-3.24` | `2.19-alpine-3.24` | `2.18-alpine-3.24` |
+| Debian Bookworm | — | — | — | `2.19-debian-bookworm` | `2.18-debian-bookworm` |
+| Debian Bookworm Slim | — | — | — | `2.19-debian-bookworm-slim` | `2.18-debian-bookworm-slim` |
+| Debian Trixie | `2.22-debian-trixie` | `2.21-debian-trixie` | `2.20-debian-trixie` | `2.19-debian-trixie` | `2.18-debian-trixie` |
+| Debian Trixie Slim | `2.22-debian-trixie-slim` | `2.21-debian-trixie-slim` | `2.20-debian-trixie-slim` | `2.19-debian-trixie-slim` | `2.18-debian-trixie-slim` |
+| Rocky Linux 10 | — | `2.21-rockylinux-10` | `2.20-rockylinux-10` | `2.19-rockylinux-10` | `2.18-rockylinux-10` |
+| Ubuntu 24.04 | — | `2.21-ubuntu-24.04` | `2.20-ubuntu-24.04` | `2.19-ubuntu-24.04` | `2.18-ubuntu-24.04` |
+| Ubuntu 26.04 | `2.22-ubuntu-26.04` | `2.21-ubuntu-26.04` | `2.20-ubuntu-26.04` | — | — |
 
 ## Pull examples
 
@@ -95,7 +96,7 @@ for cgroup requirements and systemd examples.
 === "Explicit Alpine"
 
     ```bash
-    docker pull willhallonline/ansible:2.21-alpine-3.24
+    docker pull willhallonline/ansible:2.22-alpine-3.24
     ```
 
 === "Explicit Ubuntu"

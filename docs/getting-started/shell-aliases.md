@@ -122,12 +122,12 @@ docker run --rm -it \
 
 ## Pinning an image in aliases
 
-The canonical aliases use `latest`, which currently points to Ansible 2.21 on Alpine
+The canonical aliases use `latest`, which currently points to Ansible 2.22 on Alpine
 3.24. For long-lived team workflows, consider pinning an exact tag:
 
 ```bash
-alias docker-ansible-cli='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:2.21-alpine-3.24 /bin/sh'
-alias docker-ansible-cmd='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:2.21-alpine-3.24 '
+alias docker-ansible-cli='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:2.22-alpine-3.24 /bin/sh'
+alias docker-ansible-cmd='docker run --rm -it -v $(pwd):/ansible -v ~/.ssh/id_rsa:/home/ansible/.ssh/id_rsa --workdir=/ansible willhallonline/ansible:2.22-alpine-3.24 '
 ```
 
 Choose a tag with [choosing an image](choosing-an-image.md) or review the full

@@ -77,8 +77,8 @@ Prefer migrating to one of the supported streams:
 | If you currently use | Consider migrating to |
 | --- | --- |
 | 2.17 or older on Ubuntu 20.04 | `2.21-ubuntu-24.04` or another supported Ubuntu tag |
-| 2.17 or older on Debian Bullseye | `2.21-debian-trixie` or `2.19-debian-bookworm` |
-| 2.17 or older on Alpine | `2.21-alpine-3.24` |
+| 2.17 or older on Debian Bullseye | `2.22-debian-trixie` or `2.19-debian-bookworm` |
+| 2.17 or older on Alpine | `2.22-alpine-3.24` |
 | 2.17 or older on Rocky Linux 9 | `2.21-rockylinux-10` |
 
 Migration is usually easiest when done in stages:
@@ -107,14 +107,14 @@ They are not a good default for new automation.
 
 ## Supported alternatives
 
-The supported matrix covers Ansible 2.18 through 2.21 across current bases. Good
+The supported matrix covers Ansible 2.18 through 2.22 across current bases. Good
 starting points include:
 
 | Need | Supported tag to evaluate |
 | --- | --- |
-| Small default image | `2.21-alpine-3.24` |
+| Small default image | `2.22-alpine-3.24` |
 | Ubuntu compatibility | `2.21-ubuntu-24.04` |
-| Debian compatibility | `2.21-debian-trixie` |
+| Debian compatibility | `2.22-debian-trixie` |
 | Enterprise Linux compatibility | `2.21-rockylinux-10` |
 | Older supported Ansible stream | Any available `2.18` to `2.20` matrix tag |
 

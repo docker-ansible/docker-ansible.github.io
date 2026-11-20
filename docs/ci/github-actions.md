@@ -3,7 +3,7 @@
 GitHub Actions can run `willhallonline/ansible` either as a job container or through the project-maintained/community Docker-based action. Use a job container when you want normal shell steps. Use the action when you prefer a reusable action wrapper.
 
 !!! tip "Recommended image"
-    Pin a specific tag, for example `willhallonline/ansible:2.21-alpine-3.24`. Do not use `latest` for deployment workflows.
+    Pin a specific tag, for example `willhallonline/ansible:2.22-alpine-3.24`. Do not use `latest` for deployment workflows.
 
 ## Prerequisites
 
@@ -38,7 +38,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     container:
-      image: willhallonline/ansible:2.21-alpine-3.24
+      image: willhallonline/ansible:2.22-alpine-3.24
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -80,11 +80,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run docker-ansible action
-        uses: willhallonline/docker-ansible-github-action@v1.1.0
+        uses: willhallonline/docker-ansible-github-action@v1.1.1
         with:
           playbook: playbooks/site.yml
           inventory: inventory/localhost.ini
-          image-tag: 2.21-alpine-3.24
+          image-tag: 2.22-alpine-3.24
 ```
 
 For a local-only playbook, `inventory/localhost.ini` can contain
@@ -96,11 +96,11 @@ the workflow needs to inspect the result:
 ```yaml
       - name: Run local playbook
         id: ansible
-        uses: willhallonline/docker-ansible-github-action@v1.1.0
+        uses: willhallonline/docker-ansible-github-action@v1.1.1
         with:
           playbook: playbooks/smoke.yml
           inventory: inventory/localhost.ini
-          image-tag: 2.21-alpine-3.24
+          image-tag: 2.22-alpine-3.24
 
       - name: Show Ansible exit code
         run: echo "ansible exit code: ${{ steps.ansible.outputs.exit-code }}"
@@ -133,7 +133,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     container:
-      image: willhallonline/ansible:2.21-alpine-3.24
+      image: willhallonline/ansible:2.22-alpine-3.24
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -153,7 +153,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint
     container:
-      image: willhallonline/ansible:2.21-alpine-3.24
+      image: willhallonline/ansible:2.22-alpine-3.24
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -179,7 +179,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     environment: production
     container:
-      image: willhallonline/ansible:2.21-alpine-3.24
+      image: willhallonline/ansible:2.22-alpine-3.24
     steps:
       - name: Checkout
         uses: actions/checkout@v4

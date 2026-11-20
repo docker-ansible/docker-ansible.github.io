@@ -5,7 +5,7 @@ Create a derived image when automation needs extra operating-system packages, Py
 This guide uses:
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.24
+FROM willhallonline/ansible:2.22-alpine-3.24
 ```
 
 See [image tags](../images/tags.md) for available variants.
@@ -24,7 +24,7 @@ image build path.
 === "Alpine"
 
     ```dockerfile
-    FROM willhallonline/ansible:2.21-alpine-3.24
+    FROM willhallonline/ansible:2.22-alpine-3.24
 
     USER root
     RUN apk add --no-cache \
@@ -84,7 +84,7 @@ docker build -t registry.example.com/platform/ansible:2.21-alpine .
 ## Add Python libraries
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.24
+FROM willhallonline/ansible:2.22-alpine-3.24
 
 USER root
 RUN uv pip install --system --break-system-packages --no-cache \
@@ -109,7 +109,7 @@ Common control-node libraries:
 ## Install Galaxy collections
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.24
+FROM willhallonline/ansible:2.22-alpine-3.24
 
 USER root
 WORKDIR /build
@@ -138,7 +138,7 @@ collections:
 ## Install roles
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.24
+FROM willhallonline/ansible:2.22-alpine-3.24
 
 USER root
 WORKDIR /build
@@ -155,7 +155,7 @@ WORKDIR /ansible
 ## Combine OS, Python, and Galaxy content
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.24
+FROM willhallonline/ansible:2.22-alpine-3.24
 
 USER root
 RUN apk add --no-cache git openssh-client rsync jq
@@ -184,7 +184,7 @@ docker run --rm -it \
 ## Custom entrypoint
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.24
+FROM willhallonline/ansible:2.22-alpine-3.24
 
 USER root
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
@@ -215,13 +215,13 @@ exec "$@"
 ## Multi-stage builds
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.24 AS builder
+FROM willhallonline/ansible:2.22-alpine-3.24 AS builder
 
 USER root
 RUN apk add --no-cache build-base python3-dev
 RUN uv pip wheel --wheel-dir /wheels cryptography
 
-FROM willhallonline/ansible:2.21-alpine-3.24
+FROM willhallonline/ansible:2.22-alpine-3.24
 
 USER root
 COPY --from=builder /wheels /wheels

@@ -18,9 +18,9 @@ at the current source tag or formal release of each.
 
 | Project | Current tag/release | What it is | Release notes |
 | --- | --- | --- | --- |
-| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | [`v6.4.12` source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.12); formal release `v6.4.11` | The core container images (`willhallonline/ansible`) | [Source tag](https://github.com/willhallonline/docker-ansible/tree/v6.4.12) · [Releases](https://github.com/willhallonline/docker-ansible/releases) |
-| [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.0** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
-| [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.4** | Systemd image builds and `ansible-playbook --version` smoke tests | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
+| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | **v6.5.0** | The core container images (`willhallonline/ansible`) | [Release](https://github.com/willhallonline/docker-ansible/releases/tag/v6.5.0) |
+| [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.1** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
+| [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.5** | Systemd image builds and `ansible-playbook --version` smoke tests | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
 | [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.0** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) |
 
 !!! tip "Checking for newer releases"
@@ -34,8 +34,12 @@ at the current source tag or formal release of each.
 The canonical changelog is maintained in the upstream repository:
 [CHANGELOG.md](https://github.com/willhallonline/docker-ansible/blob/main/CHANGELOG.md)
 
-Recent highlights (v6.4.3–v6.4.12):
+Recent highlights (v6.4.3–v6.5.0):
 
+- added Ansible Core 2.22.0 / Ansible 15.0.0 for Alpine 3.24, Debian Trixie,
+  Debian Trixie Slim, and Ubuntu 26.04;
+- advanced the `latest` and `alpine` convenience tags to Ansible 2.22 while
+  retaining `ubuntu` on Ansible 2.21;
 - added Alpine 3.23 and 3.24 support;
 - kept the active matrix on Alpine 3.21 through 3.24;
 - added `HEALTHCHECK` instructions to active images;
@@ -44,13 +48,13 @@ Recent highlights (v6.4.3–v6.4.12):
   `/home/ansible/.ssh`;
 - removed end-of-life Ansible core 2.16 and 2.17 from active image builds;
 - added the Image Matrix Maintainer and Build Failure Triager Copilot agents;
-- updated Ansible core to 2.18.20, 2.19.15, 2.20.11, and 2.21.6;
+- updated Ansible core to 2.18.20, 2.19.15, 2.20.11, 2.21.6, and 2.22.0;
 - builds generally target Linux AMD64 and ARM64, with tag-specific exceptions.
 
-The current default branch and `v6.4.12` source tag contain these refreshed
-patch versions; the latest formal release is `v6.4.11`.
+The current default branch and `v6.5.0` release contain these refreshed patch
+versions.
 
-The current Ansible core lines shipped in the images are 2.18 through 2.21 —
+The current Ansible core lines shipped in the images are 2.18 through 2.22 —
 see [supported tags](../images/tags.md) for the full matrix. The action-test
 repository retains 2.16/2.17 tags for compatibility testing and is not the
 active core image support matrix.
@@ -59,17 +63,17 @@ active core image support matrix.
 
 ![GitHub release](https://img.shields.io/github/v/release/willhallonline/docker-ansible-github-action)
 
-**v1.1.0** adds support for the non-root `ansible` user used by current images,
-mounts SSH material under `/home/ansible/.ssh`, and updates the smoke-test
-example to Alpine 3.24. See the
+**v1.1.1** retries transient Docker image pulls, refreshes the documentation
+link and pinned image reference, and retains the non-root `ansible` user support
+from v1.1.0. See the
 [Docker Ansible GitHub Action](../projects/github-action.md) page and the
 [action repository](https://github.com/willhallonline/docker-ansible-github-action/releases)
-for current inputs and examples. The default branch includes unreleased retry
-changes after this tag; pin `@v1.1.0` or a commit SHA for a stable workflow.
+for current inputs and examples. Pin `@v1.1.1` or a commit SHA for a stable
+workflow; the repository also publishes the `v1` major-version tag.
 
 ### Docker Ansible Test and Docker Ansible GitHub Action Test
 
-- **Docker Ansible Test** (latest tag **v2.7.4**) — systemd image builds and
+- **Docker Ansible Test** (latest tag **v2.7.5**) — systemd image builds and
   `ansible-playbook --version` smoke tests for the images themselves.
 - **Docker Ansible GitHub Action Test** (integration-test **v1.1.0**) —
   a 61-tag compatibility matrix (three aliases plus 58 versioned tags) with
@@ -99,7 +103,7 @@ Recent project direction includes these broad changes:
 
 | Area | Summary |
 | --- | --- |
-| Ansible versions | Current images ship ansible-core 2.18.20 through 2.21.6. |
+| Ansible versions | Current images ship ansible-core 2.18.20 through 2.22.0. |
 | Alpine bases | Alpine 3.21 through 3.24 are supported in the active matrix. |
 | Ubuntu bases | Ubuntu 26.04 is available alongside Ubuntu 24.04. |
 | Debian bases | Debian Trixie variants are available alongside Bookworm variants. |
@@ -116,8 +120,8 @@ operating-system variant. For example, production users should prefer an explici
 Ansible-version and base-OS tag over a floating tag.
 
 ```text
-willhallonline/ansible:2.21.6-alpine-3.24
-willhallonline/ansible:2.21.6-debian-trixie
+willhallonline/ansible:2.22.0-alpine-3.24
+willhallonline/ansible:2.22.0-debian-trixie
 ```
 
 !!! note "Digest pinning"

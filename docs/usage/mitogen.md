@@ -30,7 +30,7 @@ It may help less when you have:
 ## Use the bundled Mitogen
 
 ```bash
-docker run --rm willhallonline/ansible:2.21-alpine-3.24 \
+docker run --rm willhallonline/ansible:2.22-alpine-3.24 \
   python -c "import mitogen; print(mitogen.__version__)"
 ```
 
@@ -38,7 +38,7 @@ The package is installed in every current image. To pin a different version,
 build a derived image:
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.24
+FROM willhallonline/ansible:2.22-alpine-3.24
 
 USER root
 RUN uv pip install --system --break-system-packages --no-cache "mitogen==<version>"

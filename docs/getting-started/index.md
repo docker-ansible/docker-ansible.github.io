@@ -110,7 +110,7 @@ Tags follow this pattern:
 Examples:
 
 ```text
-2.21-alpine-3.24
+2.22-alpine-3.24
 2.19-debian-bookworm
 2.20-ubuntu-24.04
 2.18-rockylinux-10
@@ -123,8 +123,8 @@ Convenience tags are also available:
 
 | Tag | Meaning |
 | --- | --- |
-| `latest` | Ansible 2.21 on Alpine 3.24 |
-| `alpine` | Ansible 2.21 on Alpine 3.24 |
+| `latest` | Ansible 2.22 on Alpine 3.24 |
+| `alpine` | Ansible 2.22 on Alpine 3.24 |
 | `ubuntu` | Ansible 2.21 on Ubuntu 24.04 |
 
 !!! warning "Pin tags for automation"
@@ -135,6 +135,7 @@ Convenience tags are also available:
 
 The current Ansible core versions available in containers are:
 
+- 2.22.0
 - 2.21.6
 - 2.20.11
 - 2.19.15
@@ -194,7 +195,7 @@ with `-v $(pwd):/ansible`.
 ### Should I use `latest`?
 
 `latest` is fine for quick experiments. For CI/CD or team documentation, pin a tag
-such as `2.21-alpine-3.24`, `2.21-debian-trixie-slim`, or another exact version that
+such as `2.22-alpine-3.24`, `2.21-debian-trixie-slim`, or another exact version that
 matches your project needs.
 
 ### Where do I go for CI/CD examples?
