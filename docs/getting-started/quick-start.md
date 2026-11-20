@@ -198,6 +198,7 @@ Current Ansible core versions in the containers are:
 - 2.19.15
 - 2.20.11
 - 2.21.6
+- 2.22.0
 
 Ansible core streams 2.9 through 2.17 are outside the active matrix and
 unmaintained. Prefer a current stream for new automation.

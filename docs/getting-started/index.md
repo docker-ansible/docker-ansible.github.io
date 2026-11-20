@@ -135,6 +135,7 @@ Convenience tags are also available:
 
 The current Ansible core versions available in containers are:
 
+- 2.22.0
 - 2.21.6
 - 2.20.11
 - 2.19.15
