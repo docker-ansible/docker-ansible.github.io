@@ -1,0 +1,33 @@
+name: Sync upstream snapshot
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"
+  repository_dispatch:
+    types:
+      - upstream-update
+      - docs-update
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Update upstream snapshot
+        run: python3 scripts/update-upstream-snapshot.py
+
+      - name: Commit snapshot updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add docs/projects/testing.md
+            git commit -m "docs: sync upstream repository snapshot"
+            git push
+          fi

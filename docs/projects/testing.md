@@ -7,14 +7,14 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.5`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-11-19, is:
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-11-20, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
 | Docker Ansible | [`39da628552ce211e4e7afc7af1108e4a273a4c2d`](https://github.com/willhallonline/docker-ansible/commit/39da628552ce211e4e7afc7af1108e4a273a4c2d) | `v6.5.0` |
-| Docker Ansible Test | [`2d2d8ec328c97faa12e91aa1d344bcf78c20b9a1`](https://github.com/willhallonline/docker-ansible-test/commit/2d2d8ec328c97faa12e91aa1d344bcf78c20b9a1) | `v2.7.5` |
-| Docker Ansible GitHub Action | [`2c5d393f7055d86d1929c987b6ef2eac2d086966`](https://github.com/willhallonline/docker-ansible-github-action/commit/2c5d393f7055d86d1929c987b6ef2eac2d086966) | `v1.1.1` |
-| Docker Ansible GitHub Action Test | [`cd0eae4810fec5692d33df6e7c9c9bff35f972ec`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/cd0eae4810fec5692d33df6e7c9c9bff35f972ec) | `v1.1.0` |
+| Docker Ansible Test | [`902ee69b4edd7d284b8bad728fe608b613778d65`](https://github.com/willhallonline/docker-ansible-test/commit/902ee69b4edd7d284b8bad728fe608b613778d65) | `v2.7.5` |
+| Docker Ansible GitHub Action | [`d8cf2302c7f7c75a5826c7dd48e4c7e8c234863d`](https://github.com/willhallonline/docker-ansible-github-action/commit/d8cf2302c7f7c75a5826c7dd48e4c7e8c234863d) | `v1.1.1` |
+| Docker Ansible GitHub Action Test | [`11c1e41cd92a3813e6de0f04fda2602b08a20068`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/11c1e41cd92a3813e6de0f04fda2602b08a20068) | `v1.1.0` |
 
 ## Test-related repositories
 
@@ -109,11 +109,18 @@ The latest successful scheduled run was
 [#43889856972](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/43889856972)
 on 2026-11-16. GitHub currently marks the scheduled workflow
 `disabled_inactivity`; re-enable it before relying on future scheduled coverage.
-The `v1.1.0` test-repository tag predates the current fact-key fix; the current
+The `v1.1.0` test-repository tag predates the current fact-key fix; the earlier
 main commit `cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed all 61 jobs in
 that run. The workflow also runs on pushes to `main`, pull requests, and manual
 dispatch; scheduled runs start Monday at 06:00 UTC with up to 20 parallel jobs
 and fail-fast disabled.
+
+!!! warning "Unresolved: Core 2.22 is absent from the action-test matrix"
+    The core image matrix and Docker Ansible Test matrix include Core 2.22,
+    but the current `docker-ansible-github-action-test` workflow enumerates
+    compatibility tags only through Core 2.21 and does not include any 2.22
+    combination. The action itself has no 2.22-specific code requirement, but
+    2.22 compatibility is not verified by this integration workflow.
 
 ## Use the systemd test images
 
