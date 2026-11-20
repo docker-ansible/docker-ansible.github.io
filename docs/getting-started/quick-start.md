@@ -5,11 +5,11 @@ run the `willhallonline/ansible` image, mount your working directory, and execut
 playbook without installing Ansible on the host.
 
 The examples use the `latest` tag for readability. At the time documented here,
-`latest` points to **Ansible 2.21 on Alpine 3.24**.
+`latest` points to **Ansible 2.22 on Alpine 3.24**.
 
 !!! tip "Use exact tags once the command works"
     `latest` is convenient while learning. For CI/CD and shared project docs, pin an
-    exact tag such as `2.21-alpine-3.24` or `2.21-debian-trixie-slim`.
+    exact tag such as `2.22-alpine-3.24` or `2.21-debian-trixie-slim`.
 
 ## Prerequisites
 
@@ -178,7 +178,7 @@ The full tag format is:
 Examples:
 
 ```text
-2.21-alpine-3.24
+2.22-alpine-3.24
 2.19-debian-bookworm
 2.20-ubuntu-24.04
 2.18-rockylinux-10
@@ -194,10 +194,11 @@ directly to the [tag reference](../images/tags.md).
 
 Current Ansible core versions in the containers are:
 
-- 2.18.19
-- 2.19.14
-- 2.20.10
-- 2.21.5
+- 2.18.20
+- 2.19.15
+- 2.20.11
+- 2.21.6
+- 2.22.0
 
 Ansible core streams 2.9 through 2.17 are outside the active matrix and
 unmaintained. Prefer a current stream for new automation.

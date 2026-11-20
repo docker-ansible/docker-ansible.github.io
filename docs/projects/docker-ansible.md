@@ -9,9 +9,8 @@ that local development and CI jobs can use the same packaged toolchain.
 
 !!! note "Short description"
     Ansible inside Docker containers: Alpine, Ubuntu, Rocky Linux, and Debian
-    with active Ansible core streams 2.18 through 2.21. The current upstream
-    source tag is `v6.4.10` (commit `d4640b9`, 2026-10-06). The latest formal
-    GitHub Release is `v6.4.2`.
+    with active Ansible core streams 2.18 through 2.22. The current upstream
+    source and formal release is `v6.5.0` (commit `39da628`, 2026-11-18).
 
 ## Links
 
@@ -53,15 +52,22 @@ Current versions published by the project include:
 
 | Ansible version | Notes |
 | --- | --- |
-| `2.21.5` | Current newer Ansible release line. |
-| `2.20.10` | Current stable Ansible release line. |
-| `2.19.14` | Supported recent release line. |
-| `2.18.19` | Supported release line. |
+| `2.21.6` | Current newer Ansible release line. |
+| `2.20.11` | Current stable Ansible release line. |
+| `2.19.15` | Supported recent release line. |
+| `2.18.20` | Supported release line. |
+| `2.22.0` | Current Ansible Core release line; available only on Python 3.13+ base variants. |
+
+!!! note "Ansible Core 2.22 availability"
+    Ansible Core 2.22.0 and Ansible 15.0.0 require Python 3.13 or newer.
+    The 2.22 image variants are limited to Alpine 3.24, Debian Trixie,
+    Debian Trixie Slim, and Ubuntu 26.04.
 
 !!! warning "Older does not mean maintained"
     Ansible core streams 2.9 through 2.17 are outside the active matrix and
-    unmaintained. Do not assume that historical definitions or tags are
-    published; verify any legacy dependency against the upstream registry.
+    unmaintained for current core image builds. The separate action-test matrix
+    retains selected 2.16/2.17 tags for compatibility coverage; do not treat
+    those test tags as active core support.
 
 ## Repository layout
 
@@ -117,7 +123,7 @@ installation.
 ## Image tags and platforms
 
 Tags are generated from the core version and operating system, for example
-`2.21-alpine-3.24` or `2.21-debian-trixie`; full core patch tags are also
+`2.22-alpine-3.24` or `2.21-debian-trixie`; full core patch tags are also
 published. Current builds generally target `linux/amd64` and `linux/arm64`,
 but all current Ubuntu 24.04 tags are AMD64-only because the upstream workflow
 forces AMD64 for build stability and to avoid builds taking more than 1.5 hours.

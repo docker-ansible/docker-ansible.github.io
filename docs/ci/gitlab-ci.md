@@ -13,7 +13,7 @@ GitLab CI can run Ansible directly inside the `willhallonline/ansible` image by 
 - A GitLab project with CI/CD enabled.
 - A `.gitlab-ci.yml` file.
 - Inventory and playbook files in the repository.
-- A pinned image tag such as `willhallonline/ansible:2.21-alpine-3.24`.
+- A pinned image tag such as `willhallonline/ansible:2.22-alpine-3.24`.
 - CI/CD variables for SSH and Vault secrets.
 
 Related pages:
@@ -27,7 +27,7 @@ Related pages:
 
 ```yaml
 lint:
-  image: willhallonline/ansible:2.21-alpine-3.24
+  image: willhallonline/ansible:2.22-alpine-3.24
   stage: test
   script:
     - ansible --version
@@ -86,7 +86,7 @@ cache:
   - chmod 600 .vault-password
 
 lint:
-  image: willhallonline/ansible:2.21-alpine-3.24
+  image: willhallonline/ansible:2.22-alpine-3.24
   stage: lint
   script:
     - ansible --version
@@ -97,7 +97,7 @@ lint:
     - if: '$CI_COMMIT_BRANCH'
 
 syntax:
-  image: willhallonline/ansible:2.21-alpine-3.24
+  image: willhallonline/ansible:2.22-alpine-3.24
   stage: syntax
   needs:
     - lint
@@ -109,7 +109,7 @@ syntax:
     - if: '$CI_COMMIT_BRANCH'
 
 deploy_production:
-  image: willhallonline/ansible:2.21-alpine-3.24
+  image: willhallonline/ansible:2.22-alpine-3.24
   stage: deploy
   needs:
     - syntax
@@ -133,7 +133,7 @@ You can set the image per job to keep non-Ansible jobs separate.
 
 ```yaml
 deploy_staging:
-  image: willhallonline/ansible:2.21-alpine-3.24
+  image: willhallonline/ansible:2.22-alpine-3.24
   stage: deploy
   script:
     - ansible-playbook -i inventories/staging/hosts.yml site.yml

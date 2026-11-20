@@ -19,17 +19,21 @@ Docker is available.
 
     | Project | Tag | Current image/default |
     | --- | --- | --- |
-    | Docker Ansible | [`v6.4.10`](https://github.com/willhallonline/docker-ansible/tree/v6.4.10) source tag; `main` [`d4640b9`](https://github.com/willhallonline/docker-ansible/commit/d4640b92cc34abfa2444ef9aa1c01769a0f0c5bc) (2026-10-06) | `2.21-alpine-3.24` (`latest`/`alpine`) |
-    | Docker Ansible GitHub Action | [`v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.0) | Uses the non-root `ansible` image user |
-    | Docker Ansible Test | [`v2.7.4`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.4) | Tracks the current image matrix |
-    | Docker Ansible GitHub Action Test | [`integration-test v1.1.0`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.0) | Tests the GitHub Action |
+    | Docker Ansible | [`v6.5.0`](https://github.com/willhallonline/docker-ansible/releases/tag/v6.5.0) (`39da62`, 2026-11-18) | `2.22-alpine-3.24` (`latest`/`alpine`) |
+    | Docker Ansible GitHub Action | [`v1.1.2`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.2) | Uses the non-root `ansible` image user |
+    | Docker Ansible Test | [`v2.7.5`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.5) | Tracks the current image matrix |
+    | Docker Ansible GitHub Action Test | [`integration-test v1.1.1`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.1) | Tests the GitHub Action |
 
     See the [ecosystem changelog](reference/changelog.md) for release notes and
     links.
 
-    `docker-ansible` `v6.4.10` is the current source tag on `main`; its latest
-    formal GitHub Release is `v6.4.2`. The source tag tracks the current image
-    matrix, while the formal release page records published release metadata.
+    `docker-ansible` `v6.5.0` is the current source and formal release on
+    `main`. It adds Ansible Core 2.22.0 / Ansible 15.0.0 for Alpine 3.24,
+    Debian Trixie, Debian Trixie Slim, and Ubuntu 26.04. The source tag tracks
+    the current image matrix and the formal release records the published
+    release metadata.
+    The separate action-test repository retains 2.16/2.17 tags for compatibility
+    testing even though the active core image matrix is 2.18 through 2.22.
 
 ## Quick example
 
@@ -100,13 +104,13 @@ Tags follow a predictable pattern:
 Examples include:
 
 ```text
-2.21-alpine-3.24
+2.22-alpine-3.24
 2.19-debian-bookworm
 2.20-ubuntu-24.04
 2.18-rockylinux-10
 2.19-debian-bookworm-slim
-2.21-debian-trixie
-2.21-debian-trixie-slim
+2.22-debian-trixie
+2.22-debian-trixie-slim
 ```
 
 Pin exact tags in automation when reproducibility matters.
@@ -166,10 +170,11 @@ Current Ansible core versions available in containers are:
 
 | Ansible core | Status |
 | --- | --- |
-| 2.21.5 | Current container version |
-| 2.20.10 | Current container version |
-| 2.19.14 | Current container version |
-| 2.18.19 | Current container version |
+| 2.22.0 | Current container version |
+| 2.21.6 | Current container version |
+| 2.20.11 | Current container version |
+| 2.19.15 | Current container version |
+| 2.18.20 | Current container version |
 
 Ansible core streams **2.9 through 2.17** are outside the active image matrix and
 are unmaintained. Use a current stream unless you have a specific legacy
@@ -177,7 +182,7 @@ compatibility requirement. See [older releases](images/older-releases.md).
 
 !!! warning "Avoid floating tags in CI"
     Convenience tags are useful for exploration, but CI should usually pin an exact
-    tag such as `2.21-alpine-3.24` or `2.21-debian-trixie-slim`.
+    tag such as `2.22-alpine-3.24` or `2.21-debian-trixie-slim`.
 
 ## Convenience tags
 
@@ -185,8 +190,8 @@ The repository also publishes convenience tags for common defaults:
 
 | Tag | Points to |
 | --- | --- |
-| `latest` | Ansible 2.21 on Alpine 3.24 |
-| `alpine` | Ansible 2.21 on Alpine 3.24 |
+| `latest` | Ansible 2.22 on Alpine 3.24 |
+| `alpine` | Ansible 2.22 on Alpine 3.24 |
 | `ubuntu` | Ansible 2.21 on Ubuntu 24.04 |
 
 These are handy for local testing and examples. For long-lived automation, prefer a

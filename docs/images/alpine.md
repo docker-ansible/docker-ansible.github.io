@@ -6,7 +6,7 @@ They are a good default when you want fast pulls, compact CI jobs, and a minimal
 Ansible control-node container.
 
 !!! note "Default image"
-    The `latest` and `alpine` convenience tags currently point to Ansible 2.21
+    The `latest` and `alpine` convenience tags currently point to Ansible 2.22
     on Alpine 3.24.
 
 ## Available Alpine tags
@@ -16,7 +16,7 @@ Ansible control-node container.
 | Alpine 3.21 | `2.21-alpine-3.21`, `2.20-alpine-3.21`, `2.19-alpine-3.21`, `2.18-alpine-3.21` |
 | Alpine 3.22 | `2.21-alpine-3.22`, `2.20-alpine-3.22`, `2.19-alpine-3.22`, `2.18-alpine-3.22` |
 | Alpine 3.23 | `2.21-alpine-3.23`, `2.20-alpine-3.23`, `2.19-alpine-3.23`, `2.18-alpine-3.23` |
-| Alpine 3.24 | `2.21-alpine-3.24`, `2.20-alpine-3.24`, `2.19-alpine-3.24`, `2.18-alpine-3.24` |
+| Alpine 3.24 | `2.22-alpine-3.24`, `2.21-alpine-3.24`, `2.20-alpine-3.24`, `2.19-alpine-3.24`, `2.18-alpine-3.24` |
 
 See the complete [supported tag matrix](tags.md) for cross-family comparisons.
 
@@ -31,7 +31,7 @@ See the complete [supported tag matrix](tags.md) for cross-family comparisons.
 === "Latest Alpine stream"
 
     ```bash
-    docker pull willhallonline/ansible:2.21-alpine-3.24
+    docker pull willhallonline/ansible:2.22-alpine-3.24
     ```
 
 === "Oldest supported stream"
@@ -46,14 +46,14 @@ Mount your playbook project into the container and run from that working
 directory:
 
 ```bash
-docker run --rm -it   -v "$PWD:/work"   -w /work   willhallonline/ansible:2.21-alpine-3.24   ansible-playbook -i inventory site.yml
+docker run --rm -it   -v "$PWD:/work"   -w /work   willhallonline/ansible:2.22-alpine-3.24   ansible-playbook -i inventory site.yml
 ```
 
 Check the installed tools:
 
 ```bash
-docker run --rm willhallonline/ansible:2.21-alpine-3.24 ansible --version
-docker run --rm willhallonline/ansible:2.21-alpine-3.24 ansible-lint --version
+docker run --rm willhallonline/ansible:2.22-alpine-3.24 ansible --version
+docker run --rm willhallonline/ansible:2.22-alpine-3.24 ansible-lint --version
 ```
 
 ## Characteristics
@@ -119,7 +119,7 @@ Consider Debian, Ubuntu, or Rocky Linux instead when:
 Use `apk add` for operating system packages:
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.24
+FROM willhallonline/ansible:2.22-alpine-3.24
 
 RUN apk add --no-cache jq yq
 ```
@@ -128,7 +128,7 @@ For Python tools, prefer repeatable installs and consider pinning package
 versions:
 
 ```dockerfile
-FROM willhallonline/ansible:2.21-alpine-3.24
+FROM willhallonline/ansible:2.22-alpine-3.24
 
 USER root
 RUN uv pip install --system --break-system-packages --no-cache molecule

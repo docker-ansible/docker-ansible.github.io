@@ -22,10 +22,11 @@ The current supported Ansible core streams are:
 
 | Minor | Current core version |
 | --- | --- |
-| 2.21 | 2.21.5 |
-| 2.20 | 2.20.10 |
-| 2.19 | 2.19.14 |
-| 2.18 | 2.18.19 |
+| 2.22 | 2.22.0 |
+| 2.21 | 2.21.6 |
+| 2.20 | 2.20.11 |
+| 2.19 | 2.19.15 |
+| 2.18 | 2.18.20 |
 
 See [supported tags](tags.md) for which operating systems are available for each
 stream.
@@ -38,10 +39,11 @@ Python versions required by the pinned Ansible core releases are:
 
 | Ansible core | Minimum Python |
 | --- | --- |
-| 2.18.19 | 3.11 |
-| 2.19.14 | 3.11 |
-| 2.20.10 | 3.12 |
-| 2.21.5 | 3.12 |
+| 2.22.0 | 3.13 |
+| 2.21.6 | 3.12 |
+| 2.20.11 | 3.12 |
+| 2.19.15 | 3.11 |
+| 2.18.20 | 3.11 |
 
 These are package compatibility minimums, not a promise that every image uses
 the same Python minor version. Check `python --version` in the selected tag when
@@ -90,8 +92,8 @@ python --version
 Run them through Docker to inspect a tag:
 
 ```bash
-docker run --rm willhallonline/ansible:2.21-alpine-3.24 ansible --version
-docker run --rm willhallonline/ansible:2.21-alpine-3.24 ansible-lint --version
+docker run --rm willhallonline/ansible:2.22-alpine-3.24 ansible --version
+docker run --rm willhallonline/ansible:2.22-alpine-3.24 ansible-lint --version
 ```
 
 ## Base operating system differences
@@ -130,7 +132,7 @@ A derived image keeps project dependencies repeatable:
 === "Alpine"
 
     ```dockerfile
-    FROM willhallonline/ansible:2.21-alpine-3.24
+    FROM willhallonline/ansible:2.22-alpine-3.24
 
     USER root
     RUN apk add --no-cache jq

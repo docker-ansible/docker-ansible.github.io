@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "0 4 * * 1"
+  repository_dispatch:
+    types:
+      - upstream-update
+      - docs-update
   workflow_dispatch:
 
 permissions:

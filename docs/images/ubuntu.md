@@ -12,7 +12,7 @@ runners, cloud images, or internal documentation based on Ubuntu packages.
 
 | Base image | Supported tags |
 | --- | --- |
-| Ubuntu 26.04 | `2.21-ubuntu-26.04`, `2.20-ubuntu-26.04` |
+| Ubuntu 26.04 | `2.22-ubuntu-26.04`, `2.21-ubuntu-26.04`, `2.20-ubuntu-26.04` |
 | Ubuntu 24.04 | `2.21-ubuntu-24.04`, `2.20-ubuntu-24.04`, `2.19-ubuntu-24.04`, `2.18-ubuntu-24.04` |
 
 See the complete [supported tag matrix](tags.md) for all base images.
@@ -34,7 +34,7 @@ See the complete [supported tag matrix](tags.md) for all base images.
 === "Ubuntu 26.04"
 
     ```bash
-    docker pull willhallonline/ansible:2.21-ubuntu-26.04
+    docker pull willhallonline/ansible:2.22-ubuntu-26.04
     ```
 
 !!! note "Ubuntu 22.04"
@@ -71,7 +71,7 @@ familiar shell environment for local troubleshooting.
 
 | Ubuntu release | Guidance |
 | --- | --- |
-| 26.04 | Use for the newest supported Ubuntu base with Ansible 2.20 or 2.21 |
+| 26.04 | Use for the newest supported Ubuntu base with Ansible 2.20, 2.21, or 2.22 |
 | 24.04 | Broadest Ubuntu coverage across Ansible 2.18 through 2.21 |
 | 22.04 | No active image builds; use Ubuntu 24.04 or 26.04 |
 

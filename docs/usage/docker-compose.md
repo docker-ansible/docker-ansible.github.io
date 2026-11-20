@@ -49,7 +49,7 @@ For teams and CI, prefer a pinned tag:
 ```yaml
 services:
   ansible:
-    image: willhallonline/ansible:2.21-alpine-3.24
+    image: willhallonline/ansible:2.22-alpine-3.24
     working_dir: /ansible
     volumes:
       - .:/ansible
@@ -115,7 +115,7 @@ Use profiles for optional services:
 ```yaml
 services:
   ansible:
-    image: willhallonline/ansible:2.21-alpine-3.24
+    image: willhallonline/ansible:2.22-alpine-3.24
     working_dir: /ansible
     volumes:
       - .:/ansible
@@ -123,7 +123,7 @@ services:
       ANSIBLE_CONFIG: /ansible/ansible.cfg
 
   ansible-lint:
-    image: willhallonline/ansible:2.21-alpine-3.24
+    image: willhallonline/ansible:2.22-alpine-3.24
     working_dir: /ansible
     profiles: ["lint"]
     volumes:
@@ -148,7 +148,7 @@ docker compose run --rm ansible ansible-lint
 ```yaml
 services:
   ansible:
-    image: willhallonline/ansible:2.21-alpine-3.24
+    image: willhallonline/ansible:2.22-alpine-3.24
     working_dir: /ansible
     volumes:
       - .:/ansible
@@ -156,7 +156,7 @@ services:
       ANSIBLE_CONFIG: /ansible/ansible.cfg
 
   galaxy:
-    image: willhallonline/ansible:2.21-alpine-3.24
+    image: willhallonline/ansible:2.22-alpine-3.24
     working_dir: /ansible
     profiles: ["deps"]
     volumes:
@@ -212,7 +212,7 @@ Document those commands in your project README so contributors do not need local
 ```yaml
 services:
   ansible:
-    image: registry.example.com/platform/ansible:2.21.5-20260714
+    image: registry.example.com/platform/ansible:2.21.6-20261110
     working_dir: /ansible
     volumes:
       - .:/ansible
