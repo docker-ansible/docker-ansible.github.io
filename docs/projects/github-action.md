@@ -8,7 +8,7 @@ The action wraps the Docker Ansible image family so workflows can run
 self-hosted runner.
 
 !!! note "Short description"
-    `v1.1.0` is the current release of this project-maintained composite action.
+    `v1.1.1` is the current release of this project-maintained composite action.
     It runs `ansible-playbook` in the non-root `ansible` image user and mounts SSH
     material under `/home/ansible/.ssh`.
 
@@ -35,7 +35,7 @@ Action:
 
 ## Inputs and output
 
-The `v1.1.0` action exposes the following contract:
+The `v1.1.1` action exposes the following contract:
 
 | Input | Required | Default | Description |
 | --- | --- | --- | --- |
@@ -76,21 +76,19 @@ localhost ansible_connection=local
 Invoke it without `private-key`, `known-hosts`, or other SSH inputs:
 
 ```yaml
-- uses: willhallonline/docker-ansible-github-action@v1.1.0
+- uses: willhallonline/docker-ansible-github-action@v1.1.1
   with:
     playbook: playbooks/smoke.yml
     inventory: inventory/localhost.ini
-    image-tag: 2.21-alpine-3.24
+    image-tag: 2.22-alpine-3.24
 ```
 
-The latest published action release is `v1.1.0`; the repository also has
-`v1.0.0`. The upstream README currently shows `@v1`, but no `v1` branch or
-tag is published in the repository, so use `@v1.1.0` (or a commit SHA) for a
-resolvable stable reference. The default branch is ahead of that release and
-contains unreleased retry changes, so do not use `@main` when a stable action
-contract is required. On the current default branch, a failed `docker pull` is
-retried up to three total attempts with a five-second delay between attempts;
-the action fails after the final attempt.
+The latest published action release is `v1.1.1`; the repository also publishes
+the `v1` major-version tag. Use `@v1.1.1` for an exact release, `@v1` for the
+moving major-version reference, or a commit SHA when you need immutable
+behaviour. Release `v1.1.1` retries transient Docker image pulls up to three
+total attempts with a five-second delay between attempts, then fails after the
+final attempt.
 
 ## When to use the action
 
@@ -123,11 +121,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: willhallonline/docker-ansible-github-action@v1.1.0
+      - uses: willhallonline/docker-ansible-github-action@v1.1.1
         with:
           playbook: playbooks/site.yml
           inventory: inventory/localhost.ini
-          image-tag: 2.21-alpine-3.24
+          image-tag: 2.22-alpine-3.24
 ```
 
 The action also supports Galaxy requirements, Vault passwords, SSH keys,
@@ -183,11 +181,11 @@ repository. The core image project is also covered by image-level tests.
 
 The integration-test repository's current release is `v1.1.0`. Its current
 workflow enumerates 61 image tags—three aliases plus 58 versioned tags—and pins
-this action release. The matrix includes retained legacy image tags as
-compatibility coverage; it is not the active core image matrix. Each test
-remains a localhost smoke test and does not prove SSH, Vault, Galaxy, extra
-variables, deployment-host behaviour, failure handling, or linting. See
-[Docker Ansible Test](testing.md) for the complete scope.
+`willhallonline/docker-ansible-github-action@v1.1.0`. The matrix includes
+retained legacy image tags as compatibility coverage; it is not the active core
+image matrix. Each test remains a localhost smoke test and does not prove SSH,
+Vault, Galaxy, extra variables, deployment-host behaviour, failure handling, or
+linting. See [Docker Ansible Test](testing.md) for the complete scope.
 
 ## Related documentation
 

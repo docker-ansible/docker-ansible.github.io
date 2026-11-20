@@ -11,8 +11,8 @@ releases.
 
 | Base image | Supported tags |
 | --- | --- |
-| Debian Trixie | `2.21-debian-trixie`, `2.20-debian-trixie`, `2.19-debian-trixie`, `2.18-debian-trixie` |
-| Debian Trixie Slim | `2.21-debian-trixie-slim`, `2.20-debian-trixie-slim`, `2.19-debian-trixie-slim`, `2.18-debian-trixie-slim` |
+| Debian Trixie | `2.22-debian-trixie`, `2.21-debian-trixie`, `2.20-debian-trixie`, `2.19-debian-trixie`, `2.18-debian-trixie` |
+| Debian Trixie Slim | `2.22-debian-trixie-slim`, `2.21-debian-trixie-slim`, `2.20-debian-trixie-slim`, `2.19-debian-trixie-slim`, `2.18-debian-trixie-slim` |
 | Debian Bookworm | `2.19-debian-bookworm`, `2.18-debian-bookworm` |
 | Debian Bookworm Slim | `2.19-debian-bookworm-slim`, `2.18-debian-bookworm-slim` |
 
@@ -27,13 +27,13 @@ See the complete [supported tag matrix](tags.md) for all operating systems.
 === "Trixie"
 
     ```bash
-    docker pull willhallonline/ansible:2.21-debian-trixie
+    docker pull willhallonline/ansible:2.22-debian-trixie
     ```
 
 === "Trixie Slim"
 
     ```bash
-    docker pull willhallonline/ansible:2.21-debian-trixie-slim
+    docker pull willhallonline/ansible:2.22-debian-trixie-slim
     ```
 
 === "Bookworm"

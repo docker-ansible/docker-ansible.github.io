@@ -1,6 +1,6 @@
 # Usage guides
 
-The `willhallonline/ansible` images provide a containerised Ansible toolchain for local development, automation, and CI. The image name is `willhallonline/ansible` and tags include `latest`, `alpine`, `ubuntu`, `2.21-alpine-3.24`, `2.19-debian-bookworm`, `2.20-ubuntu-24.04`, and `2.18-rockylinux-10`.
+The `willhallonline/ansible` images provide a containerised Ansible toolchain for local development, automation, and CI. The image name is `willhallonline/ansible` and tags include `latest`, `alpine`, `ubuntu`, `2.22-alpine-3.24`, `2.19-debian-bookworm`, `2.20-ubuntu-24.04`, and `2.18-rockylinux-10`.
 
 Each image includes Ansible components and supporting runtime tools:
 
@@ -68,7 +68,7 @@ Use mutable tags for exploration:
 
 Use pinned tags for repeatable team and CI workflows:
 
-- `2.21-alpine-3.24`
+- `2.22-alpine-3.24`
 - `2.19-debian-bookworm`
 - `2.20-ubuntu-24.04`
 - `2.18-rockylinux-10`

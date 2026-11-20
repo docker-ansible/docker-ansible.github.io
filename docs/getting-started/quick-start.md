@@ -5,11 +5,11 @@ run the `willhallonline/ansible` image, mount your working directory, and execut
 playbook without installing Ansible on the host.
 
 The examples use the `latest` tag for readability. At the time documented here,
-`latest` points to **Ansible 2.21 on Alpine 3.24**.
+`latest` points to **Ansible 2.22 on Alpine 3.24**.
 
 !!! tip "Use exact tags once the command works"
     `latest` is convenient while learning. For CI/CD and shared project docs, pin an
-    exact tag such as `2.21-alpine-3.24` or `2.21-debian-trixie-slim`.
+    exact tag such as `2.22-alpine-3.24` or `2.21-debian-trixie-slim`.
 
 ## Prerequisites
 
@@ -178,7 +178,7 @@ The full tag format is:
 Examples:
 
 ```text
-2.21-alpine-3.24
+2.22-alpine-3.24
 2.19-debian-bookworm
 2.20-ubuntu-24.04
 2.18-rockylinux-10

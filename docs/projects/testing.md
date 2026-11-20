@@ -6,14 +6,14 @@ utilities to exercise images and the GitHub Action.
 This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
-The current image-test release is `v2.7.4`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-11-15, is:
+The current image-test release is `v2.7.5`. The action integration-test release
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-11-19, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
-| Docker Ansible | [`9ad5e39d7b587f17b6b81c541a6a8305697ddd18`](https://github.com/willhallonline/docker-ansible/commit/9ad5e39d7b587f17b6b81c541a6a8305697ddd18) | `v6.4.12` source tag; formal release `v6.4.11` |
-| Docker Ansible Test | [`2c8f289ef8f59e79b58473a405b89850b6c3f2b4`](https://github.com/willhallonline/docker-ansible-test/commit/2c8f289ef8f59e79b58473a405b89850b6c3f2b4) | `v2.7.4` |
-| Docker Ansible GitHub Action | [`fb244e71e224dba83fa95631cfafb42f038ba191`](https://github.com/willhallonline/docker-ansible-github-action/commit/fb244e71e224dba83fa95631cfafb42f038ba191) | `v1.1.0` |
+| Docker Ansible | [`39da628552ce211e4e7afc7af1108e4a273a4c2d`](https://github.com/willhallonline/docker-ansible/commit/39da628552ce211e4e7afc7af1108e4a273a4c2d) | `v6.5.0` |
+| Docker Ansible Test | [`2d2d8ec328c97faa12e91aa1d344bcf78c20b9a1`](https://github.com/willhallonline/docker-ansible-test/commit/2d2d8ec328c97faa12e91aa1d344bcf78c20b9a1) | `v2.7.5` |
+| Docker Ansible GitHub Action | [`2c5d393f7055d86d1929c987b6ef2eac2d086966`](https://github.com/willhallonline/docker-ansible-github-action/commit/2c5d393f7055d86d1929c987b6ef2eac2d086966) | `v1.1.1` |
 | Docker Ansible GitHub Action Test | [`cd0eae4810fec5692d33df6e7c9c9bff35f972ec`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/cd0eae4810fec5692d33df6e7c9c9bff35f972ec) | `v1.1.0` |
 
 ## Test-related repositories
@@ -62,8 +62,12 @@ and
 [`ghcr.io/willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test/pkgs/container/docker-ansible-test);
 pull requests build without publishing. The workflow runs once weekly on
 Monday at 02:00 UTC, and also supports pushes to `main` and manual dispatch.
-The latest successful scheduled matrix run was [#42589990803](https://github.com/willhallonline/docker-ansible-test/actions/runs/42589990803)
-on 2026-11-09 at the `2c8f289ef8f59e79b58473a405b89850b6c3f2b4` commit.
+The latest successful scheduled matrix run before `v2.7.5` was
+[#43835337419](https://github.com/willhallonline/docker-ansible-test/actions/runs/43835337419)
+on 2026-11-16 at the preceding `2c8f289ef8f59e79b58473a405b89850b6c3f2b4`
+commit. The subsequent push build for the current `v2.7.5` source was
+[#43864749119](https://github.com/willhallonline/docker-ansible-test/actions/runs/43864749119)
+on 2026-11-16 at the `2d2d8ec328c97faa12e91aa1d344bcf78c20b9a1` commit.
 
 After a published image is built, CI runs the exact GHCR image by its immutable
 build digest with cgroup support, `/run` and `/run/lock` tmpfs mounts, and
@@ -101,13 +105,15 @@ host-key-checking, linting, failure paths, or architecture variants. The
 61 image-tag entries are all available for AMD64; 54 also have ARM64 manifests.
 The seven AMD64-only entries are the `ubuntu` alias and the
 `2.16`-through-`2.21` Ubuntu 24.04 tags. No ARMv7 variants are published.
-`v1.1.0` test-repository tag predates the current fact-key fix; the current main
-commit
-`cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed all 61 jobs in [workflow run
-#42642398513](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/42642398513)
-on 2026-11-09. The workflow also runs on pushes to `main`, pull requests, and
-manual dispatch; scheduled runs start Monday at 06:00 UTC with up to 20
-parallel jobs and fail-fast disabled.
+The latest successful scheduled run was
+[#43889856972](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/43889856972)
+on 2026-11-16. GitHub currently marks the scheduled workflow
+`disabled_inactivity`; re-enable it before relying on future scheduled coverage.
+The `v1.1.0` test-repository tag predates the current fact-key fix; the current
+main commit `cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed all 61 jobs in
+that run. The workflow also runs on pushes to `main`, pull requests, and manual
+dispatch; scheduled runs start Monday at 06:00 UTC with up to 20 parallel jobs
+and fail-fast disabled.
 
 ## Use the systemd test images
 

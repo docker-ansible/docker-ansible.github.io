@@ -45,7 +45,7 @@ Supported moving tags use this pattern:
 For example:
 
 ```text
-2.21-alpine-3.24
+2.22-alpine-3.24
 2.20-debian-trixie
 2.19-rockylinux-10
 2.18-ubuntu-24.04
@@ -57,15 +57,15 @@ The tag tells you two things:
 2. the base operating system, such as `alpine-3.24` or `ubuntu-24.04`.
 
 !!! tip "Prefer explicit tags"
-    Use explicit tags such as `2.21-alpine-3.24` in automation. Convenience
+    Use explicit tags such as `2.22-alpine-3.24` in automation. Convenience
     tags are useful for quick tests, but explicit tags make upgrades deliberate.
 
 ## Convenience tags
 
 | Tag | Points to |
 | --- | --- |
-| `latest` | Ansible 2.21 on Alpine 3.24 |
-| `alpine` | Ansible 2.21 on Alpine 3.24 |
+| `latest` | Ansible 2.22 on Alpine 3.24 |
+| `alpine` | Ansible 2.22 on Alpine 3.24 |
 | `ubuntu` | Ansible 2.21 on Ubuntu 24.04 |
 
 Pulling a convenience tag is simple:
@@ -77,7 +77,7 @@ docker pull willhallonline/ansible:latest
 For repeatable builds, pin the operating system and Ansible stream instead:
 
 ```bash
-docker pull willhallonline/ansible:2.21-alpine-3.24
+docker pull willhallonline/ansible:2.22-alpine-3.24
 ```
 
 ## Versioned and pinned tags
@@ -95,7 +95,7 @@ Browse the full list on
 need a specific patch release.
 
 !!! note "Moving versus pinned tags"
-    Tags such as `2.21-alpine-3.24` track the current image for that Ansible
+    Tags such as `2.22-alpine-3.24` track the current image for that Ansible
     minor stream and base. Full patch-version tags identify a narrower build,
     but scheduled rebuilds can refresh their contents. Pin an image digest when
     exact byte-for-byte reproduction matters.
@@ -120,19 +120,19 @@ The supported image matrix currently covers these Ansible core versions:
 
 | Minor | Current core version |
 | --- | --- |
-| 2.18 | 2.18.20 |
-| 2.19 | 2.19.15 |
-| 2.20 | 2.20.11 |
+| 2.22 | 2.22.0 |
 | 2.21 | 2.21.6 |
+| 2.20 | 2.20.11 |
+| 2.19 | 2.19.15 |
+| 2.18 | 2.18.20 |
 
 See the complete [supported tag matrix](tags.md) for the operating systems that
 are available for each stream.
 
-!!! warning "Ansible Core 2.22 is not yet a supported image stream"
-    The upstream [Ansible Core 2.22 pull request](https://github.com/willhallonline/docker-ansible/pull/194)
-    remains open as a draft and is blocked on a stable Ansible 15 release. Its
-    Ansible 15.0.0rc1 dependency is a release candidate, not a stable release,
-    so 2.22 variants are intentionally absent from this stable image matrix.
+!!! note "Ansible Core 2.22 availability"
+    Ansible Core 2.22.0 and Ansible 15.0.0 require Python 3.13 or newer.
+    The 2.22 image variants are limited to Alpine 3.24, Debian Trixie,
+    Debian Trixie Slim, and Ubuntu 26.04.
 
 ## Base image families
 
