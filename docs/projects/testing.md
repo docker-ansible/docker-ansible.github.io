@@ -96,7 +96,7 @@ The action-test repository's current workflow enumerates 61 image tags: three
 aliases (`latest`, `alpine`, and `ubuntu`) plus 58 versioned tags. This is
 broader compatibility coverage, including retained 2.16/2.17 and Ubuntu 22.04
 tags, rather than the active core image support matrix. Each job pins
-`willhallonline/docker-ansible-github-action@v1.1.0`, runs a localhost playbook
+`willhallonline/docker-ansible-github-action@v1.1.1`, runs a localhost playbook
 smoke test, and asserts the `exit-code` output is zero. The workflow runs weekly
 on Monday at 06:00 UTC with up to 20 matrix jobs in parallel. The playbook
 validates Ansible/system facts, the non-root `ansible` UID/GID 1000, and a ping.
