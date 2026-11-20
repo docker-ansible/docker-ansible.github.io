@@ -6,6 +6,15 @@ at the current source tag or formal release of each.
 
 ## Documentation site releases
 
+### v1.1.1 - 2026-11-20
+
+- Refreshed the upstream repository snapshot to the latest verified `main`
+  commits and formal releases.
+- Added scheduled and `repository_dispatch` rebuild triggers for upstream
+  documentation changes.
+- Added a bounded upstream snapshot synchronizer for the testing page.
+- Documented the unresolved Core 2.22 gap in the GitHub Action Test matrix.
+
 ### v1.1.0 - 2026-11-16
 
 - Refreshed image patch versions, core release metadata, and current project/test
