@@ -181,7 +181,7 @@ repository. The core image project is also covered by image-level tests.
 
 The integration-test repository's current release is `v1.1.0`. Its current
 workflow enumerates 61 image tags—three aliases plus 58 versioned tags—and pins
-`willhallonline/docker-ansible-github-action@v1.1.0`. The matrix includes
+`willhallonline/docker-ansible-github-action@v1.1.1`. The matrix includes
 retained legacy image tags as compatibility coverage; it is not the active core
 image matrix. Each test remains a localhost smoke test and does not prove SSH,
 Vault, Galaxy, extra variables, deployment-host behaviour, failure handling, or

@@ -63,9 +63,10 @@ active core image support matrix.
 
 ![GitHub release](https://img.shields.io/github/v/release/willhallonline/docker-ansible-github-action)
 
-**v1.1.1** retries transient Docker image pulls, refreshes the documentation
-link and pinned image reference, and retains the non-root `ansible` user support
-from v1.1.0. See the
+**v1.1.1** retries transient Docker image pulls up to three total attempts with
+five-second delays between attempts, refreshes the documentation link and pinned
+image reference, and retains the non-root `ansible` user support from v1.1.0.
+See the
 [Docker Ansible GitHub Action](../projects/github-action.md) page and the
 [action repository](https://github.com/willhallonline/docker-ansible-github-action/releases)
 for current inputs and examples. Pin `@v1.1.1` or a commit SHA for a stable
