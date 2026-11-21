@@ -7,14 +7,14 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.5`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-11-20, is:
+is `v1.1.0`. The current default-branch snapshot, verified on 2026-11-21, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
-| Docker Ansible | [`39da628552ce211e4e7afc7af1108e4a273a4c2d`](https://github.com/willhallonline/docker-ansible/commit/39da628552ce211e4e7afc7af1108e4a273a4c2d) | `v6.5.0` |
-| Docker Ansible Test | [`902ee69b4edd7d284b8bad728fe608b613778d65`](https://github.com/willhallonline/docker-ansible-test/commit/902ee69b4edd7d284b8bad728fe608b613778d65) | `v2.7.5` |
-| Docker Ansible GitHub Action | [`d8cf2302c7f7c75a5826c7dd48e4c7e8c234863d`](https://github.com/willhallonline/docker-ansible-github-action/commit/d8cf2302c7f7c75a5826c7dd48e4c7e8c234863d) | `v1.1.1` |
-| Docker Ansible GitHub Action Test | [`11c1e41cd92a3813e6de0f04fda2602b08a20068`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/11c1e41cd92a3813e6de0f04fda2602b08a20068) | `v1.1.0` |
+| Docker Ansible | [`907162b2da53eaafebff564c5ca4bc6c96d7f4c8`](https://github.com/willhallonline/docker-ansible/commit/907162b2da53eaafebff564c5ca4bc6c96d7f4c8) | `v6.5.0` |
+| Docker Ansible Test | [`36be23650eb774aa088c4477c7f2a111f937d374`](https://github.com/willhallonline/docker-ansible-test/commit/36be23650eb774aa088c4477c7f2a111f937d374) | `v2.7.6` |
+| Docker Ansible GitHub Action | [`00ada4be6d3b409f940f52a3d500f4454cb351d4`](https://github.com/willhallonline/docker-ansible-github-action/commit/00ada4be6d3b409f940f52a3d500f4454cb351d4) | `v1.1.2` |
+| Docker Ansible GitHub Action Test | [`eb77082b6dda50d70031d9211d9a95e4c27fff28`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/eb77082b6dda50d70031d9211d9a95e4c27fff28) | `v1.1.1` |
 
 ## Test-related repositories
 

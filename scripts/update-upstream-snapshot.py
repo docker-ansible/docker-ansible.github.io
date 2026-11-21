@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 import json
+import os
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.request import Request, urlopen
 
 
 REPOSITORIES = (
@@ -21,15 +22,17 @@ PAGE = ROOT / "docs/projects/testing.md"
 
 
 def github_json(path):
-    request = Request(
-        f"https://api.github.com/{path}",
-        headers={
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "docker-ansible-docs",
-        },
+    environment = os.environ.copy()
+    if environment.get("GITHUB_TOKEN") and not environment.get("GH_TOKEN"):
+        environment["GH_TOKEN"] = environment["GITHUB_TOKEN"]
+    result = subprocess.run(
+        ["gh", "api", "-H", "Accept: application/vnd.github+json", path],
+        check=True,
+        capture_output=True,
+        text=True,
+        env=environment,
     )
-    with urlopen(request, timeout=30) as response:
-        return json.load(response)
+    return json.loads(result.stdout)
 
 
 def snapshot():
@@ -48,15 +51,15 @@ def snapshot():
     return rows
 
 
-def update_page(rows):
+def rendered_page(rows):
     text = PAGE.read_text(encoding="utf-8")
     date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     lines = text.splitlines()
 
     for index, line in enumerate(lines):
-        if line.startswith("is `v1.1.0`. The current default-branch snapshot, verified on"):
+        if "The current default-branch snapshot, verified on" in line:
             lines[index] = (
-                f"is `v1.1.0`. The current default-branch snapshot, "
+                f"is `v1.1.1`. The current default-branch snapshot, "
                 f"verified on {date}, is:"
             )
             break
@@ -70,24 +73,26 @@ def update_page(rows):
     while end < len(lines) and lines[end].startswith("|"):
         end += 1
     lines[start + 2 : end] = rows
-    PAGE.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return "\n".join(lines) + "\n"
 
 
 def main():
     rows = snapshot()
     before = PAGE.read_text(encoding="utf-8")
-    update_page(rows)
-    changed = PAGE.read_text(encoding="utf-8") != before
+    rendered = rendered_page(rows)
+    changed = rendered != before
     if "--check" in sys.argv:
         if changed:
             print("Upstream snapshot is stale:", file=sys.stderr)
             print("\n".join(rows), file=sys.stderr)
             raise SystemExit(1)
         print("Upstream snapshot is current")
-    elif changed:
-        print("Updated upstream snapshot")
     else:
-        print("Upstream snapshot is already current")
+        if changed:
+            PAGE.write_text(rendered, encoding="utf-8")
+            print("Updated upstream snapshot")
+        else:
+            print("Upstream snapshot is already current")
 
 
 if __name__ == "__main__":
