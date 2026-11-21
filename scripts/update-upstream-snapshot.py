@@ -57,11 +57,10 @@ def rendered_page(rows):
     lines = text.splitlines()
 
     for index, line in enumerate(lines):
-        if "The current default-branch snapshot, verified on" in line:
-            lines[index] = (
-                "is `v1.1.1`. The current default-branch snapshot, "
-                f"verified on {date}, is:"
-            )
+        marker = "The current default-branch snapshot, verified on"
+        if marker in line:
+            prefix = line.split(marker, 1)[0]
+            lines[index] = f"{prefix}{marker} {date}, is:"
             break
 
     start = next(

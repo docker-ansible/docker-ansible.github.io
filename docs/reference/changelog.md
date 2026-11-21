@@ -9,7 +9,7 @@ at the current source tag or formal release of each.
 ### v1.1.3 - 2026-11-21
 
 - Updated Docker Ansible Test from `v2.7.5` to `v2.7.6`.
-- Refreshed the 35-entry test matrix and the `2.22-debian-trixie` latest alias.
+- Corrected the 25-entry test matrix and the `2.22-debian-trixie` latest alias.
 - Removed the obsolete 2.22 action-test coverage gap after upstream test coverage
   was restored.
 
