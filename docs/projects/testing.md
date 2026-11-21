@@ -6,8 +6,8 @@ utilities to exercise images and the GitHub Action.
 This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
-The current image-test release is `v2.7.5`. The action integration-test release
-is `v1.1.0`. The current default-branch snapshot, verified on 2026-11-21, is:
+The current image-test release is `v2.7.6`. The action integration-test release
+is `v1.1.1`. The current default-branch snapshot, verified on 2026-11-21, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
@@ -42,16 +42,16 @@ The ecosystem tests focus on practical behaviours:
 - the published image digest runs `ansible-playbook --version`; and
 - the GitHub Action can invoke a localhost playbook and report its exit code.
 
-The `docker-ansible-test` systemd-image workflow currently exercises 22 explicit
-image/version combinations and emits `latest` only for
-`2.21-debian-trixie`. The active matrix covers Debian Bookworm and Bookworm
-Slim (2.18 and 2.19 each), Debian Trixie and Trixie Slim (2.18 through 2.21
+The `docker-ansible-test` systemd-image workflow currently exercises 35 explicit
+image/version combinations and emits `latest` for
+`2.22-debian-trixie`. The active matrix covers Debian Bookworm and Bookworm
+Slim (2.18 and 2.19 each), Debian Trixie and Trixie Slim (2.18 through 2.22
 each), Rocky Linux 10 (2.18 through 2.21), Ubuntu 24.04 (2.18 through 2.21),
-and Ubuntu 26.04 (2.20 and 2.21). Alpine is intentionally excluded because
+and Ubuntu 26.04 (2.20 through 2.22). Alpine is intentionally excluded because
 these images provide systemd, while Alpine uses OpenRC. Ubuntu 22.04 has a
 repository Dockerfile but no active workflow entries. The current/retained
-image-test set contains 35 tags: 22 active matrix tags, 12 retained 2.16 and
-2.17 compatibility tags, and the `latest` alias. Docker Hub currently lists 59
+image-test set contains 35 tags: 34 explicit matrix entries plus the `latest`
+alias. Docker Hub currently lists 59
 tags in total because 24 older historical tags from Ansible 2.5 through 2.10
 remain visible. Neither the retained compatibility tags nor the older
 historical tags are active support.
@@ -62,10 +62,10 @@ and
 [`ghcr.io/willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test/pkgs/container/docker-ansible-test);
 pull requests build without publishing. The workflow runs once weekly on
 Monday at 02:00 UTC, and also supports pushes to `main` and manual dispatch.
-The latest successful scheduled matrix run before `v2.7.5` was
+The latest successful scheduled matrix run before `v2.7.6` was
 [#43835337419](https://github.com/willhallonline/docker-ansible-test/actions/runs/43835337419)
 on 2026-11-16 at the preceding `2c8f289ef8f59e79b58473a405b89850b6c3f2b4`
-commit. The subsequent push build for the current `v2.7.5` source was
+commit. The subsequent push build for the current `v2.7.6` source was
 [#43864749119](https://github.com/willhallonline/docker-ansible-test/actions/runs/43864749119)
 on 2026-11-16 at the `2d2d8ec328c97faa12e91aa1d344bcf78c20b9a1` commit.
 
@@ -79,7 +79,7 @@ docker run --rm \
   --user root \
   --tmpfs /run --tmpfs /run/lock \
   -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
-  ghcr.io/willhallonline/docker-ansible-test:2.21-debian-trixie@sha256:<build-digest> \
+  ghcr.io/willhallonline/docker-ansible-test:2.22-debian-trixie@sha256:<build-digest> \
   ansible-playbook --version
 ```
 
@@ -92,35 +92,19 @@ behaviours yourself. Current image-test builds publish
 AMD64 and ARM64 except Ubuntu 24.04, which is AMD64-only; no ARMv7 variants
 are built.
 
-The action-test repository's current workflow enumerates 61 image tags: three
-aliases (`latest`, `alpine`, and `ubuntu`) plus 58 versioned tags. This is
-broader compatibility coverage, including retained 2.16/2.17 and Ubuntu 22.04
-tags, rather than the active core image support matrix. Each job pins
-`willhallonline/docker-ansible-github-action@v1.1.1`, runs a localhost playbook
-smoke test, and asserts the `exit-code` output is zero. The workflow runs weekly
-on Monday at 06:00 UTC with up to 20 matrix jobs in parallel. The playbook
-validates Ansible/system facts, the non-root `ansible` UID/GID 1000, and a ping.
-It does not exercise SSH, Vault, Galaxy, extra-vars, working-directory,
-host-key-checking, linting, failure paths, or architecture variants. The
-61 image-tag entries are all available for AMD64; 54 also have ARM64 manifests.
-The seven AMD64-only entries are the `ubuntu` alias and the
-`2.16`-through-`2.21` Ubuntu 24.04 tags. No ARMv7 variants are published.
-The latest successful scheduled run was
-[#43889856972](https://github.com/willhallonline/docker-ansible-github-action-test/actions/runs/43889856972)
-on 2026-11-16. GitHub currently marks the scheduled workflow
-`disabled_inactivity`; re-enable it before relying on future scheduled coverage.
-The `v1.1.0` test-repository tag predates the current fact-key fix; the earlier
-main commit `cd0eae4810fec5692d33df6e7c9c9bff35f972ec` passed all 61 jobs in
-that run. The workflow also runs on pushes to `main`, pull requests, and manual
-dispatch; scheduled runs start Monday at 06:00 UTC with up to 20 parallel jobs
-and fail-fast disabled.
+The action-test repository's current workflow enumerates 65 image tags: three
+aliases (`latest`, `alpine`, and `ubuntu`) plus 62 versioned tags. The matrix
+includes 45 current tags and aliases plus 20 retained tags for legacy Ansible
+2.16/2.17 lines, rather than being limited to the active core support matrix.
+Each job pins `willhallonline/docker-ansible-github-action@v1.1.1`, runs a
+localhost playbook smoke test, and asserts the `exit-code` output is zero.
+The workflow runs weekly on Monday at 06:00 UTC with up to 20 matrix jobs in
+parallel and is also run on pushes, pull requests, and manual dispatch.
 
-!!! warning "Unresolved: Core 2.22 is absent from the action-test matrix"
-    The core image matrix and Docker Ansible Test matrix include Core 2.22,
-    but the current `docker-ansible-github-action-test` workflow enumerates
-    compatibility tags only through Core 2.21 and does not include any 2.22
-    combination. The action itself has no 2.22-specific code requirement, but
-    2.22 compatibility is not verified by this integration workflow.
+The matrix now includes the four upstream Ansible 2.22 compatibility tags:
+Alpine 3.24, Debian Trixie, Debian Trixie Slim, and Ubuntu 26.04. The smoke test
+does not prove SSH, Vault, Galaxy, extra-vars, working-directory,
+host-key-checking, linting, failure paths, or architecture variants.
 
 ## Use the systemd test images
 
@@ -133,7 +117,7 @@ docker run -d --name ansible-test \
   --cgroupns=private \
   --tmpfs /run --tmpfs /run/lock \
   -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
-  willhallonline/ansible-test:2.21-debian-trixie
+  willhallonline/ansible-test:2.22-debian-trixie
 
 docker exec -it ansible-test /bin/bash
 docker rm -f ansible-test
@@ -147,7 +131,7 @@ docker run -d --name ansible-test \
   --tmpfs /run --tmpfs /run/lock \
   -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
   -v "$PWD:/ansible" \
-  willhallonline/ansible-test:2.21-debian-trixie
+  willhallonline/ansible-test:2.22-debian-trixie
 
 docker exec ansible-test ansible-playbook /ansible/playbook.yml
 docker rm -f ansible-test

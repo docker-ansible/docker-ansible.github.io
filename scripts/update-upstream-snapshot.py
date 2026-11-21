@@ -59,14 +59,13 @@ def rendered_page(rows):
     for index, line in enumerate(lines):
         if "The current default-branch snapshot, verified on" in line:
             lines[index] = (
-                f"is `v1.1.1`. The current default-branch snapshot, "
+                "is `v1.1.1`. The current default-branch snapshot, "
                 f"verified on {date}, is:"
             )
             break
 
     start = next(
-        i
-        for i, line in enumerate(lines)
+        i for i, line in enumerate(lines)
         if line.startswith("| Project | `main` commit |")
     )
     end = start + 1
@@ -87,12 +86,11 @@ def main():
             print("\n".join(rows), file=sys.stderr)
             raise SystemExit(1)
         print("Upstream snapshot is current")
+    elif changed:
+        PAGE.write_text(rendered, encoding="utf-8")
+        print("Updated upstream snapshot")
     else:
-        if changed:
-            PAGE.write_text(rendered, encoding="utf-8")
-            print("Updated upstream snapshot")
-        else:
-            print("Upstream snapshot is already current")
+        print("Upstream snapshot is already current")
 
 
 if __name__ == "__main__":

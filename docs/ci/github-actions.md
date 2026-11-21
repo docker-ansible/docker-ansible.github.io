@@ -80,7 +80,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run docker-ansible action
-        uses: willhallonline/docker-ansible-github-action@v1.1.1
+        uses: willhallonline/docker-ansible-github-action@v1.1.2
         with:
           playbook: playbooks/site.yml
           inventory: inventory/localhost.ini
@@ -96,7 +96,7 @@ the workflow needs to inspect the result:
 ```yaml
       - name: Run local playbook
         id: ansible
-        uses: willhallonline/docker-ansible-github-action@v1.1.1
+        uses: willhallonline/docker-ansible-github-action@v1.1.2
         with:
           playbook: playbooks/smoke.yml
           inventory: inventory/localhost.ini
