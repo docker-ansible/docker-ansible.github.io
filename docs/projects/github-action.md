@@ -187,10 +187,9 @@ image matrix. Each test remains a localhost smoke test and does not prove SSH,
 Vault, Galaxy, extra variables, deployment-host behaviour, failure handling, or
 linting. See [Docker Ansible Test](testing.md) for the complete scope.
 
-!!! warning "2.22 action-test coverage gap"
-    The action-test matrix currently stops at Core 2.21 and does not run a 2.22
-    image tag. Core 2.22 compatibility therefore remains an unresolved
-    cross-repository coverage gap.
+!!! note "2.22 action-test coverage"
+    The integration-test matrix includes all four upstream Core 2.22 tags:
+    Alpine 3.24, Debian Trixie, Debian Trixie Slim, and Ubuntu 26.04.
 
 ## Related documentation
 

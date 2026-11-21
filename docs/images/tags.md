@@ -57,12 +57,12 @@ service-management tests. Its active tag matrix is maintained by
 | Base image | Active Ansible streams |
 | --- | --- |
 | Debian Bookworm and Bookworm Slim | 2.18, 2.19 |
-| Debian Trixie and Trixie Slim | 2.18, 2.19, 2.20, 2.21 |
+| Debian Trixie and Trixie Slim | 2.18, 2.19, 2.20, 2.21, 2.22 |
 | Rocky Linux 10 | 2.18, 2.19, 2.20, 2.21 |
 | Ubuntu 24.04 | 2.18, 2.19, 2.20, 2.21 |
-| Ubuntu 26.04 | 2.20, 2.21 |
+| Ubuntu 26.04 | 2.20, 2.21, 2.22 |
 
-Only `2.21-debian-trixie` also receives the `latest` alias. Alpine is
+Only `2.22-debian-trixie` also receives the `latest` alias. Alpine is
 intentionally excluded because it uses OpenRC rather than systemd. Ubuntu
 24.04 test images are AMD64-only; other current test builds publish AMD64 and
 ARM64, with no ARMv7 variants. Retained historical registry tags are not part

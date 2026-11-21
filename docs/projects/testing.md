@@ -6,13 +6,13 @@ utilities to exercise images and the GitHub Action.
 This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
-The current image-test release is `v2.7.5`. The action integration-test release
-is `v1.1.1`. The current default-branch snapshot, verified on 2026-11-20, is:
+The current image-test release is `v2.7.6`. The action integration-test release
+is `v1.1.1`. The current default-branch snapshot, verified on 2026-11-21, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
 | Docker Ansible | [`907162b2da53eaafebff564c5ca4bc6c96d7f4c8`](https://github.com/willhallonline/docker-ansible/commit/907162b2da53eaafebff564c5ca4bc6c96d7f4c8) | `v6.5.0` |
-| Docker Ansible Test | [`902ee69b4edd7d284b8bad728fe608b613778d65`](https://github.com/willhallonline/docker-ansible-test/commit/902ee69b4edd7d284b8bad728fe608b613778d65) | `v2.7.5` |
+| Docker Ansible Test | [`36be23650eb774aa088c4477c7f2a111f937d374`](https://github.com/willhallonline/docker-ansible-test/commit/36be23650eb774aa088c4477c7f2a111f937d374) | `v2.7.6` |
 | Docker Ansible GitHub Action | [`00ada4be6d3b409f940f52a3d500f4454cb351d4`](https://github.com/willhallonline/docker-ansible-github-action/commit/00ada4be6d3b409f940f52a3d500f4454cb351d4) | `v1.1.2` |
 | Docker Ansible GitHub Action Test | [`eb77082b6dda50d70031d9211d9a95e4c27fff28`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/eb77082b6dda50d70031d9211d9a95e4c27fff28) | `v1.1.1` |
 
@@ -42,16 +42,16 @@ The ecosystem tests focus on practical behaviours:
 - the published image digest runs `ansible-playbook --version`; and
 - the GitHub Action can invoke a localhost playbook and report its exit code.
 
-The `docker-ansible-test` systemd-image workflow currently exercises 22 explicit
-image/version combinations and emits `latest` only for
-`2.21-debian-trixie`. The active matrix covers Debian Bookworm and Bookworm
-Slim (2.18 and 2.19 each), Debian Trixie and Trixie Slim (2.18 through 2.21
+The `docker-ansible-test` systemd-image workflow currently exercises 35 explicit
+image/version combinations and emits `latest` for
+`2.22-debian-trixie`. The active matrix covers Debian Bookworm and Bookworm
+Slim (2.18 and 2.19 each), Debian Trixie and Trixie Slim (2.18 through 2.22
 each), Rocky Linux 10 (2.18 through 2.21), Ubuntu 24.04 (2.18 through 2.21),
-and Ubuntu 26.04 (2.20 and 2.21). Alpine is intentionally excluded because
+and Ubuntu 26.04 (2.20 through 2.22). Alpine is intentionally excluded because
 these images provide systemd, while Alpine uses OpenRC. Ubuntu 22.04 has a
 repository Dockerfile but no active workflow entries. The current/retained
-image-test set contains 35 tags: 22 active matrix tags, 12 retained 2.16 and
-2.17 compatibility tags, and the `latest` alias. Docker Hub currently lists 59
+image-test set contains 35 tags: 34 explicit matrix entries plus the `latest`
+alias. Docker Hub currently lists 59
 tags in total because 24 older historical tags from Ansible 2.5 through 2.10
 remain visible. Neither the retained compatibility tags nor the older
 historical tags are active support.
@@ -62,10 +62,10 @@ and
 [`ghcr.io/willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test/pkgs/container/docker-ansible-test);
 pull requests build without publishing. The workflow runs once weekly on
 Monday at 02:00 UTC, and also supports pushes to `main` and manual dispatch.
-The latest successful scheduled matrix run before `v2.7.5` was
+The latest successful scheduled matrix run before `v2.7.6` was
 [#43835337419](https://github.com/willhallonline/docker-ansible-test/actions/runs/43835337419)
 on 2026-11-16 at the preceding `2c8f289ef8f59e79b58473a405b89850b6c3f2b4`
-commit. The subsequent push build for the current `v2.7.5` source was
+commit. The subsequent push build for the current `v2.7.6` source was
 [#43864749119](https://github.com/willhallonline/docker-ansible-test/actions/runs/43864749119)
 on 2026-11-16 at the `2d2d8ec328c97faa12e91aa1d344bcf78c20b9a1` commit.
 
@@ -79,7 +79,7 @@ docker run --rm \
   --user root \
   --tmpfs /run --tmpfs /run/lock \
   -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
-  ghcr.io/willhallonline/docker-ansible-test:2.21-debian-trixie@sha256:<build-digest> \
+  ghcr.io/willhallonline/docker-ansible-test:2.22-debian-trixie@sha256:<build-digest> \
   ansible-playbook --version
 ```
 
@@ -117,7 +117,7 @@ docker run -d --name ansible-test \
   --cgroupns=private \
   --tmpfs /run --tmpfs /run/lock \
   -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
-  willhallonline/ansible-test:2.21-debian-trixie
+  willhallonline/ansible-test:2.22-debian-trixie
 
 docker exec -it ansible-test /bin/bash
 docker rm -f ansible-test
@@ -131,7 +131,7 @@ docker run -d --name ansible-test \
   --tmpfs /run --tmpfs /run/lock \
   -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
   -v "$PWD:/ansible" \
-  willhallonline/ansible-test:2.21-debian-trixie
+  willhallonline/ansible-test:2.22-debian-trixie
 
 docker exec ansible-test ansible-playbook /ansible/playbook.yml
 docker rm -f ansible-test
