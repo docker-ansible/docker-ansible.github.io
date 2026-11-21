@@ -188,8 +188,9 @@ Vault, Galaxy, extra variables, deployment-host behaviour, failure handling, or
 linting. See [Docker Ansible Test](testing.md) for the complete scope.
 
 !!! note "2.22 action-test coverage"
-    The integration-test matrix includes all four upstream Core 2.22 tags:
-    Alpine 3.24, Debian Trixie, Debian Trixie Slim, and Ubuntu 26.04.
+    The action-test matrix includes four Ansible Core 2.22 tags:
+    `2.22-alpine-3.24`, `2.22-debian-trixie`,
+    `2.22-debian-trixie-slim`, and `2.22-ubuntu-26.04`.
 
 ## Related documentation
 
