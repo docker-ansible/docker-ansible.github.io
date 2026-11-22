@@ -122,9 +122,9 @@ These questions cover common decisions and surprises when using the
 
 ??? question "Can I use the images in GitHub Actions without the wrapper action?"
     Yes. You can run Docker directly in a workflow step, or you can use the
-    Docker-based GitHub Action. The action is convenient when its interface fits
-    your workflow; direct Docker commands are useful when you need complete
-    control.
+    composite GitHub Action, which invokes Docker on the runner. The action is
+    convenient when its interface fits your workflow; direct Docker commands
+    are useful when you need complete control.
 
     See [`../ci/github-actions.md`](../ci/github-actions.md).
 

@@ -26,7 +26,7 @@ provide a GitHub Action wrapper, test repositories, and reusable test utilities.
 | --- | --- | --- |
 | Docker Ansible | [`willhallonline/docker-ansible`](https://github.com/willhallonline/docker-ansible) | Builds Ansible Docker images for Alpine, Ubuntu, Rocky Linux, and Debian with multiple supported Ansible versions. |
 | Docker Hub image | [`willhallonline/ansible`](https://hub.docker.com/r/willhallonline/ansible) | Published container images containing `ansible-core`, `ansible`, and `ansible-lint`. |
-| Docker Ansible GitHub Action | [`willhallonline/docker-ansible-github-action`](https://github.com/willhallonline/docker-ansible-github-action) | Docker-based GitHub Action for running Ansible from the image family. |
+| Docker Ansible GitHub Action | [`willhallonline/docker-ansible-github-action`](https://github.com/willhallonline/docker-ansible-github-action) | Composite GitHub Action that runs Ansible from the image family via Docker. |
 | Docker Ansible Test | [`willhallonline/docker-ansible-test`](https://github.com/willhallonline/docker-ansible-test) | Test repository used to exercise the Docker Ansible images. |
 | Docker Ansible GitHub Action Test | [`willhallonline/docker-ansible-github-action-test`](https://github.com/willhallonline/docker-ansible-github-action-test) | Test repository used to exercise the Docker Ansible GitHub Action. |
 | Test utilities | [`testing-utils/`](https://github.com/willhallonline/docker-ansible/tree/main/testing-utils) | Helper files and scripts used by the core image test workflows. |
@@ -65,8 +65,10 @@ Current Ansible Core patch versions include:
 - `2.21.6`
 - `2.22.0`
 
-The action-test repository also retains older 2.16/2.17 tags for compatibility
-coverage; those are not part of the active core image build matrix.
+The action-test repository covers 65 tags: 45 current Ansible 2.18–2.22 tags
+and aliases plus 20 retained Ansible 2.16/2.17 tags for compatibility. Those
+retained tags are not part of the active core image build matrix; Ansible
+2.9–2.15 are excluded.
 
 !!! tip "Pin your runtime"
     Use an explicit Ansible-version and base-OS tag for repeatable automation.

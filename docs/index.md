@@ -32,8 +32,10 @@ Docker is available.
     Debian Trixie, Debian Trixie Slim, and Ubuntu 26.04. The source tag tracks
     the current image matrix and the formal release records the published
     release metadata.
-    The separate action-test repository retains 2.16/2.17 tags for compatibility
-    testing even though the active core image matrix is 2.18 through 2.22.
+    The separate action-test repository covers 45 current Ansible 2.18–2.22
+    tags and aliases plus 20 retained 2.16/2.17 tags for compatibility testing.
+    Those retained tags are outside the active core image matrix; Ansible
+    2.9–2.15 are excluded.
 
 ## Quick example
 

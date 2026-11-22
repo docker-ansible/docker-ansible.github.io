@@ -1,11 +1,12 @@
 # Docker Ansible GitHub Action
 
 [`willhallonline/docker-ansible-github-action`](https://github.com/willhallonline/docker-ansible-github-action)
-provides a GitHub Action for running Ansible in Docker.
+provides a composite GitHub Action for running Ansible in Docker.
 
-The action wraps the Docker Ansible image family so workflows can run
-`ansible-playbook` without installing Ansible directly on the GitHub-hosted or
-self-hosted runner.
+The action runs Bash on the GitHub Actions runner, invokes `docker run` against
+the selected Docker Ansible image, and mounts the checked-out repository. This
+lets workflows run `ansible-playbook` without installing Ansible directly on
+the GitHub-hosted or self-hosted runner.
 
 !!! note "Short description"
     `v1.1.2` is the current release of this project-maintained composite action.
@@ -23,8 +24,7 @@ self-hosted runner.
 
 ## What it contains
 
-The action repository includes the files expected for a Docker-based GitHub
-Action:
+The action repository includes the files expected for a composite GitHub Action:
 
 | Path | Purpose |
 | --- | --- |
@@ -54,8 +54,10 @@ The `v1.1.2` action exposes the following contract:
 | `image-tag` | No | `latest` | Tag of the `willhallonline/ansible` image to use; see the [available tags](https://hub.docker.com/r/willhallonline/ansible/tags). |
 
 The sole output is `exit-code`, the exit code returned by `ansible-playbook`.
-The action requires a runner with Docker. Workflows should grant only
-`contents: read` when using `actions/checkout`.
+The action requires a GitHub Actions runner with Docker and `GITHUB_WORKSPACE`
+set by the workflow environment. If `ansible-playbook` exits nonzero, the action
+writes that value to `exit-code` and then fails the step.
+Workflows should grant only `contents: read` when using `actions/checkout`.
 
 For a localhost-only playbook, use a no-SSH inventory and the local connection:
 
@@ -86,9 +88,15 @@ Invoke it without `private-key`, `known-hosts`, or other SSH inputs:
 The latest published action release is `v1.1.2`; the repository also publishes
 the `v1` major-version tag. Use `@v1.1.2` for an exact release, `@v1` for the
 moving major-version reference, or a commit SHA when you need immutable
-behaviour. Release `v1.1.2` retries transient Docker image pulls up to three
-total attempts with a five-second delay between attempts, then fails after the
-final attempt.
+behaviour. The three-attempt transient Docker image-pull retry was introduced
+in `v1.1.1` and remains in `v1.1.2`, with a five-second delay between attempts;
+the action fails after the final attempt.
+
+`image-tag` accepts any tag published by
+[`willhallonline/ansible`](https://hub.docker.com/r/willhallonline/ansible/tags).
+The `2.22-alpine-3.24` value above is a current example; the separate
+action-test workflow covers a defined compatibility matrix rather than every
+published tag.
 
 ## When to use the action
 
@@ -105,7 +113,7 @@ Common examples include:
 ## Typical workflow shape
 
 A workflow normally checks out your repository, configures any required secrets
-or SSH material, and then invokes the Docker-based action.
+or SSH material, and then invokes the composite action.
 
 ```yaml
 name: ansible
@@ -132,11 +140,11 @@ The action also supports Galaxy requirements, Vault passwords, SSH keys,
 `known_hosts`, extra variables, and additional `ansible-playbook` options as
 listed in the contract above.
 
-## Why a Docker-based action?
+## Why this composite action?
 
-A Docker-based action gives the action author control over the runtime image.
-That makes it easier to align CI with the same `willhallonline/ansible` images
-used by local Docker commands.
+The composite action keeps the orchestration in the workflow runner while using
+the same `willhallonline/ansible` images as local Docker commands. It can select
+any published image tag without requiring a separate action image build.
 
 | Benefit | Detail |
 | --- | --- |
@@ -179,13 +187,17 @@ The action is exercised by the
 [`willhallonline/docker-ansible-github-action-test`](https://github.com/willhallonline/docker-ansible-github-action-test)
 repository. The core image project is also covered by image-level tests.
 
-The integration-test repository's current release is `v1.1.1`. Its current
-workflow enumerates 65 image tags—three aliases plus 62 versioned tags—and pins
-`willhallonline/docker-ansible-github-action@v1.1.1`. The matrix includes
-retained legacy image tags as compatibility coverage; it is not the active core
-image matrix. Each test remains a localhost smoke test and does not prove SSH,
-Vault, Galaxy, extra variables, deployment-host behaviour, failure handling, or
-linting. See [Docker Ansible Test](testing.md) for the complete scope.
+The integration-test repository's current release is `v1.1.1`. Its
+[workflow](https://github.com/willhallonline/docker-ansible-github-action-test/blob/main/.github/workflows/test.yml)
+enumerates 65 image tags—three aliases plus 62 versioned tags—and pins
+`willhallonline/docker-ansible-github-action@v1.1.1`. The matrix contains 45
+current Ansible 2.18–2.22 tags and aliases plus 20 retained Ansible 2.16/2.17
+tags; Ansible 2.9–2.15 are excluded. Compare it with the core project's
+[supported-tags table](https://github.com/willhallonline/docker-ansible#supported-tags-and-respective-dockerfile-links)
+when choosing an image. Each test remains a localhost smoke test and does not
+prove SSH, Vault, Galaxy, extra variables, deployment-host behaviour, failure
+handling, or linting. See [Docker Ansible Test](testing.md) for the complete
+scope.
 
 !!! note "2.22 action-test coverage"
     The action-test matrix includes four Ansible Core 2.22 tags:

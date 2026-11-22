@@ -96,8 +96,12 @@ workflow; the repository also publishes the `v1` major-version tag.
   `ansible-playbook --version` smoke tests for the images themselves.
 - **Docker Ansible GitHub Action Test** (integration-test **v1.1.1**) —
   a 65-tag compatibility matrix (three aliases plus 62 versioned tags) with
-  localhost/non-root/exit-code smoke coverage for the GitHub Action. It retains
-  legacy image tags and should not be read as the active core image matrix.
+  45 current Ansible 2.18–2.22 tags and aliases plus 20 retained Ansible
+  2.16/2.17 tags. Ansible 2.9–2.15 are excluded. See the upstream
+  [supported-tags table](https://github.com/willhallonline/docker-ansible#supported-tags-and-respective-dockerfile-links)
+  and [test workflow](https://github.com/willhallonline/docker-ansible-github-action-test/blob/main/.github/workflows/test.yml)
+  for the active source matrices; the workflow provides localhost/non-root/
+  exit-code smoke coverage and is not the active core image matrix.
 
 See [Docker Ansible Test](../projects/testing.md) for how these fit together.
 
