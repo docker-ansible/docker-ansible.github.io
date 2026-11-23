@@ -7,7 +7,7 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.6`. The action integration-test release
-is `v1.1.1`. The current default-branch snapshot, verified on 2026-11-22, is:
+is `v1.1.1`. The current default-branch snapshot, verified on 2026-11-23, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
