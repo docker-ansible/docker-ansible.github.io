@@ -120,7 +120,7 @@ Do not report vulnerabilities in public issues. Use the upstream security policy
 | Repository | Purpose |
 | --- | --- |
 | [Docker Ansible](https://github.com/willhallonline/docker-ansible) | Core image builds. |
-| [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | Docker-based GitHub Action. |
+| [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | Composite GitHub Action that invokes Docker. |
 | [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | Image tests. |
 | [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | Action tests. |
 

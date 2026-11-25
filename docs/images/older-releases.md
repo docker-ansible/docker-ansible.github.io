@@ -18,6 +18,7 @@ The active image matrix is separate from the historical definitions below:
 | Ansible 2.19 | 2.19.15 |
 | Ansible 2.20 | 2.20.11 |
 | Ansible 2.21 | 2.21.6 |
+| Ansible 2.22 | 2.22.0 |
 
 ## Inactive Ansible streams
 
