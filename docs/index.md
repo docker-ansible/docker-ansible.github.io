@@ -19,7 +19,7 @@ Docker is available.
 
     | Project | Tag | Current image/default |
     | --- | --- | --- |
-    | Docker Ansible | [`v6.5.0`](https://github.com/willhallonline/docker-ansible/releases/tag/v6.5.0) release (`39da62`, 2026-11-18); current `main` `907162b` (2026-11-20) | `2.22-alpine-3.24` (`latest`/`alpine`) |
+    | Docker Ansible | [`v6.5.1`](https://github.com/willhallonline/docker-ansible/releases/tag/v6.5.1) release (`4cc29bc`, 2026-11-25) | `2.22-alpine-3.24` (`latest`/`alpine`) |
     | Docker Ansible GitHub Action | [`v1.1.2`](https://github.com/willhallonline/docker-ansible-github-action/tree/v1.1.2) | Uses the non-root `ansible` image user |
     | Docker Ansible Test | [`v2.7.6`](https://github.com/willhallonline/docker-ansible-test/tree/v2.7.6) | Tracks the current image matrix |
     | Docker Ansible GitHub Action Test | [`integration-test v1.1.1`](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.1) | Tests the GitHub Action |
@@ -27,9 +27,8 @@ Docker is available.
     See the [ecosystem changelog](reference/changelog.md) for release notes and
     links.
 
-    `docker-ansible` `v6.5.0` is the latest formal release, while `main` has
-    advanced to `907162b` (2026-11-20) with unreleased documentation-only
-    changes. The release adds Ansible Core 2.22.0 / Ansible 15.0.0 for Alpine
+    `docker-ansible` `v6.5.1` is the latest formal release at `main`
+    commit `4cc29bc` (2026-11-25). The release adds Ansible Core 2.22.0 / Ansible 15.0.0 for Alpine
     3.24, Debian Trixie, Debian Trixie Slim, and Ubuntu 26.04. Use the release
     tag for the published release metadata and `main` for the current source
     snapshot.

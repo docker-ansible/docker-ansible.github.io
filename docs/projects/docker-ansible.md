@@ -10,8 +10,7 @@ that local development and CI jobs can use the same packaged toolchain.
 !!! note "Short description"
     Ansible inside Docker containers: Alpine, Ubuntu, Rocky Linux, and Debian
     with active Ansible core streams 2.18 through 2.22. The latest formal
-    release is `v6.5.0` (commit `39da628`, 2026-11-18). Current `main` is
-    `907162b` (2026-11-20) and contains unreleased documentation-only changes.
+    release is `v6.5.1` (commit `4cc29bc`, 2026-11-25).
 
 ## Links
 

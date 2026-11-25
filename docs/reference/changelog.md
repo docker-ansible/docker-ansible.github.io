@@ -6,22 +6,16 @@ at the current source tag or formal release of each.
 
 ## Documentation site releases
 
-### v1.1.3 - 2026-11-21
+### v1.1.1 - 2026-11-25
 
-- Updated Docker Ansible Test from `v2.7.5` to `v2.7.6`.
-- Corrected the 25-entry test matrix and the `2.22-debian-trixie` latest alias.
-- Removed the obsolete 2.22 action-test coverage gap after upstream test coverage
-  was restored.
-
-### v1.1.2 - 2026-11-20
-
-- Refreshed the upstream repository snapshot to the latest verified `main`
-  commits and formal releases.
-- Added scheduled and `repository_dispatch` rebuild triggers for upstream
-  documentation changes.
-- Added a bounded upstream snapshot synchronizer for the testing page.
-- Updated the action and action-test release references after upstream 2.22
-  matrix coverage was restored.
+- Refreshed upstream repository snapshots, formal releases, and commit references
+  across the Docker Ansible ecosystem.
+- Added scheduled and `repository_dispatch` rebuild triggers plus an upstream
+  snapshot synchronizer for the testing documentation.
+- Updated Docker Ansible Test from `v2.7.5` to `v2.7.6`, corrected the 25-entry
+  active matrix and 26-tag set, and set `latest` to `2.22-debian-trixie`.
+- Updated GitHub Action and action-test release references, including the
+  complete 65-tag compatibility matrix and four Core 2.22 tags.
 
 ### v1.1.0 - 2026-11-16
 
@@ -35,7 +29,7 @@ at the current source tag or formal release of each.
 
 | Project | Current tag/release | What it is | Release notes |
 | --- | --- | --- | --- |
-| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | **v6.5.0** | The core container images (`willhallonline/ansible`) | [Release](https://github.com/willhallonline/docker-ansible/releases/tag/v6.5.0) |
+| [Docker Ansible](https://github.com/willhallonline/docker-ansible) | **v6.5.1** | The core container images (`willhallonline/ansible`) | [Release](https://github.com/willhallonline/docker-ansible/releases/tag/v6.5.1) |
 | [Docker Ansible GitHub Action](https://github.com/willhallonline/docker-ansible-github-action) | **v1.1.2** | GitHub Action running Ansible via the images | [Releases](https://github.com/willhallonline/docker-ansible-github-action/releases) |
 | [Docker Ansible Test](https://github.com/willhallonline/docker-ansible-test) | **v2.7.6** | Systemd image builds and `ansible-playbook --version` smoke tests | [Tags](https://github.com/willhallonline/docker-ansible-test/tags) |
 | [Docker Ansible GitHub Action Test](https://github.com/willhallonline/docker-ansible-github-action-test) | **integration-test v1.1.1** | Workflows exercising the GitHub Action | [Release](https://github.com/willhallonline/docker-ansible-github-action-test/releases/tag/v1.1.1) |
@@ -51,8 +45,10 @@ at the current source tag or formal release of each.
 The canonical changelog is maintained in the upstream repository:
 [CHANGELOG.md](https://github.com/willhallonline/docker-ansible/blob/main/CHANGELOG.md)
 
-Recent highlights (v6.4.3–v6.5.0):
+Recent highlights (v6.4.3–v6.5.1):
 
+- fixed archived Dockerfile links and branch references;
+- clarified that Mitogen is available only in older image builds;
 - added Ansible Core 2.22.0 / Ansible 15.0.0 for Alpine 3.24, Debian Trixie,
   Debian Trixie Slim, and Ubuntu 26.04;
 - advanced the `latest` and `alpine` convenience tags to Ansible 2.22 while
@@ -68,7 +64,7 @@ Recent highlights (v6.4.3–v6.5.0):
 - updated Ansible core to 2.18.20, 2.19.15, 2.20.11, 2.21.6, and 2.22.0;
 - builds generally target Linux AMD64 and ARM64, with tag-specific exceptions.
 
-The current default branch and `v6.5.0` release contain these refreshed patch
+The current default branch and `v6.5.1` release contain these refreshed patch
 versions.
 
 The current Ansible core lines shipped in the images are 2.18 through 2.22 —
