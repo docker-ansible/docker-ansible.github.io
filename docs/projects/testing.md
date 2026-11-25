@@ -7,7 +7,7 @@ This page explains how the project is tested and how you can run quick smoke
 tests before relying on an image in your own automation.
 
 The current image-test release is `v2.7.6`. The action integration-test release
-is `v1.1.1`. The current default-branch snapshot, verified on 2026-11-23, is:
+is `v1.1.1`. The current default-branch snapshot, verified on 2026-11-25, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
@@ -63,9 +63,9 @@ Monday at 02:00 UTC, and also supports pushes to `main` and manual dispatch.
 The `v2.7.6` release aligns the systemd test images with the current
 2.18–2.22 core-image matrix and documents the repository's digest-based smoke
 test. The latest successful matrix build is
-[#44747381759](https://github.com/willhallonline/docker-ansible-test/actions/runs/44747381759)
-at commit
-[`902ee69b4edd7d284b8bad728fe608b613778d65`](https://github.com/willhallonline/docker-ansible-test/commit/902ee69b4edd7d284b8bad728fe608b613778d65).
+[#45154020409](https://github.com/willhallonline/docker-ansible-test/actions/runs/45154020409)
+at the current `main` commit
+[`36be23650eb774aa088c4477c7f2a111f937d374`](https://github.com/willhallonline/docker-ansible-test/commit/36be23650eb774aa088c4477c7f2a111f937d374).
 
 After a published image is built, CI runs the exact GHCR image by its immutable
 build digest with cgroup support, `/run` and `/run/lock` tmpfs mounts, and
