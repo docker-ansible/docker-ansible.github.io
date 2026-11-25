@@ -11,7 +11,7 @@ is `v1.1.1`. The current default-branch snapshot, verified on 2026-11-25, is:
 
 | Project | `main` commit | Release/tag |
 | --- | --- | --- |
-| Docker Ansible | [`907162b2da53eaafebff564c5ca4bc6c96d7f4c8`](https://github.com/willhallonline/docker-ansible/commit/907162b2da53eaafebff564c5ca4bc6c96d7f4c8) | `v6.5.0` |
+| Docker Ansible | [`4cc29bc36d9a6c54f36f2e9ff38c0f964d5538cf`](https://github.com/willhallonline/docker-ansible/commit/4cc29bc36d9a6c54f36f2e9ff38c0f964d5538cf) | `v6.5.1` |
 | Docker Ansible Test | [`36be23650eb774aa088c4477c7f2a111f937d374`](https://github.com/willhallonline/docker-ansible-test/commit/36be23650eb774aa088c4477c7f2a111f937d374) | `v2.7.6` |
 | Docker Ansible GitHub Action | [`00ada4be6d3b409f940f52a3d500f4454cb351d4`](https://github.com/willhallonline/docker-ansible-github-action/commit/00ada4be6d3b409f940f52a3d500f4454cb351d4) | `v1.1.2` |
 | Docker Ansible GitHub Action Test | [`eb77082b6dda50d70031d9211d9a95e4c27fff28`](https://github.com/willhallonline/docker-ansible-github-action-test/commit/eb77082b6dda50d70031d9211d9a95e4c27fff28) | `v1.1.1` |
